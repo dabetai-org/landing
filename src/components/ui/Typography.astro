@@ -27,15 +27,15 @@ const tagMap: Record<string, TagType> = {
 const Tag: TagType = tag || tagMap[variant] || "p";
 
 const styles: Record<string, string> = {
-  display: "text-5xl font-source font-bold",
-  h1: "text-4xl font-source font-bold",
-  h2: "text-3xl font-source font-bold",
-  h3: "text-2xl font-source font-bold",
-  subtitle: "text-lg font-source font-bold",
-  body: "text-base font-inter font-normal",
-  bodyBold: "text-base font-inter font-bold",
-  bodySmall: "text-sm font-inter font-normal",
-  bodySmallBold: "text-sm font-inter font-bold",
+  display: "text-4xl md:text-5xl lg:text-6xl font-source font-bold",
+  h1: "text-3xl md:text-4xl lg:text-5xl font-source font-bold",
+  h2: "text-2xl md:text-3xl font-source font-bold",
+  h3: "text-xl md:text-2xl font-source font-bold",
+  subtitle: "text-base md:text-lg font-source font-bold",
+  body: "text-sm sm:text-base font-inter font-normal",
+  bodyBold: "text-sm sm:text-base font-inter font-bold",
+  bodySmall: "text-xs sm:text-sm font-inter font-normal",
+  bodySmallBold: "text-xs sm:text-sm font-inter font-bold",
   caption: "text-xs font-inter font-normal",
   captionBold: "text-xs font-inter font-bold",
 };
