@@ -1,0 +1,17 @@
+---
+import Badges from "../Badges.astro";
+import Section from "../../layout/Section.astro";
+import Typography from "../../ui/Typography.astro";
+---
+
+<Section bgColor="bg-slate-50" innerClass="sm:flex-row justify-between items-center">
+  <div class="flex flex-col gap-5 text-center sm:text-left">
+    <Typography variant="h1" color="text-slate-950">
+      Permite que la inteligencia artificial te asista en el manejo de tu diabetes
+    </Typography>
+    <Typography variant="body">
+      Descarga la aplicación móvil ahora y mejora tu salud hoy mismo.
+    </Typography>
+  </div>
+  <Badges className="self-start flex lg:flex-col justify-center sm:justify-end w-full sm:w-auto" />
+</Section>

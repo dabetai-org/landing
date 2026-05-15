@@ -1,0 +1,50 @@
+---
+import Section from "../layout/Section.astro";
+import Typography from "../ui/Typography.astro";
+import Button from "../ui/Button.astro";
+
+const faqs = [
+  {
+    question: "¿Cómo funciona la aplicación?",
+    answer: "Nuestra aplicación utiliza inteligencia artificial para monitorear y predecir posibles complicaciones de la diabetes en base a tus datos ingresados.",
+  },
+  {
+    question: "¿Es gratuita la aplicación?",
+    answer: "Sí, puedes descargar y usar la aplicación de forma gratuita con funciones básicas. Hay opciones premium para características avanzadas.",
+  },
+  {
+    question: "¿Cómo protegen mis datos?",
+    answer: "Implementamos encriptación avanzada y seguimos estrictas normativas de seguridad para proteger tu información.",
+  },
+  {
+    question: "¿Puedo compartir mi información con mi médico?",
+    answer: "Sí, puedes compartir tus datos con tu médico de confianza para que pueda monitorear tu progreso y darte recomendaciones.",
+  },
+  {
+    question: "¿Qué dispositivos son compatibles?",
+    answer: "Nuestra aplicación es compatible con la mayoría de los dispositivos móviles y tablets, tanto en Android como iOS.",
+  },
+];
+---
+
+<Section id="faq" bgColor="bg-slate-100" innerClass="max-w-[800px]">
+  <Typography variant="h1" color="text-slate-950" class="text-center">
+    Preguntas frecuentes
+  </Typography>
+
+  <div class="flex flex-col divide-y divide-slate-300 select-none">
+    {faqs.map((faq) => (
+      <details class="faq-item py-5 group">
+        <summary class="flex justify-between items-center cursor-pointer">
+          <Typography variant="subtitle" color="text-slate-700">{faq.question}</Typography>
+          <i class="fas fa-chevron-down text-slate-700 transition-transform duration-200 group-open:rotate-180" />
+        </summary>
+        <Typography variant="body" color="text-slate-700" class="mt-3">{faq.answer}</Typography>
+      </details>
+    ))}
+  </div>
+
+  <div class="flex justify-center">
+    <Button title="Ver más preguntas" variant="outline" color="primary" href="#" class="bg-slate-50" />
+  </div>
+</Section>

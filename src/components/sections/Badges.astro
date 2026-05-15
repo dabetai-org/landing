@@ -1,0 +1,12 @@
+---
+const { className = "" } = Astro.props;
+---
+
+<div class={`flex items-center gap-4 select-none ${className}`}>
+  <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer">
+    <img src="/assets/images/google-play-badge.png" alt="Disponible en Google Play" class="w-40 transition-transform duration-300 transform hover:scale-105 hover:translate-y-[-2px]" />
+  </a>
+  <a href="https://www.apple.com/app-store/" target="_blank" rel="noopener noreferrer">
+    <img src="/assets/images/app-store-badge.png" alt="Disponible en App Store" class="w-40 transition-transform duration-300 transform hover:scale-105 hover:translate-y-[-2px]" />
+  </a>
+</div>

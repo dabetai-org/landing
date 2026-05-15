@@ -1,0 +1,83 @@
+---
+import Badges from "../sections/Badges.astro";
+import Typography from "../ui/Typography.astro";
+
+interface LinkItem {
+  href: string;
+  label: string;
+  icon?: string;
+}
+
+const { navLinks = [], resources = [], socialLinks = [] } = Astro.props as {
+  navLinks?: LinkItem[];
+  resources?: LinkItem[];
+  socialLinks?: (LinkItem & { icon: string })[];
+};
+---
+
+<footer class="w-full bg-primary-500 py-12 select-none">
+  <div class="max-w-[1440px] mx-auto px-5 lg:px-20 space-y-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-14 text-slate-50">
+      <div class="space-y-5">
+        <a href="/">
+          <img src="/assets/images/logo-dark.png" alt="dabetai" class="h-10" />
+        </a>
+        <Typography variant="body" color="text-slate-50">Mejora tu salud con el monitoreo de diabetes inteligente impulsado por inteligencia artificial.</Typography>
+        <Badges className="w-60" />
+      </div>
+
+      <div class="flex flex-col space-y-5">
+        <Typography variant="subtitle" color="text-slate-50" tag="h4">Navegación</Typography>
+        <ul class="space-y-2">
+          {navLinks.map((link) => (
+            <li>
+              <a href={link.href} class="hover:text-secondary-100 transition-colors">
+                <Typography variant="body" color="!text-inherit">{link.label}</Typography>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="flex flex-col space-y-5">
+        <Typography variant="subtitle" color="text-slate-50" tag="h4">Recursos útiles</Typography>
+        <ul class="space-y-2">
+          {resources.map((resource) => (
+            <li>
+              <a href={resource.href} class="hover:text-secondary-100 transition-colors">
+                <Typography variant="body" color="!text-inherit">{resource.label}</Typography>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="flex flex-col space-y-5">
+        <Typography variant="subtitle" color="text-slate-50" tag="h4">Síguenos</Typography>
+        <ul class="space-y-2">
+          {socialLinks.map((social) => (
+            <li>
+              <a href={social.href} class="hover:text-secondary-100 transition-colors flex items-center">
+                <i class={`${social.icon} mr-3`} />
+                <Typography variant="body" color="!text-inherit">{social.label}</Typography>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <hr class="border-t border-slate-50/30" />
+
+    <div class="flex flex-col sm:flex-row justify-between items-center text-slate-50 opacity-80">
+      <Typography variant="caption" color="!text-inherit">&copy; 2025 dabetai. Todos los derechos reservados.</Typography>
+      <div class="flex space-x-4 mt-4 sm:mt-0">
+        <a href="#" class="hover:text-secondary-100 transition-colors"><Typography variant="caption" color="!text-inherit">Política de privacidad</Typography></a>
+        <Typography variant="caption" color="!text-inherit">|</Typography>
+        <a href="#" class="hover:text-secondary-100 transition-colors"><Typography variant="caption" color="!text-inherit">Términos y condiciones</Typography></a>
+        <Typography variant="caption" color="!text-inherit">|</Typography>
+        <a href="#" class="hover:text-secondary-100 transition-colors"><Typography variant="caption" color="!text-inherit">Configuración de cookies</Typography></a>
+      </div>
+    </div>
+  </div>
+</footer>

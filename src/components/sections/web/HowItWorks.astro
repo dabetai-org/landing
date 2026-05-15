@@ -1,0 +1,64 @@
+---
+import Section from "../../layout/Section.astro";
+import Typography from "../../ui/Typography.astro";
+import Button from "../../ui/Button.astro";
+import ButtonGroup from "../../ui/ButtonGroup.astro";
+---
+
+<Section bgColor="bg-secondary-50">
+  <div class="grid md:grid-cols-1 space-y-4">
+    <div class="grid grid-cols-1 lg:grid-cols-3 space-y-4 lg:space-y-0 lg:gap-4">
+      <div class="bg-slate-50 p-6 pb-0 rounded-2xl shadow-ds-sm relative flex flex-col md:grid md:grid-cols-3 gap-4 overflow-hidden col-span-2">
+        <div class="md:col-span-3">
+          <div class="flex items-center gap-4">
+            <div class="size-7 flex items-center justify-center bg-secondary-500 text-slate-50 font-source font-bold rounded-full">
+              <Typography variant="bodySmallBold" color="!text-slate-50">1</Typography>
+            </div>
+            <Typography variant="subtitle" color="text-secondary-500">Inicia sesión o regístrate</Typography>
+          </div>
+        </div>
+
+        <img src="/assets/images/bento-web/laptop-auth.png" alt="App en laptop" class="w-full md:col-span-2 object-contain object-bottom max-h-52 md:max-h-none order-last md:order-none" />
+
+        <div class="space-y-5 w-full md:col-span-1 flex flex-col justify-center">
+          <Typography variant="body">Inicia sesión si ya tienes una cuenta o regístrate si eres un nuevo usuario.</Typography>
+          <ButtonGroup direction="col" stretch>
+            <Button title="Iniciar sesión" variant="fill" color="secondary" href="#" />
+            <Button title="Registrarse" variant="outline" color="secondary" href="#" />
+          </ButtonGroup>
+        </div>
+      </div>
+
+      <div class="bg-slate-50 p-6 pb-0 rounded-2xl shadow-ds-sm relative flex flex-col justify-center gap-4 overflow-hidden">
+        <Typography variant="subtitle" color="text-secondary-500">También puedes hacerlo desde tu celular</Typography>
+        <img src="/assets/images/bento-web/phone-auth.png" alt="App en celular" class="w-full object-contain object-bottom max-h-52 md:max-h-none" />
+      </div>
+    </div>
+
+    <div class="grid gap-4 lg:col-span-2">
+      <div class="bg-slate-50 relative p-6 rounded-2xl shadow-ds-sm col-span-2 flex flex-col md:flex-row gap-4 overflow-hidden">
+        <div class="space-y-5 flex-1 w-full md:w-7/12">
+          <div class="flex items-center gap-3">
+            <div class="size-7 flex items-center justify-center bg-secondary-500 text-slate-50 font-source font-bold rounded-full">
+              <Typography variant="bodySmallBold" color="!text-slate-50">2</Typography>
+            </div>
+            <Typography variant="subtitle" color="text-secondary-500">Monitorea a tus pacientes</Typography>
+          </div>
+          <Typography variant="body" class="text-balance">Lleva un seguimiento detallado del estado de tus pacientes en todo momento y desde cualquier lugar.</Typography>
+
+          <div class="flex items-center gap-3">
+            <div class="size-7 flex items-center justify-center bg-secondary-500 text-slate-50 font-source font-bold rounded-full">
+              <Typography variant="bodySmallBold" color="!text-slate-50">3</Typography>
+            </div>
+            <Typography variant="subtitle" color="text-secondary-500">Envía reportes y alertas</Typography>
+          </div>
+          <Typography variant="body" class="text-balance">Notifica a tus pacientes automáticamente si se detecta alguna anomalía en su estado de salud.</Typography>
+        </div>
+
+        <div class="flex justify-center w-full md:w-5/12 order-1 md:order-none">
+          <img src="/assets/images/bento-web/laptop-features.png" class="w-96 object-contain object-top rounded-lg max-h-52 md:max-h-none" />
+        </div>
+      </div>
+    </div>
+  </div>
+</Section>

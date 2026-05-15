@@ -1,0 +1,23 @@
+---
+import Badges from "./Badges.astro";
+import Section from "../layout/Section.astro";
+import Typography from "../ui/Typography.astro";
+---
+
+<Section id="hero" bgColor="bg-primary-500" innerClass="md:flex-row justify-between items-center gap-20">
+  <div class="space-y-6 md:space-y-9 text-center md:text-left">
+    <Typography variant="h1" color="text-slate-50" class="md:!text-5xl md:!leading-[50.3px]">
+      Monitorea tu diabetes con inteligencia artificial
+    </Typography>
+
+    <Typography variant="body" color="text-slate-50" class="md:!text-lg md:!leading-[22.6px] !font-medium">
+      Aplicación móvil de auto monitoreo para personas con diabetes y complicaciones derivadas. <br /> Aplicación web de monitoreo remoto para profesionales de la salud.
+    </Typography>
+
+    <Badges className="justify-center md:justify-start" />
+  </div>
+
+  <div class="relative w-full md:w-auto flex justify-center">
+    <img src="/assets/images/hero.png" alt="Hero" class="relative w-full h-auto transition-transform duration-[2000ms] ease-in-out hover:scale-105 hover:rotate-1" />
+  </div>
+</Section>

@@ -1,0 +1,78 @@
+---
+import Badges from "../Badges.astro";
+import Section from "../../layout/Section.astro";
+import Typography from "../../ui/Typography.astro";
+---
+
+<Section bgColor="bg-primary-50">
+  <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-4">
+    <div class="bg-slate-50 p-6 rounded-2xl shadow-ds-sm flex flex-col gap-4">
+      <div class="flex items-center gap-4">
+        <div class="size-7 flex items-center justify-center bg-primary-500 text-slate-50 font-source font-bold rounded-full">
+          <Typography variant="bodySmallBold" color="!text-slate-50">1</Typography>
+        </div>
+        <Typography variant="subtitle" color="text-primary-500">Instala la aplicación en tu celular</Typography>
+      </div>
+      <Typography variant="body">La puedes encontrar completamente gratis desde la Play Store en tu android o desde la App Store en tu iPhone.</Typography>
+      <Badges className="w-72" />
+    </div>
+
+    <div class="bg-slate-50 p-6 pb-0 rounded-2xl shadow-ds-sm flex flex-col sm:flex-row gap-4">
+      <img src="/assets/images/bento-mobile/phone-auth.png" alt="App en celular" class="w-full sm:w-1/2 object-contain object-bottom order-last sm:order-none mt-auto max-w-xs sm:max-w-full mx-auto" />
+      <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-1/2">
+        <div class="space-y-4 w-full">
+          <div class="flex items-center gap-4">
+            <div class="size-7 flex items-center justify-center bg-primary-500 text-slate-50 font-source font-bold rounded-full">
+              <Typography variant="bodySmallBold" color="!text-slate-50">2</Typography>
+            </div>
+            <Typography variant="subtitle" color="text-primary-500">Inicia sesión o regístrate</Typography>
+          </div>
+          <Typography variant="body">Ingresa tus credenciales si ya tienes una cuenta.</Typography>
+          <Typography variant="body">Si eres un usuario nuevo, crea una cuenta.</Typography>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-4 lg:col-span-2">
+      <div class="bg-slate-50 p-6 pb-0 rounded-2xl shadow-ds-sm flex flex-col gap-4">
+        <div class="flex items-center gap-4">
+          <div class="size-7 flex items-center justify-center bg-primary-500 text-slate-50 font-source font-bold rounded-full">
+            <Typography variant="bodySmallBold" color="!text-slate-50">3</Typography>
+          </div>
+          <Typography variant="subtitle" color="text-primary-500">Monitorea tu diabetes</Typography>
+        </div>
+        <Typography variant="body">Realiza un seguimiento de tu diabetes en tiempo real.</Typography>
+        <img src="/assets/images/bento-mobile/phone-feature-3.png" alt="App en celular" class="w-full h-auto object-cover object-bottom mt-auto max-w-xs sm:max-w-full mx-auto" />
+      </div>
+
+      <div class="bg-slate-50 p-6 pb-0 rounded-2xl shadow-ds-sm flex flex-col sm:flex-row gap-4 lg:col-span-2">
+        <div class="space-y-4 flex-1 w-full sm:w-7/12">
+          <div class="flex items-center gap-4">
+            <div class="size-7 flex items-center justify-center bg-primary-500 text-slate-50 font-source font-bold rounded-full">
+              <Typography variant="bodySmallBold" color="!text-slate-50">4</Typography>
+            </div>
+            <Typography variant="subtitle" color="text-primary-500">Predice complicaciones</Typography>
+          </div>
+          <Typography variant="body" class="text-balance">Nuestro potente algoritmo de inteligencia artificial analiza tus datos históricos para predecir posibles complicaciones.</Typography>
+
+          <div class="flex items-center gap-4">
+            <div class="size-7 flex items-center justify-center bg-primary-500 text-slate-50 font-source font-bold rounded-full">
+              <Typography variant="bodySmallBold" color="!text-slate-50">5</Typography>
+            </div>
+            <Typography variant="subtitle" color="text-primary-500">Genera reportes</Typography>
+          </div>
+          <Typography variant="body" class="text-balance">Puedes exportar reportes en diferentes formatos y compartirlos con tu médico de confianza.</Typography>
+
+          <div class="flex items-center gap-4">
+            <div class="size-7 flex items-center justify-center bg-primary-500 text-slate-50 font-source font-bold rounded-full">
+              <Typography variant="bodySmallBold" color="!text-slate-50">6</Typography>
+            </div>
+            <Typography variant="subtitle" color="text-primary-500">Recibe notificaciones</Typography>
+          </div>
+          <Typography variant="body" class="text-balance">Configura recordatorios y alertas para no olvidar tus medicamentos o citas médicas.</Typography>
+        </div>
+        <img src="/assets/images/bento-mobile/phone-feature-4-5.png" alt="App en celular" class="w-full sm:w-5/12 h-auto object-contain object-bottom order-last sm:order-none mt-auto max-w-xs sm:max-w-full mx-auto" />
+      </div>
+    </div>
+  </div>
+</Section>

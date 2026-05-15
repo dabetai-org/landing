@@ -1,0 +1,22 @@
+---
+import Section from "../../layout/Section.astro";
+import Typography from "../../ui/Typography.astro";
+import Button from "../../ui/Button.astro";
+import ButtonGroup from "../../ui/ButtonGroup.astro";
+---
+
+<Section bgColor="bg-slate-50" innerClass="sm:flex-row justify-between items-center">
+  <div class="flex flex-col gap-5 text-center sm:text-left">
+    <Typography variant="h1" color="text-slate-950">
+      Optimiza el monitoreo de tus pacientes con la ayuda de la inteligencia artificial
+    </Typography>
+    <Typography variant="body">
+      Inicia sesión o regístrate y lleva el control de tus pacientes de manera inteligente.
+    </Typography>
+  </div>
+
+  <ButtonGroup direction="row" stackAt="lg" stretch gap={4} items="center" class="justify-center sm:justify-end self-start w-full sm:w-auto">
+    <Button title="Iniciar sesión" variant="fill" color="secondary" href="#" />
+    <Button title="Registrarse" variant="outline" color="secondary" href="#" />
+  </ButtonGroup>
+</Section>

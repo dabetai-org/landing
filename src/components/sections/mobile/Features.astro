@@ -1,0 +1,114 @@
+---
+import Section from "../../layout/Section.astro";
+import Typography from "../../ui/Typography.astro";
+import Button from "../../ui/Button.astro";
+
+const features = [
+  {
+    title: "Monitorea tu diabetes",
+    description: "Desde nuestra aplicación móvil puedes monitorear tu diabetes en tiempo real.",
+    icon: "fa-chart-line",
+    align: "right",
+  },
+  {
+    title: "Registra tu glucosa",
+    description: "Guarda tus niveles de glucosa de manera rápida y sencilla.",
+    icon: "fa-notes-medical",
+    align: "right",
+  },
+  {
+    title: "Alertas y recordatorios",
+    description: "Configura notificaciones para tomar tus medicamentos.",
+    icon: "fa-bell",
+    align: "right",
+  },
+  {
+    title: "Historial de datos",
+    description: "Revisa todos tus registros en un solo lugar.",
+    icon: "fa-calendar-alt",
+    align: "right",
+  },
+  {
+    title: "Consulta con médicos",
+    description: "Comparte tus datos con especialistas para un mejor tratamiento.",
+    icon: "fa-user-md",
+    align: "left",
+  },
+  {
+    title: "Generación de reportes",
+    description: "Descarga informes detallados sobre tu estado de salud.",
+    icon: "fa-file-medical-alt",
+    align: "left",
+  },
+  {
+    title: "Seguimiento personalizado",
+    description: "Crea planes de seguimiento y establece metas de salud.",
+    icon: "fa-tasks",
+    align: "left",
+  },
+  {
+    title: "Análisis inteligente",
+    description: "Usamos IA para ofrecerte predicciones y recomendaciones.",
+    icon: "fa-dna",
+    align: "left",
+  },
+];
+---
+
+<Section id="mobile-app-features" bgColor="bg-slate-100">
+  <Typography variant="h1" color="text-slate-950" class="text-center">
+    Automonitoreo para el paciente
+  </Typography>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 items-center gap-6">
+    <div class="hidden md:flex flex-col space-y-6 md:space-y-10">
+      {features.filter((f) => f.align === "right").map((feature) => (
+        <div class="flex items-center gap-5 md:justify-end">
+          <div class="text-end space-y-3">
+            <Typography variant="subtitle" color="text-primary-500">{feature.title}</Typography>
+            <Typography variant="body">{feature.description}</Typography>
+          </div>
+          <div class="w-14 h-14 flex items-center justify-center bg-slate-50 text-primary-500 rounded-full text-2xl shrink-0 shadow-ds-sm">
+            <i class={`fas ${feature.icon}`} />
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="flex justify-center order-last md:order-none">
+      <img src="/assets/images/phone.png" alt="App en celular" class="w-60 object-contain" />
+    </div>
+
+    <div class="md:hidden flex flex-col space-y-6 md:space-y-10">
+      {features.filter((f) => f.align === "right").map((feature) => (
+        <div class="flex items-center gap-5">
+          <div class="w-14 h-14 flex items-center justify-center bg-slate-50 text-primary-500 rounded-full text-2xl shrink-0 shadow-ds-sm">
+            <i class={`fas ${feature.icon}`} />
+          </div>
+          <div class="text-start space-y-3">
+            <Typography variant="subtitle" color="text-primary-500">{feature.title}</Typography>
+            <Typography variant="body">{feature.description}</Typography>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="flex flex-col space-y-6 md:space-y-10">
+      {features.filter((f) => f.align === "left").map((feature) => (
+        <div class="flex items-center gap-5">
+          <div class="w-14 h-14 flex items-center justify-center bg-slate-50 text-primary-500 rounded-full text-2xl shrink-0 shadow-ds-sm">
+            <i class={`fas ${feature.icon}`} />
+          </div>
+          <div class="text-start space-y-3">
+            <Typography variant="subtitle" color="text-primary-500">{feature.title}</Typography>
+            <Typography variant="body">{feature.description}</Typography>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div class="flex justify-center">
+    <Button title="Ver todas las características" variant="outline" color="primary" href="#" class="bg-slate-50" />
+  </div>
+</Section>

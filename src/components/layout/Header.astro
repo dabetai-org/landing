@@ -1,0 +1,40 @@
+---
+import Typography from "../ui/Typography.astro";
+import Button from "../ui/Button.astro";
+
+interface LinkItem {
+  href: string;
+  label: string;
+}
+
+const { links = [] } = Astro.props as { links?: LinkItem[] };
+---
+
+<header class="w-full bg-primary-500 py-4 select-none">
+  <div class="max-w-[1440px] mx-auto px-5 lg:px-20 flex justify-between items-center relative">
+    <a href="/">
+      <img src="/assets/images/logo-dark.png" alt="dabetai" class="h-7" />
+    </a>
+
+    <input type="checkbox" id="menu-toggle" class="hidden peer" />
+
+    <label for="menu-toggle" class="lg:hidden cursor-pointer text-slate-50 text-2xl">
+      <i class="fa-solid fa-bars"></i>
+    </label>
+
+    <nav class="absolute top-full left-0 w-full bg-primary-500 hidden peer-checked:block lg:static lg:block lg:w-auto">
+      <ul class="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-9 p-6 lg:p-0">
+        {links.map((link) => (
+          <li>
+            <a href={link.href} class="text-slate-50 transition-colors duration-300 hover:text-secondary-100">
+              <Typography variant="subtitle" color="!text-inherit">{link.label}</Typography>
+            </a>
+          </li>
+        ))}
+        <li>
+          <Button title="Iniciar sesión" variant="fill" color="primary" href="#" />
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

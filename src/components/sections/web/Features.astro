@@ -1,0 +1,58 @@
+---
+import Section from "../../layout/Section.astro";
+import Typography from "../../ui/Typography.astro";
+import Button from "../../ui/Button.astro";
+
+const professionalFeatures = [
+  {
+    title: "Gestión de pacientes",
+    description: "Accede al historial clínico y monitorea a tus pacientes.",
+    icon: "fa-user-md",
+  },
+  {
+    title: "Reportes automáticos",
+    description: "Genera informes sobre el estado de salud de tus pacientes.",
+    icon: "fa-notes-medical",
+  },
+  {
+    title: "Monitoreo en tiempo real",
+    description: "Visualiza los datos y recibe alertas en tiempo real.",
+    icon: "fa-chart-line",
+  },
+  {
+    title: "Análisis predictivo",
+    description: "Usa IA para prever complicaciones de la diabetes.",
+    icon: "fa-brain",
+  },
+];
+---
+
+<Section id="web-app-features" bgColor="bg-slate-100">
+  <Typography variant="h1" color="text-slate-950" class="text-center">
+    Seguimiento para profesionales de la salud
+  </Typography>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 items-center gap-6">
+    <div class="col-span-2 flex justify-center order-last md:order-none">
+      <img src="/assets/images/computer.png" alt="App en computadora" class="w-4/5 object-contain" />
+    </div>
+
+    <div class="col-span-1 flex flex-col h-full justify-between space-y-6">
+      {professionalFeatures.map((feature) => (
+        <div class="flex items-center gap-5">
+          <div class="w-14 h-14 flex items-center justify-center bg-slate-50 text-secondary-500 rounded-full text-2xl shrink-0 shadow-ds-sm">
+            <i class={`fas ${feature.icon}`} />
+          </div>
+          <div class="space-y-3">
+            <Typography variant="subtitle" color="text-secondary-500">{feature.title}</Typography>
+            <Typography variant="body">{feature.description}</Typography>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div class="flex justify-center">
+    <Button title="Ver todas las características" variant="outline" color="secondary" href="#" class="bg-slate-50" />
+  </div>
+</Section>
