@@ -1,0 +1,38 @@
+---
+export interface Props {
+  align?: "start" | "center" | "end" | "justify";
+  direction?: "row" | "col";
+  stackAt?: "sm" | "md" | "lg" | "xl" | "2xl";
+  stretch?: boolean;
+  gap?: number;
+  items?: "start" | "center" | "end" | "stretch" | "baseline";
+  class?: string;
+}
+
+const {
+  align,
+  direction = "row",
+  stackAt,
+  stretch = false,
+  gap = 3,
+  items,
+  class: className = "",
+} = Astro.props;
+
+const classes = [
+  "flex",
+  direction === "col" ? "flex-col" : "flex-row",
+  stackAt ? `${stackAt}:flex-col` : "",
+  stretch ? "*:flex-1" : "",
+  `gap-${gap}`,
+  align ? `justify-${align}` : "",
+  items ? `items-${items}` : "",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div class={classes}>
+  <slot />
+</div>

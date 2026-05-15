@@ -1,0 +1,73 @@
+---
+import Typography from "./Typography.astro";
+
+export type InputState = "default" | "focus" | "disabled" | "error" | "valid";
+
+export interface Props {
+  label?: string;
+  name: string;
+  type?: "text" | "email" | "password" | "number" | "tel" | "url" | "search" | "date" | "time";
+  placeholder?: string;
+  value?: string;
+  state?: InputState;
+  feedback?: string;
+  disabled?: boolean;
+  required?: boolean;
+  class?: string;
+}
+
+const {
+  label,
+  name,
+  type = "text",
+  placeholder,
+  value,
+  state = "default",
+  feedback,
+  disabled = false,
+  required = false,
+  class: className = "",
+} = Astro.props;
+
+const stateClasses: Record<InputState, string> = {
+  default: "border-slate-300",
+  focus: "border-primary-700",
+  disabled: "border-slate-300 bg-slate-200 text-slate-600",
+  error: "border-danger-800",
+  valid: "border-success-800",
+};
+
+const labelState: Record<InputState, string> = {
+  default: "text-slate-700",
+  focus: "text-slate-700",
+  disabled: "text-slate-600",
+  error: "text-slate-700",
+  valid: "text-slate-700",
+};
+
+const feedbackColor = state === "error" ? "text-danger-800" : "text-success-800";
+---
+
+<div class={`flex flex-col gap-2 ${className}`}>
+  {label && (
+    <label for={name}>
+      <Typography variant="body" tag="span" color={labelState[state]}>{label}</Typography>
+    </label>
+  )}
+  <div class={`flex items-center gap-2.5 px-4 py-3 rounded-lg border bg-slate-50 ${stateClasses[state]}`}>
+    <slot name="icon" />
+    <input
+      id={name}
+      name={name}
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      disabled={disabled || state === "disabled"}
+      required={required}
+      class={`flex-1 bg-transparent font-inter text-base leading-[19.4px] text-slate-700 placeholder:text-slate-500 focus:outline-none ${disabled || state === "disabled" ? "text-slate-600" : ""}`}
+    />
+  </div>
+  {feedback && (
+    <Typography variant="caption" tag="span" color={feedbackColor}>{feedback}</Typography>
+  )}
+</div>

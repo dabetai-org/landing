@@ -1,0 +1,48 @@
+---
+type TagType = "h1" | "h2" | "h3" | "h4" | "p" | "span";
+
+interface Props {
+  variant?: string;
+  tag?: TagType;
+  color?: string;
+  class?: string;
+}
+
+const { variant = "body", tag, color, class: className = "" } = Astro.props;
+
+const tagMap: Record<string, TagType> = {
+  display: "h1",
+  h1: "h1",
+  h2: "h2",
+  h3: "h3",
+  subtitle: "h4",
+  body: "p",
+  bodyBold: "p",
+  bodySmall: "p",
+  bodySmallBold: "p",
+  caption: "p",
+  captionBold: "p",
+};
+
+const Tag: TagType = tag || tagMap[variant] || "p";
+
+const styles: Record<string, string> = {
+  display: "text-5xl font-source font-bold",
+  h1: "text-4xl font-source font-bold",
+  h2: "text-3xl font-source font-bold",
+  h3: "text-2xl font-source font-bold",
+  subtitle: "text-lg font-source font-bold",
+  body: "text-base font-inter font-normal",
+  bodyBold: "text-base font-inter font-bold",
+  bodySmall: "text-sm font-inter font-normal",
+  bodySmallBold: "text-sm font-inter font-bold",
+  caption: "text-xs font-inter font-normal",
+  captionBold: "text-xs font-inter font-bold",
+};
+
+const colorClass = color || "text-slate-700";
+---
+
+<Tag class={`${styles[variant]} ${colorClass} ${className}`}>
+  <slot />
+</Tag>

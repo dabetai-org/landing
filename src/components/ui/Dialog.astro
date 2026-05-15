@@ -1,0 +1,29 @@
+---
+import Typography from "./Typography.astro";
+
+export interface Props {
+  title?: string;
+  type?: "card" | "sheet";
+  open?: boolean;
+  class?: string;
+}
+
+const { title, type = "card", open = false, class: className = "" } = Astro.props;
+
+const containerClass = type === "card"
+  ? "rounded-2xl border border-slate-300 bg-slate-50 shadow-ds-sm"
+  : "border-t border-slate-300 bg-slate-50";
+---
+
+{open && (
+  <div class={`flex flex-col gap-3 p-6 ${containerClass} ${className}`} role="dialog" aria-modal="true">
+    <div class="flex justify-between items-center">
+      {title && <Typography variant="h3">{title}</Typography>}
+      <slot name="close" />
+    </div>
+    <Typography variant="body">
+      <slot name="body" />
+    </Typography>
+    <slot name="actions" />
+  </div>
+)}

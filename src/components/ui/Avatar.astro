@@ -1,0 +1,47 @@
+---
+export type AvatarSize = "large" | "medium" | "small";
+export type AvatarShape = "circle" | "square";
+export type AvatarType = "image" | "initial";
+
+export interface Props {
+  type?: AvatarType;
+  size?: AvatarSize;
+  shape?: AvatarShape;
+  src?: string;
+  alt?: string;
+  initials?: string;
+  class?: string;
+}
+
+const {
+  type = "image",
+  size = "medium",
+  shape = "circle",
+  src,
+  alt = "",
+  initials = "?",
+  class: className = "",
+} = Astro.props;
+
+const sizeMap: Record<AvatarSize, string> = {
+  large: "w-10 h-10",
+  medium: "w-8 h-8",
+  small: "w-6 h-6",
+};
+
+const textSizeMap: Record<AvatarSize, string> = {
+  large: "text-lg",
+  medium: "text-base",
+  small: "text-sm",
+};
+
+const shapeClass = shape === "circle" ? "rounded-full" : size === "small" ? "rounded" : "rounded-lg";
+---
+
+<div class={`${sizeMap[size]} ${shapeClass} bg-slate-700 flex items-center justify-center overflow-hidden shrink-0 ${className}`}>
+  {type === "image" && src ? (
+    <img src={src} alt={alt} class="w-full h-full object-cover" />
+  ) : (
+    <span class={`font-source font-bold text-slate-50 ${textSizeMap[size]}`}>{initials}</span>
+  )}
+</div>

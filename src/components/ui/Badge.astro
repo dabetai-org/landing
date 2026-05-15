@@ -1,0 +1,33 @@
+---
+import Typography from "./Typography.astro";
+
+export type BadgeVariant = "default" | "success" | "warning" | "danger";
+export type BadgeSize = "sm" | "md";
+
+export interface Props {
+  variant?: BadgeVariant;
+  size?: BadgeSize;
+  class?: string;
+}
+
+const { variant = "default", size = "md", class: className = "" } = Astro.props;
+
+const variantConfig: Record<BadgeVariant, { bg: string; text: string }> = {
+  default: { bg: "bg-slate-100", text: "text-slate-700" },
+  success: { bg: "bg-success-200", text: "text-success-800" },
+  warning: { bg: "bg-warning-200", text: "text-warning-800" },
+  danger: { bg: "bg-danger-200", text: "text-danger-800" },
+};
+
+const sizeConfig: Record<BadgeSize, { padding: string; typography: string }> = {
+  sm: { padding: "px-2 py-0.5", typography: "captionBold" },
+  md: { padding: "px-3 py-1", typography: "bodySmallBold" },
+};
+---
+
+<span class={`inline-flex items-center gap-1 ${sizeConfig[size].padding} rounded-full ${variantConfig[variant].bg} ${className}`}>
+  <slot name="icon" />
+  <Typography variant={sizeConfig[size].typography} tag="span" color={variantConfig[variant].text}>
+    <slot />
+  </Typography>
+</span>

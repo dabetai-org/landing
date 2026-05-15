@@ -1,0 +1,132 @@
+---
+export type ButtonVariant = "fill" | "outline";
+export type ButtonColor = "primary" | "secondary" | "danger";
+export type IconPosition = "none" | "left" | "right" | "only";
+
+export interface Props {
+  title?: string;
+  variant?: ButtonVariant;
+  color?: ButtonColor;
+  iconPosition?: IconPosition;
+  circular?: boolean;
+  disabled?: boolean;
+  href?: string;
+  type?: "button" | "submit" | "reset";
+  class?: string;
+}
+
+const {
+  title,
+  variant = "fill",
+  color = "primary",
+  iconPosition = "none",
+  circular = false,
+  disabled = false,
+  href,
+  type = "button",
+  class: className = "",
+} = Astro.props;
+
+const fillConfig: Record<ButtonColor, { bg: string; hoverBg: string; focusBorder: string }> = {
+  primary: { bg: "bg-primary-500", hoverBg: "hover:bg-primary-700", focusBorder: "focus:ring-primary-700" },
+  secondary: { bg: "bg-secondary-500", hoverBg: "hover:bg-secondary-700", focusBorder: "focus:ring-secondary-700" },
+  danger: { bg: "bg-danger-500", hoverBg: "hover:bg-danger-800", focusBorder: "focus:ring-danger-800" },
+};
+
+const outlineConfig: Record<ButtonColor, { border: string; text: string; hoverBorder: string; hoverText: string; focusBorder: string }> = {
+  primary: {
+    border: "border-primary-700",
+    text: "text-primary-700",
+    hoverBorder: "hover:border-primary-900",
+    hoverText: "hover:text-primary-900",
+    focusBorder: "focus:border-primary-900",
+  },
+  secondary: {
+    border: "border-secondary-500",
+    text: "text-secondary-500",
+    hoverBorder: "hover:border-secondary-700",
+    hoverText: "hover:text-secondary-700",
+    focusBorder: "focus:border-secondary-700",
+  },
+  danger: {
+    border: "border-danger-500",
+    text: "text-danger-500",
+    hoverBorder: "hover:border-danger-800",
+    hoverText: "hover:text-danger-800",
+    focusBorder: "focus:border-danger-800",
+  },
+};
+
+const baseButton = [
+  "inline-flex items-center justify-center font-source font-bold text-base leading-[19.4px] whitespace-nowrap",
+  "rounded-full transition-all duration-200",
+  "focus:outline-none",
+  disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer",
+];
+
+if (circular) {
+  baseButton.push("w-11 h-11 p-3");
+} else {
+  baseButton.push("px-6 py-3");
+}
+
+if (iconPosition !== "none" && iconPosition !== "only") {
+  baseButton.push("gap-3");
+}
+
+if (variant === "outline") {
+  const oc = outlineConfig[color];
+  if (disabled) {
+    baseButton.push("bg-transparent border-2 border-slate-500 text-slate-500");
+  } else {
+    baseButton.push(
+      "bg-transparent border-2",
+      oc.border,
+      oc.text,
+      oc.hoverBorder,
+      oc.hoverText,
+      `focus:border-2 ${oc.focusBorder}`
+    );
+  }
+} else {
+  const fc = fillConfig[color];
+  if (disabled) {
+    baseButton.push("bg-slate-500 text-slate-50");
+  } else {
+    baseButton.push(
+      fc.bg,
+      "text-slate-50",
+      fc.hoverBg,
+      "focus:ring-2 focus:ring-inset",
+      fc.focusBorder
+    );
+  }
+}
+
+const Tag = href ? "a" : "button";
+const extraProps = href
+  ? { href, ...(disabled ? { tabindex: -1, "aria-disabled": "true" as const } : {}) }
+  : { type, disabled };
+---
+
+{
+  iconPosition === "only" ? (
+    <Tag class={`${baseButton.join(" ")} ${className}`} {...extraProps}>
+      <slot name="icon" />
+    </Tag>
+  ) : iconPosition === "left" ? (
+    <Tag class={`${baseButton.join(" ")} ${className}`} {...extraProps}>
+      <slot name="icon" />
+      {title && <span>{title}</span>}
+    </Tag>
+  ) : iconPosition === "right" ? (
+    <Tag class={`${baseButton.join(" ")} ${className}`} {...extraProps}>
+      {title && <span>{title}</span>}
+      <slot name="icon" />
+    </Tag>
+  ) : (
+    <Tag class={`${baseButton.join(" ")} ${className}`} {...extraProps}>
+      {title || <slot />}
+    </Tag>
+  )
+}
