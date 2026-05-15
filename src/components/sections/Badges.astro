@@ -2,15 +2,15 @@
 const { className = "" } = Astro.props;
 ---
 
-<div class={`flex items-center gap-4 select-none ${className}`}>
+<div class={`flex xs:flex-col sm:flex-row items-center gap-4 select-none ${className}`}>
   <div class="relative group cursor-default">
-    <img src="/assets/images/google-play-badge.png" alt="Google Play" class="w-40 opacity-80 transition-opacity duration-200 group-hover:opacity-60" />
+    <img src="/assets/images/google-play-badge.png" alt="Google Play" class="w-36 xs:w-40 opacity-80 transition-opacity duration-200 group-hover:opacity-60" />
     <span class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-700 text-slate-50 text-xs font-inter font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-ds-sm">
       Próximamente
     </span>
   </div>
   <div class="relative group cursor-default">
-    <img src="/assets/images/app-store-badge.png" alt="App Store" class="w-40 opacity-80 transition-opacity duration-200 group-hover:opacity-60" />
+    <img src="/assets/images/app-store-badge.png" alt="App Store" class="w-36 xs:w-40 opacity-80 transition-opacity duration-200 group-hover:opacity-60" />
     <span class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-700 text-slate-50 text-xs font-inter font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-ds-sm">
       Próximamente
     </span>
