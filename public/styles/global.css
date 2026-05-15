@@ -1,11 +1,15 @@
 body {
-    font-family: 'Poppins', sans-serif;
+  font-family: "Inter", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 img, button {
-    user-select: none;
+  user-select: none;
 }
