@@ -12,6 +12,7 @@ export interface Props {
   disabled?: boolean;
   href?: string;
   type?: "button" | "submit" | "reset";
+  tooltip?: string;
   class?: string;
 }
 
@@ -24,6 +25,7 @@ const {
   disabled = false,
   href,
   type = "button",
+  tooltip,
   class: className = "",
 } = Astro.props;
 
@@ -62,6 +64,7 @@ const baseButton = [
   "rounded-full transition-all duration-200",
   "focus:outline-none",
   disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer",
+  tooltip ? "relative group" : "",
 ];
 
 if (circular) {
@@ -103,30 +106,25 @@ if (variant === "outline") {
   }
 }
 
-const Tag = href ? "a" : "button";
-const extraProps = href
+const Tag = href && !disabled ? "a" : "button";
+const extraProps = Tag === "a"
   ? { href, ...(disabled ? { tabindex: -1, "aria-disabled": "true" as const } : {}) }
   : { type, disabled };
 ---
 
-{
-  iconPosition === "only" ? (
-    <Tag class={`${baseButton.join(" ")} ${className}`} {...extraProps}>
-      <slot name="icon" />
-    </Tag>
+<Tag class={`${baseButton.join(" ")} ${className}`} {...extraProps}>
+  {iconPosition === "only" ? (
+    <slot name="icon" />
   ) : iconPosition === "left" ? (
-    <Tag class={`${baseButton.join(" ")} ${className}`} {...extraProps}>
-      <slot name="icon" />
-      {title && <span>{title}</span>}
-    </Tag>
+    <><slot name="icon" />{title && <span>{title}</span>}</>
   ) : iconPosition === "right" ? (
-    <Tag class={`${baseButton.join(" ")} ${className}`} {...extraProps}>
-      {title && <span>{title}</span>}
-      <slot name="icon" />
-    </Tag>
+    <>{title && <span>{title}</span>}<slot name="icon" /></>
   ) : (
-    <Tag class={`${baseButton.join(" ")} ${className}`} {...extraProps}>
-      {title || <slot />}
-    </Tag>
-  )
-}
+    title || <slot />
+  )}
+  {tooltip && (
+    <span class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-700 text-slate-50 text-xs font-inter font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-ds-sm z-10">
+      {tooltip}
+    </span>
+  )}
+</Tag>

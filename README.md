@@ -1,17 +1,12 @@
-# dabetai Landing - Página de aterrizaje oficial
+# dabetai - Landing Page
 
-Landing page oficial de la plataforma dabetai, diseñada para presentar el proyecto integrador, sus funcionalidades y motivar a usuarios a conocer más.
+Landing page oficial de la plataforma dabetai, diseñada para presentar el proyecto, sus funcionalidades y motivar a usuarios a conocer más.
 
 <p align="center">
   <img src="https://img.shields.io/badge/Astro-2.x-blue?logo=astro" alt="Astro version">
   <img src="https://img.shields.io/badge/Tailwind_CSS-4.x-teal?logo=tailwindcss" alt="Tailwind CSS version">
 </p>
 
-## 📱 Capturas de pantalla
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/fe8315ce-3645-4ea7-9c61-236f81fbcbd1" alt="Pantalla de login"/>
-</p>
 
 ## 🩺 ¿Qué es dabetai Landing?
 
@@ -54,25 +49,25 @@ Landing page oficial de la plataforma dabetai, diseñada para presentar el proye
 1. **Clonar repositorio**
 
 ```bash
-git clone https://github.com/chrisdev-ts/dabetai-landing.git
+git clone https://github.com/dabetai-org/dabetai-landing.git
 cd dabetai-landing
 ```
 
 2. **Instalar dependencias**
 
 ```bash
-npm install
+pnpm install
 ```
 
 3. **Iniciar servidor de desarrollo**
 
 ```bash
-npm run dev
+pnpm astro dev
 ```
 
 4. **Abrir en navegador**
 
-Por defecto: `http://localhost:3000`
+Por defecto: `http://localhost:4321`
 
 ---
 
