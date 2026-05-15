@@ -71,11 +71,11 @@ const { navLinks = [], resources = [], socialLinks = [] } = Astro.props as {
 
     <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-slate-50 opacity-80">
       <Typography variant="caption" color="!text-inherit">&copy; 2025 dabetai. Todos los derechos reservados.</Typography>
-      <div class="flex flex-wrap justify-center gap-x-4 mt-4 sm:mt-0">
+      <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 mt-4 sm:mt-0">
         <a href="#" class="hover:text-secondary-100 transition-colors"><Typography variant="caption" color="!text-inherit">Política de privacidad</Typography></a>
-        <Typography variant="caption" color="!text-inherit">|</Typography>
+        <span class="hidden sm:inline text-slate-50/50">|</span>
         <a href="#" class="hover:text-secondary-100 transition-colors"><Typography variant="caption" color="!text-inherit">Términos y condiciones</Typography></a>
-        <Typography variant="caption" color="!text-inherit">|</Typography>
+        <span class="hidden sm:inline text-slate-50/50">|</span>
         <a href="#" class="hover:text-secondary-100 transition-colors"><Typography variant="caption" color="!text-inherit">Configuración de cookies</Typography></a>
       </div>
     </div>
