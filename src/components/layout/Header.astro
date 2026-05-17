@@ -1,7 +1,4 @@
 ---
-import Typography from "../ui/Typography.astro";
-import Button from "../ui/Button.astro";
-
 interface LinkItem {
   href: string;
   label: string;
@@ -10,31 +7,180 @@ interface LinkItem {
 const { links = [] } = Astro.props as { links?: LinkItem[] };
 ---
 
-<header class="w-full bg-primary-500 py-4 select-none">
-  <div class="max-w-[1440px] mx-auto px-4 xs:px-6 md:px-20 flex justify-between items-center relative">
-    <a href="/">
-      <img src="/assets/images/logo-dark.png" alt="dabetai" class="h-6 xs:h-7 sm:h-8" />
+<header id="app-header" class="fixed top-0 left-0 w-full z-50 transition-[background-color,transform] duration-300 bg-primary-500">
+  <div class="max-w-[1440px] mx-auto px-5 xs:px-6 md:px-20 flex items-center justify-between h-16 md:h-[72px]">
+    <a href="/" class="shrink-0 hover:scale-110 active:scale-95 transition-all duration-300">
+      <img id="header-logo" src="/assets/images/logo/logo-dark.png" alt="dabetai" class="h-6 xs:h-7 sm:h-8" />
     </a>
 
-    <input type="checkbox" id="menu-toggle" class="hidden peer" />
-
-    <label for="menu-toggle" class="lg:hidden cursor-pointer text-slate-50 text-2xl">
-      <i class="fa-solid fa-bars"></i>
-    </label>
-
-    <nav class="absolute top-full left-0 w-full bg-primary-500 hidden peer-checked:block lg:static lg:block lg:w-auto">
-      <ul class="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-9 p-4 sm:p-6 lg:p-0">
-        {links.map((link) => (
-          <li>
-            <a href={link.href} class="text-slate-50 transition-colors duration-300 hover:text-secondary-100">
-              <Typography variant="subtitle" color="!text-inherit">{link.label}</Typography>
-            </a>
-          </li>
-        ))}
-        <li>
-          <Button title="Iniciar sesión" variant="fill" color="primary" href="#" disabled tooltip="Próximamente" class="!opacity-80" />
-        </li>
-      </ul>
+    <nav class="hidden md:flex items-center gap-1">
+      {links.map((link) => (
+        <a
+          href={link.href}
+          data-section={link.href.replace("#", "")}
+          class="nav-link px-4 py-2.5 text-sm font-bold leading-none transition-all duration-200 rounded-xl text-white/80 hover:text-white hover:bg-white/10 active:scale-95"
+        >
+          {link.label}
+        </a>
+      ))}
     </nav>
+
+    <button
+      id="menu-btn"
+      type="button"
+      class="md:hidden flex items-center justify-center p-2 sm:p-3 bg-white/15 rounded-xl text-white shadow-sm hover:bg-white/25 active:scale-95 transition-all cursor-pointer"
+      aria-label="Abrir menú"
+    >
+      <i id="menu-icon" class="fa-solid fa-bars text-lg"></i>
+    </button>
   </div>
 </header>
+
+<div id="mobile-menu" class="fixed inset-0 z-50 flex flex-col w-full h-full overflow-hidden hidden bg-primary-500">
+  <div class="flex items-center justify-between px-5 xs:px-6 h-16 shrink-0">
+    <a href="/">
+      <img id="mobile-logo" src="/assets/images/logo/logo-white.png" alt="dabetai" class="h-6 xs:h-7" />
+    </a>
+    <button
+      id="menu-close"
+      type="button"
+      class="p-1.5 sm:p-2 bg-white/15 rounded-lg sm:rounded-xl text-white/80 hover:text-white hover:bg-white/25 active:scale-95 transition-all cursor-pointer"
+      aria-label="Cerrar menú"
+    >
+      <i class="fa-solid fa-xmark text-lg"></i>
+    </button>
+  </div>
+
+  <div class="flex-1 flex flex-col p-5 sm:p-6 gap-2 overflow-y-auto">
+    <nav class="flex flex-col gap-2 mt-2">
+      {links.map((link, idx) => (
+        <a
+          href={link.href}
+          data-section={link.href.replace("#", "")}
+          class="mobile-nav-link flex items-center justify-between p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/20 bg-white/10 text-white/80 hover:text-white hover:bg-white/20 transition-all duration-200"
+        >
+          <span class="text-base sm:text-lg font-bold">{link.label}</span>
+          <span class="text-xs sm:text-sm font-black opacity-50">0{idx + 1}</span>
+        </a>
+      ))}
+    </nav>
+  </div>
+</div>
+
+<style>
+  .nav-link.active {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+  .mobile-nav-link.active {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+</style>
+
+<script>
+  (function () {
+    var header = document.getElementById("app-header");
+    var menuBtn = document.getElementById("menu-btn");
+    var menuClose = document.getElementById("menu-close");
+    var mobileMenu = document.getElementById("mobile-menu");
+    var mobileLogo = document.getElementById("mobile-logo");
+    var navLinks = document.querySelectorAll(".nav-link");
+    var mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+    var allNavLinks = document.querySelectorAll("[data-section]");
+    var lastScrollY = 0;
+    var mobileMenuOpen = false;
+
+    var SECTION_ORDER = [
+      "hero",
+      "mobile-app-features",
+      "web-app-features",
+      "faq",
+    ];
+
+    var headerLogo = document.getElementById("header-logo");
+    var HEADER_COLORS = {
+      hero: "#2196F3",
+      "mobile-app-features": "#2196F3",
+      "web-app-features": "#009688",
+      faq: "#2196F3",
+    };
+
+    var LOGO_SRC = {
+      hero: "/assets/images/logo/logo-dark.png",
+      "mobile-app-features": "/assets/images/logo/logo-dark.png",
+      "web-app-features": "/assets/images/logo/logo-secondary-dark.png",
+      faq: "/assets/images/logo/logo-dark.png",
+    };
+
+    function getActiveSection() {
+      var scrollY = window.scrollY + 120;
+      var active = SECTION_ORDER[0];
+      for (var i = 0; i < SECTION_ORDER.length; i++) {
+        var el = document.getElementById(SECTION_ORDER[i]);
+        if (el && el.offsetTop <= scrollY) {
+          active = SECTION_ORDER[i];
+        }
+      }
+      return active;
+    }
+
+    function updateHeader() {
+      var active = getActiveSection();
+      header.style.backgroundColor = HEADER_COLORS[active];
+      headerLogo.src = LOGO_SRC[active];
+      mobileMenu.style.backgroundColor = HEADER_COLORS[active];
+      mobileLogo.src = LOGO_SRC[active];
+      for (var i = 0; i < allNavLinks.length; i++) {
+        var link = allNavLinks[i];
+        if (link.dataset.section === active) {
+          link.classList.add("active");
+        } else {
+          link.classList.remove("active");
+        }
+      }
+    }
+
+    function openMenu() {
+      mobileMenuOpen = true;
+      mobileMenu.classList.remove("hidden");
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.overflow = "hidden";
+      header.style.transform = "translateY(0)";
+    }
+
+    function closeMenu() {
+      mobileMenuOpen = false;
+      mobileMenu.classList.add("hidden");
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+    }
+
+    menuBtn.addEventListener("click", openMenu);
+    menuClose.addEventListener("click", closeMenu);
+
+    mobileMenu.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", closeMenu);
+    });
+
+    window.addEventListener(
+      "scroll",
+      function () {
+        var currentScrollY = window.scrollY;
+        if (!mobileMenuOpen) {
+          if (currentScrollY > lastScrollY && currentScrollY > 80) {
+            header.style.transform = "translateY(-100%)";
+          } else {
+            header.style.transform = "translateY(0)";
+          }
+        }
+        lastScrollY = currentScrollY;
+        updateHeader();
+      },
+      { passive: true }
+    );
+
+    updateHeader();
+  })();
+</script>

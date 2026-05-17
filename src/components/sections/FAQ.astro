@@ -1,28 +1,27 @@
 ---
 import Section from "../layout/Section.astro";
 import Typography from "../ui/Typography.astro";
-import Button from "../ui/Button.astro";
 
 const faqs = [
   {
-    question: "¿Cómo funciona la aplicación?",
-    answer: "Nuestra aplicación utiliza inteligencia artificial para monitorear y predecir posibles complicaciones de la diabetes en base a tus datos ingresados.",
-  },
-  {
-    question: "¿Es gratuita la aplicación?",
-    answer: "Sí, puedes descargar y usar la aplicación de forma gratuita con funciones básicas. Hay opciones premium para características avanzadas.",
-  },
-  {
-    question: "¿Cómo protegen mis datos?",
-    answer: "Implementamos encriptación avanzada y seguimos estrictas normativas de seguridad para proteger tu información.",
-  },
-  {
-    question: "¿Puedo compartir mi información con mi médico?",
-    answer: "Sí, puedes compartir tus datos con tu médico de confianza para que pueda monitorear tu progreso y darte recomendaciones.",
+    question: "¿Cómo funciona dabetai?",
+    answer: "dabetai es un ecosistema que integra una aplicación móvil para pacientes y un portal web para médicos. La app se sincroniza con monitores de glucosa continuos (CGM) y wearables para capturar biomarcadores en tiempo real. La inteligencia artificial analiza estos datos para predecir complicaciones como retinopatía, nefropatía, neuropatía y pie diabético antes de que sean irreversibles.",
   },
   {
     question: "¿Qué dispositivos son compatibles?",
-    answer: "Nuestra aplicación es compatible con la mayoría de los dispositivos móviles y tablets, tanto en Android como iOS.",
+    answer: "La aplicación es compatible con monitores de glucosa continuos (CGM) y wearables que registren frecuencia cardíaca, calidad del sueño y actividad física. Funciona en dispositivos Android e iOS.",
+  },
+  {
+    question: "¿Puedo compartir mis datos con mi médico?",
+    answer: "Sí. La aplicación te permite compartir tus métricas en tiempo real con tu médico a través del portal web de dabetai. Tu médico podrá ver tu evolución, recibir alertas de riesgo y darte seguimiento de forma remota.",
+  },
+  {
+    question: "¿Cómo protegen mi información médica?",
+    answer: "Implementamos cifrado de extremo a extremo y seguimos estándares de seguridad para datos clínicos. Tu información se almacena de forma segura y solo tú y los profesionales que autorices pueden acceder a ella.",
+  },
+  {
+    question: "¿Es gratuita la aplicación?",
+    answer: "La aplicación móvil ofrece funciones básicas de forma gratuita. Las funcionalidades avanzadas como predicciones de IA detalladas y reportes clínicos completos están disponibles en el plan premium.",
   },
 ];
 ---
@@ -42,9 +41,5 @@ const faqs = [
         <Typography variant="body" color="text-slate-700" class="mt-3">{faq.answer}</Typography>
       </details>
     ))}
-  </div>
-
-  <div class="flex justify-center">
-    <Button title="Ver más preguntas" variant="outline" color="primary" href="#" class="bg-slate-50" />
   </div>
 </Section>

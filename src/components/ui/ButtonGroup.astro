@@ -19,11 +19,14 @@ const {
   class: className = "",
 } = Astro.props;
 
+const maxStackClass = stretch && stackAt ? `max-${stackAt}:*:w-full` : "";
+
 const classes = [
   "flex",
   direction === "col" ? "flex-col" : "flex-row",
   stackAt ? `${stackAt}:flex-col` : "",
   stretch ? "*:flex-1" : "",
+  maxStackClass,
   `gap-${gap}`,
   align ? `justify-${align}` : "",
   items ? `items-${items}` : "",

@@ -1,0 +1,155 @@
+---
+interface Props {
+  totalSteps: number;
+  color?: "primary" | "secondary";
+}
+
+const { totalSteps, color = "primary" } = Astro.props;
+---
+
+<div
+  class="stepper w-full"
+  data-color={color}
+  data-current="0"
+  data-total={totalSteps}
+>
+  <div class="flex justify-center items-center gap-1 sm:gap-2 md:gap-3 mb-6 md:mb-8">
+    {Array.from({ length: totalSteps }).map((_, i) => (
+      <>
+        <button
+          class="step-dot flex items-center justify-center size-8 md:size-10 rounded-full border-2 font-source font-bold text-sm md:text-base transition-all cursor-pointer shrink-0"
+          data-index={i}
+          data-state={i === 0 ? "active" : "inactive"}
+        >
+          {i + 1}
+        </button>
+        {i < totalSteps - 1 && (
+          <div class="step-line h-0.5 flex-1 max-w-6 sm:max-w-10 md:max-w-14 rounded-full transition-colors shrink-0" data-state="inactive" />
+        )}
+      </>
+    ))}
+  </div>
+
+  <div class="step-content relative flex items-center gap-2 md:gap-4">
+    <button
+      class="step-arrow step-arrow-left shrink-0 size-9 xs:size-11 opacity-0 pointer-events-none transition-all z-10"
+      data-dir="prev"
+    >
+      <svg class="size-5 xs:size-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+
+    <div class="step-panels flex-1 min-w-0">
+      <slot />
+    </div>
+
+    <button
+      class="step-arrow step-arrow-right shrink-0 size-9 xs:size-11 transition-all z-10"
+      data-dir="next"
+    >
+      <svg class="size-5 xs:size-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+</div>
+
+<style>
+  .step-dot[data-state="active"],
+  .step-dot[data-state="completed"] { color: white; }
+
+  .stepper[data-color="primary"] .step-dot[data-state="active"] {
+    background-color: #2196F3; border-color: #2196F3;
+  }
+  .stepper[data-color="primary"] .step-dot[data-state="completed"] {
+    background-color: #64B5F6; border-color: #64B5F6;
+  }
+  .stepper[data-color="primary"] .step-dot[data-state="inactive"] {
+    background-color: transparent; border-color: #94A3B8; color: #94A3B8;
+  }
+  .stepper[data-color="primary"] .step-dot[data-state="inactive"]:hover {
+    background-color: #E3F2FD; border-color: #2196F3; color: #2196F3;
+  }
+
+  .stepper[data-color="secondary"] .step-dot[data-state="active"] {
+    background-color: #009688; border-color: #009688;
+  }
+  .stepper[data-color="secondary"] .step-dot[data-state="completed"] {
+    background-color: #4DB6AC; border-color: #4DB6AC;
+  }
+  .stepper[data-color="secondary"] .step-dot[data-state="inactive"] {
+    background-color: transparent; border-color: #94A3B8; color: #94A3B8;
+  }
+  .stepper[data-color="secondary"] .step-dot[data-state="inactive"]:hover {
+    background-color: #E0F2F1; border-color: #009688; color: #009688;
+  }
+
+  .stepper[data-color="primary"] .step-line[data-state="active"] { background-color: #2196F3; }
+  .stepper[data-color="secondary"] .step-line[data-state="active"] { background-color: #009688; }
+  .step-line[data-state="inactive"] { background-color: #CBD5E1; }
+
+  .step-arrow {
+    background: rgba(255,255,255,0.9);
+    color: #334155;
+    border: none;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  }
+  .step-arrow:hover {
+    background: #fff;
+    color: #2196F3;
+  }
+  .stepper[data-color="secondary"] .step-arrow:hover { color: #009688; }
+</style>
+
+<script>
+  (() => {
+    const containers = document.querySelectorAll(".stepper");
+    containers.forEach((container) => {
+      const dots = container.querySelectorAll(".step-dot");
+      const panels = container.querySelectorAll(".step-panel");
+      const arrows = container.querySelectorAll(".step-arrow");
+      const lines = container.querySelectorAll(".step-line");
+      const total = parseInt(container.dataset.total);
+      const prevArrow = container.querySelector(".step-arrow-left");
+      const nextArrow = container.querySelector(".step-arrow-right");
+      let current = 0;
+
+      function updateUI(index) {
+        panels.forEach((panel, i) => {
+          panel.classList.toggle("hidden", i !== index);
+        });
+        dots.forEach((dot, i) => {
+          if (i === index) dot.dataset.state = "active";
+          else if (i < index) dot.dataset.state = "completed";
+          else dot.dataset.state = "inactive";
+        });
+        lines.forEach((line, i) => {
+          line.dataset.state = i < index ? "active" : "inactive";
+        });
+
+        prevArrow.classList.toggle("opacity-0", index === 0);
+        prevArrow.classList.toggle("pointer-events-none", index === 0);
+        nextArrow.classList.toggle("opacity-0", index === total - 1);
+        nextArrow.classList.toggle("pointer-events-none", index === total - 1);
+
+        current = index;
+      }
+
+      dots.forEach((dot) => {
+        dot.addEventListener("click", () => {
+          const idx = parseInt(dot.dataset.index);
+          if (idx !== current) updateUI(idx);
+        });
+      });
+      arrows.forEach((arrow) => {
+        arrow.addEventListener("click", () => {
+          const dir = arrow.dataset.dir;
+          if (dir === "prev" && current > 0) updateUI(current - 1);
+          if (dir === "next" && current < total - 1) updateUI(current + 1);
+        });
+      });
+    });
+  })();
+</script>

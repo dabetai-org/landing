@@ -1,28 +1,28 @@
 ---
 import Section from "../../layout/Section.astro";
 import Typography from "../../ui/Typography.astro";
-import Button from "../../ui/Button.astro";
+import ImageGallery from "../../ui/ImageGallery.astro";
 
 const professionalFeatures = [
   {
-    title: "Gestión de pacientes",
-    description: "Accede al historial clínico y monitorea a tus pacientes.",
+    title: "Supervisión remota de pacientes",
+    description: "Conéctate con las cuentas de tus pacientes y accede a sus métricas de glucosa, biomarcadores y alertas en tiempo real.",
     icon: "fa-user-md",
   },
   {
-    title: "Reportes automáticos",
-    description: "Genera informes sobre el estado de salud de tus pacientes.",
+    title: "Alertas de riesgo por IA",
+    description: "Recibe notificaciones automáticas cuando los modelos predictivos detecten riesgo de retinopatía, nefropatía u otras complicaciones.",
+    icon: "fa-brain",
+  },
+  {
+    title: "Reportes clínicos automatizados",
+    description: "Genera informes detallados del estado de salud de cada paciente con datos objetivos, predicciones y evolución temporal.",
     icon: "fa-notes-medical",
   },
   {
-    title: "Monitoreo en tiempo real",
-    description: "Visualiza los datos y recibe alertas en tiempo real.",
+    title: "Intervención a distancia y chat IA",
+    description: "Comunícate con tus pacientes, ajusta tratamientos y da seguimiento remoto. Usa el chat con inteligencia artificial para consultar métricas, predicciones y resolver dudas clínicas al instante.",
     icon: "fa-chart-line",
-  },
-  {
-    title: "Análisis predictivo",
-    description: "Usa IA para prever complicaciones de la diabetes.",
-    icon: "fa-brain",
   },
 ];
 ---
@@ -34,7 +34,16 @@ const professionalFeatures = [
 
   <div class="grid grid-cols-1 md:grid-cols-3 items-center gap-6">
     <div class="col-span-2 flex justify-center order-last md:order-none">
-      <img src="/assets/images/web/main.png" alt="App en computadora" class="w-4/5 object-contain" />
+      <ImageGallery
+        images={[
+          { src: "/assets/images/web/features/dashboard.png", alt: "Panel principal dabetai web" },
+          { src: "/assets/images/web/features/patients.png", alt: "Panel principal dabetai web" },
+          { src: "/assets/images/web/features/predictions.png", alt: "Predicciones y alertas" },
+          { src: "/assets/images/web/features/aichat.png", alt: "Chat con IA" },
+          { src: "/assets/images/web/features/notifications.png", alt: "Notificaciones" },
+        ]}
+        imgClass="w-4/5"
+      />
     </div>
 
     <div class="col-span-1 flex flex-col h-full justify-between space-y-6">
@@ -50,9 +59,5 @@ const professionalFeatures = [
         </div>
       ))}
     </div>
-  </div>
-
-  <div class="flex justify-center">
-    <Button title="Ver todas las características" variant="outline" color="secondary" href="#" class="bg-slate-50" />
   </div>
 </Section>

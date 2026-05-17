@@ -1,0 +1,127 @@
+---
+interface Props {
+  images: { src: string; alt: string }[];
+  imgClass?: string;
+  autoPlay?: boolean;
+  autoPlayInterval?: number;
+}
+
+const { images, imgClass = "", autoPlay = true, autoPlayInterval = 4000 } = Astro.props;
+const multiple = images.length > 1;
+---
+
+<div class="image-gallery relative group/ig" data-current="0" data-interval={autoPlayInterval} data-auto-play={String(autoPlay)}>
+  <div class="relative">
+    {images.map((img, i) => (
+      <img
+        src={img.src}
+        alt={img.alt}
+        class:list={['gallery-image block object-contain rounded-lg transition-opacity duration-500 mx-auto', imgClass, { hidden: i !== 0 }]}
+        data-index={i}
+      />
+    ))}
+    {multiple && (
+      <>
+        <button class="gallery-arrow gallery-arrow-left absolute left-1 top-1/2 -translate-y-1/2 z-10 opacity-0 group-hover/ig:opacity-100 transition-opacity" data-dir="prev">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="gallery-arrow gallery-arrow-right absolute right-1 top-1/2 -translate-y-1/2 z-10 opacity-0 group-hover/ig:opacity-100 transition-opacity" data-dir="next">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </>
+    )}
+  </div>
+  {multiple && (
+    <div class="flex justify-center items-center gap-2 mt-4">
+      {images.map((_, i) => (
+        <button
+          class="gallery-dot size-2.5 rounded-full transition-all cursor-pointer"
+          data-index={i}
+          data-state={i === 0 ? "active" : "inactive"}
+        />
+      ))}
+    </div>
+  )}
+</div>
+
+<style>
+  .gallery-arrow {
+    background: rgba(255,255,255,0.9);
+    color: #334155;
+    border: none;
+    border-radius: 999px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  }
+  .gallery-arrow:hover {
+    background: #fff;
+    color: #2196F3;
+  }
+  .gallery-dot[data-state="active"] {
+    background-color: #2196F3;
+    width: 1.25rem;
+    border-radius: 999px;
+  }
+  .gallery-dot[data-state="inactive"] {
+    background-color: #CBD5E1;
+  }
+  .gallery-dot[data-state="inactive"]:hover {
+    background-color: #94A3B8;
+  }
+</style>
+
+<script>
+  (() => {
+    const galleries = document.querySelectorAll(".image-gallery");
+    galleries.forEach((gallery) => {
+      const images = gallery.querySelectorAll(".gallery-image");
+      const dots = gallery.querySelectorAll(".gallery-dot");
+      const arrows = gallery.querySelectorAll(".gallery-arrow");
+      const total = images.length;
+      if (total < 2) return;
+      const interval = parseInt(gallery.dataset.interval || "4000");
+      let current = parseInt(gallery.dataset.current || "0");
+      let timer;
+
+      function show(index) {
+        images.forEach((img, i) => img.classList.toggle("hidden", i !== index));
+        dots.forEach((dot, i) => {
+          dot.dataset.state = i === index ? "active" : "inactive";
+        });
+        current = index;
+        gallery.dataset.current = String(index);
+      }
+
+      function next() { show((current + 1) % total); }
+      function prev() { show((current - 1 + total) % total); }
+
+      function startAutoPlay() {
+        stopAutoPlay();
+        timer = setInterval(next, interval);
+      }
+      function stopAutoPlay() { if (timer) clearInterval(timer); }
+
+      arrows.forEach((arrow) => {
+        arrow.addEventListener("click", () => {
+          arrow.dataset.dir === "next" ? next() : prev();
+        });
+      });
+      dots.forEach((dot) => {
+        dot.addEventListener("click", () => {
+          const idx = parseInt(dot.dataset.index);
+          if (idx !== current) show(idx);
+        });
+      });
+      if (gallery.dataset.autoPlay === "true") {
+        gallery.addEventListener("mouseenter", stopAutoPlay);
+        gallery.addEventListener("mouseleave", startAutoPlay);
+        startAutoPlay();
+      }
+    });
+  })();
+</script>

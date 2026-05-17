@@ -1,78 +1,81 @@
 ---
 import Badges from "../Badges.astro";
 import Section from "../../layout/Section.astro";
-import Typography from "../../ui/Typography.astro";
+import StepCarousel from "../../ui/StepCarousel.astro";
+import StepPanel from "../../ui/StepPanel.astro";
+
+interface StepImage {
+  src: string;
+  alt: string;
+}
+
+interface Step {
+  title: string;
+  description: string;
+  images: StepImage[];
+  badges?: boolean;
+}
+
+const steps: Step[] = [
+  {
+    title: "Bienvenido a dabetai",
+    description: "Descarga la aplicación y crea tu cuenta como paciente para acceder a tu perfil de salud, conectar dispositivos y recibir recomendaciones personalizadas basadas en inteligencia artificial.",
+    images: [
+      { src: "/assets/images/mobile/splash.png", alt: "Pantalla de bienvenida dabetai" },
+      { src: "/assets/images/mobile/welcome.png", alt: "Registro e inicio de sesión" },
+    ],
+    badges: true,
+  },
+  {
+    title: "Completa tu perfil de salud",
+    description: "Responde un onboarding rápido donde nos cuentas tu tipo de diabetes, desde cuándo la tienes, si tienes hipertensión, tu edad, género, estatura y peso. Así la IA puede ofrecerte predicciones más precisas.",
+    images: [
+      { src: "/assets/images/mobile/onboarding.png", alt: "Onboarding perfil de salud" },
+    ],
+  },
+  {
+    title: "Conecta tus dispositivos",
+    description: "Sigue el asistente paso a paso para vincular tu monitor de glucosa continuo (CGM) y wearables compatibles. La app se sincronizará automáticamente para capturar tus biomarcadores.",
+    images: [
+      { src: "/assets/images/mobile/connect-devices.png", alt: "Conexión de dispositivos" },
+      { src: "/assets/images/mobile/device-connected.png", alt: "Dispositivos conectados" },
+    ],
+  },
+  {
+    title: "Conecta apps de salud",
+    description: "Vincula aplicaciones como Apple Health o Google Fit para centralizar todos tus datos de salud en un solo lugar y enriquecer el análisis de la inteligencia artificial.",
+    images: [
+      { src: "/assets/images/mobile/connect-apps.png", alt: "Conexión de apps de salud" },
+      { src: "/assets/images/mobile/apps-connected.png", alt: "Apps de salud conectadas" },
+    ],
+  },
+  {
+    title: "Vincula a tu médico",
+    description: "Conecta tu cuenta con la de tu médico a través del portal web. El asistente te guía en el proceso para que pueda supervisar tus métricas y alertas en tiempo real.",
+    images: [
+      { src: "/assets/images/mobile/connect-doctor.png", alt: "Vinculación con médico" },
+      { src: "/assets/images/mobile/doctor-connected.png", alt: "Mi médico conectado" },
+    ],
+  },
+  {
+    title: "Explora tu ecosistema",
+    description: "Accede al panel principal con tu dashboard de métricas, predicciones de complicaciones, historial completo y un chat con IA para resolver todas tus dudas al instante.",
+    images: [
+      { src: "/assets/images/mobile/dashboard.png", alt: "Panel principal dabetai" },
+      { src: "/assets/images/mobile/predictions.png", alt: "Predicción de complicaciones" },
+      { src: "/assets/images/mobile/historial.png", alt: "Historial completo" },
+      { src: "/assets/images/mobile/chat.png", alt: "Chat con IA" },
+    ],
+  },
+];
 ---
 
 <Section bgColor="bg-primary-50">
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <div class="bg-slate-50 p-6 rounded-2xl shadow-ds-sm flex flex-col gap-4 overflow-hidden">
-      <div class="flex items-center gap-4">
-        <div class="size-7 flex items-center justify-center bg-primary-500 text-slate-50 font-source font-bold rounded-full">
-          <Typography variant="bodySmallBold" color="!text-slate-50">1</Typography>
-        </div>
-        <Typography variant="subtitle" color="text-primary-500">Instala la aplicación en tu celular</Typography>
-      </div>
-      <Typography variant="body">Estará disponible próximamente en Play Store para Android y en App Store para iPhone.</Typography>
-      <Badges className="w-56 xs:w-72" />
-    </div>
-
-    <div class="bg-slate-50 p-6 pb-0 rounded-2xl shadow-ds-sm flex flex-col sm:flex-row gap-4 overflow-hidden">
-      <img src="/assets/images/mobile/phone-auth.png" alt="App en celular" class="w-full sm:w-1/2 object-contain object-bottom order-last sm:order-none mt-auto max-w-40 sm:max-w-36 md:max-w-40 mx-auto" />
-      <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-1/2">
-        <div class="space-y-4 w-full">
-          <div class="flex items-center gap-4">
-            <div class="size-7 flex items-center justify-center bg-primary-500 text-slate-50 font-source font-bold rounded-full">
-              <Typography variant="bodySmallBold" color="!text-slate-50">2</Typography>
-            </div>
-            <Typography variant="subtitle" color="text-primary-500">Inicia sesión o regístrate</Typography>
-          </div>
-          <Typography variant="body">Ingresa tus credenciales si ya tienes una cuenta.</Typography>
-          <Typography variant="body">Si eres un usuario nuevo, crea una cuenta.</Typography>
-        </div>
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:col-span-2">
-      <div class="bg-slate-50 p-6 pb-0 rounded-2xl shadow-ds-sm flex flex-col gap-4 overflow-hidden">
-        <div class="flex items-center gap-4">
-          <div class="size-7 flex items-center justify-center bg-primary-500 text-slate-50 font-source font-bold rounded-full">
-            <Typography variant="bodySmallBold" color="!text-slate-50">3</Typography>
-          </div>
-          <Typography variant="subtitle" color="text-primary-500">Monitorea tu diabetes</Typography>
-        </div>
-        <Typography variant="body">Realiza un seguimiento de tu diabetes en tiempo real.</Typography>
-        <img src="/assets/images/mobile/phone-feature-3.png" alt="App en celular" class="w-full h-auto object-contain object-bottom mt-auto max-w-40 sm:max-w-36 md:max-w-40 mx-auto" />
-      </div>
-
-      <div class="bg-slate-50 p-6 pb-0 rounded-2xl shadow-ds-sm flex flex-col sm:flex-row gap-4 lg:col-span-2 overflow-hidden">
-        <div class="space-y-4 flex-1 w-full sm:w-7/12">
-          <div class="flex items-center gap-4">
-            <div class="size-7 flex items-center justify-center bg-primary-500 text-slate-50 font-source font-bold rounded-full">
-              <Typography variant="bodySmallBold" color="!text-slate-50">4</Typography>
-            </div>
-            <Typography variant="subtitle" color="text-primary-500">Predice complicaciones</Typography>
-          </div>
-          <Typography variant="body" class="text-balance">Nuestro potente algoritmo de inteligencia artificial analiza tus datos históricos para predecir posibles complicaciones.</Typography>
-
-          <div class="flex items-center gap-4">
-            <div class="size-7 flex items-center justify-center bg-primary-500 text-slate-50 font-source font-bold rounded-full">
-              <Typography variant="bodySmallBold" color="!text-slate-50">5</Typography>
-            </div>
-            <Typography variant="subtitle" color="text-primary-500">Genera reportes</Typography>
-          </div>
-          <Typography variant="body" class="text-balance">Puedes exportar reportes en diferentes formatos y compartirlos con tu médico de confianza.</Typography>
-
-          <div class="flex items-center gap-4">
-            <div class="size-7 flex items-center justify-center bg-primary-500 text-slate-50 font-source font-bold rounded-full">
-              <Typography variant="bodySmallBold" color="!text-slate-50">6</Typography>
-            </div>
-            <Typography variant="subtitle" color="text-primary-500">Recibe notificaciones</Typography>
-          </div>
-          <Typography variant="body" class="text-balance">Configura recordatorios y alertas para no olvidar tus medicamentos o citas médicas.</Typography>
-        </div>
-        <img src="/assets/images/mobile/phone-feature-4-5.png" alt="App en celular" class="w-full sm:w-5/12 h-auto object-contain object-bottom order-last sm:order-none mt-auto max-w-40 sm:max-w-36 md:max-w-40 mx-auto" />
-      </div>
-    </div>
-  </div>
+  <StepCarousel totalSteps={steps.length} color="primary">
+    {steps.map((step, i) => (
+      <StepPanel step={step} index={i} hidden={i !== 0} accent="primary" imgClass="w-72 mx-auto" singleImgClass="w-72">
+        {step.badges && <Badges className="justify-center w-full" />}
+      </StepPanel>
+    ))}
+  </StepCarousel>
 </Section>
