@@ -14,16 +14,11 @@ const { totalSteps, color = "primary" } = Astro.props;
   data-total={totalSteps}
 >
   <div class="mb-6 md:mb-8">
-    <div class="grid grid-cols-3 gap-3 justify-items-center items-center sm:hidden">
-      {Array.from({ length: totalSteps }).map((_, i) => (
-        <button
-          class="step-dot flex items-center justify-center size-9 rounded-full border-2 font-source font-bold text-sm transition-all cursor-pointer"
-          data-index={i}
-          data-state={i === 0 ? "active" : "inactive"}
-        >
-          {i + 1}
-        </button>
-      ))}
+    <div class="sm:hidden flex flex-col items-center gap-2">
+      <span class="step-counter text-sm font-bold text-slate-500"></span>
+      <div class="step-progress w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
+        <div class="step-progress-fill h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+      </div>
     </div>
     <div class="hidden sm:flex justify-center items-center gap-1 sm:gap-2 md:gap-3">
       {Array.from({ length: totalSteps }).map((_, i) => (
@@ -98,6 +93,9 @@ const { totalSteps, color = "primary" } = Astro.props;
   .stepper[data-color="secondary"] .step-line[data-state="active"] { background-color: #009688; }
   .step-line[data-state="inactive"] { background-color: #CBD5E1; }
 
+  .stepper[data-color="primary"] .step-progress-fill { background-color: #2196F3; }
+  .stepper[data-color="secondary"] .step-progress-fill { background-color: #009688; }
+
   .step-arrow {
     background: rgba(255,255,255,0.9);
     color: #334155;
@@ -127,6 +125,8 @@ const { totalSteps, color = "primary" } = Astro.props;
       const total = parseInt(container.dataset.total);
       const prevArrow = container.querySelector(".step-arrow-left");
       const nextArrow = container.querySelector(".step-arrow-right");
+      const counter = container.querySelector(".step-counter");
+      const progressFill = container.querySelector(".step-progress-fill");
       let current = 0;
 
       function updateUI(index) {
@@ -141,6 +141,16 @@ const { totalSteps, color = "primary" } = Astro.props;
         lines.forEach((line, i) => {
           line.dataset.state = i < index ? "active" : "inactive";
         });
+
+        if (counter) {
+          var color = container.dataset.color === "secondary" ? "#009688" : "#2196F3";
+          counter.textContent = "Paso " + (index + 1) + " / " + total;
+          counter.style.color = color;
+        }
+        if (progressFill) {
+          var pct = ((index + 1) / total) * 100;
+          progressFill.style.width = pct + "%";
+        }
 
         prevArrow.classList.toggle("opacity-0", index === 0);
         prevArrow.classList.toggle("pointer-events-none", index === 0);
