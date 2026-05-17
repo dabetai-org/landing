@@ -1,16 +1,5 @@
-<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#1E88E5"/>
-      <stop offset="100%" stop-color="#2196F3"/>
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="630" fill="url(#bg)"/>
-  <circle cx="1050" cy="100" r="280" fill="rgba(255,255,255,0.04)"/>
-  <circle cx="150" cy="530" r="200" fill="rgba(255,255,255,0.03)"/>
-  <text x="600" y="240" font-family="'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif" font-size="96" font-weight="700" fill="white" text-anchor="middle" letter-spacing="4">dabetai</text>
-  <text x="600" y="320" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="34" font-weight="500" fill="rgba(255,255,255,0.85)" text-anchor="middle">IA para la prevención de complicaciones diabéticas</text>
-  <rect x="450" y="365" width="300" height="4" rx="2" fill="rgba(255,255,255,0.25)"/>
-  <rect x="350" y="405" width="500" height="48" rx="24" fill="rgba(255,255,255,0.10)"/>
-  <text x="600" y="437" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="20" font-weight="600" fill="rgba(255,255,255,0.8)" text-anchor="middle">App móvil para pacientes · Portal web para médicos</text>
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <rect width="1200" height="630" fill="#2196F3"/>
+  <image xlink:href="/assets/images/web/features/dashboard.png" x="200" y="40" width="800" height="520" preserveAspectRatio="xMidYMid meet"/>
+  <image xlink:href="/assets/images/mobile/dashboard.png" x="60" y="120" width="320" height="480" preserveAspectRatio="xMidYMid meet"/>
 </svg>
