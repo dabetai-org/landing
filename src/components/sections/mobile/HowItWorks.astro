@@ -71,6 +71,7 @@ const steps: Step[] = [
 ---
 
 <Section bgColor="bg-primary-50">
+  <div data-reveal>
   <StepCarousel totalSteps={steps.length} color="primary">
     {steps.map((step, i) => (
       <StepPanel step={step} index={i} hidden={i !== 0} accent="primary" imgClass="w-72 mx-auto" singleImgClass="w-72">
@@ -78,4 +79,5 @@ const steps: Step[] = [
       </StepPanel>
     ))}
   </StepCarousel>
+  </div>
 </Section>

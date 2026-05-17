@@ -5,7 +5,7 @@ import Typography from "../../ui/Typography.astro";
 ---
 
 <Section bgColor="bg-slate-50" innerClass="lg:flex-row justify-between items-center">
-  <div class="flex flex-col gap-4 sm:gap-5 text-center lg:text-left">
+  <div class="flex flex-col gap-4 sm:gap-5 text-center lg:text-left" data-reveal>
     <Typography variant="h1" color="text-slate-950">
       Anticípate a las complicaciones con el poder de la IA
     </Typography>
@@ -13,5 +13,7 @@ import Typography from "../../ui/Typography.astro";
       Próximamente disponible. Conecta tu CGM y wearables, y deja que la IA cuide de tu salud.
     </Typography>
   </div>
+  <div data-reveal="right">
   <Badges className="flex flex-col sm:flex-row lg:flex-col justify-center lg:justify-end items-center w-full sm:w-auto" />
+  </div>
 </Section>

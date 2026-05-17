@@ -27,13 +27,15 @@ const faqs = [
 ---
 
 <Section id="faq" bgColor="bg-slate-100" innerClass="max-w-[800px]">
+  <div data-reveal>
   <Typography variant="h1" color="text-slate-950" class="text-center">
     Preguntas frecuentes
   </Typography>
+  </div>
 
   <div class="flex flex-col divide-y divide-slate-300 select-none">
-    {faqs.map((faq) => (
-      <details class="faq-item py-5 group">
+    {faqs.map((faq, i) => (
+      <details class="faq-item py-5 group" data-reveal style={`transition-delay:${i * 80}ms`}>
         <summary class="flex justify-between items-center cursor-pointer">
           <Typography variant="subtitle" color="text-slate-700">{faq.question}</Typography>
           <i class="fas fa-chevron-down text-slate-700 transition-transform duration-200 group-open:rotate-180" />

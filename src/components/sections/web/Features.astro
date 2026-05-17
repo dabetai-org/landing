@@ -28,12 +28,14 @@ const professionalFeatures = [
 ---
 
 <Section id="web-app-features" bgColor="bg-slate-100">
+  <div data-reveal>
   <Typography variant="h1" color="text-slate-950" class="text-center">
     Seguimiento para profesionales de la salud
   </Typography>
+  </div>
 
   <div class="grid grid-cols-1 md:grid-cols-3 items-center gap-6">
-    <div class="col-span-2 flex justify-center order-last md:order-none">
+    <div class="col-span-2 flex justify-center order-last md:order-none" data-reveal="left">
       <ImageGallery
         images={[
           { src: "/assets/images/web/features/dashboard.png", alt: "Panel principal dabetai web" },
@@ -48,8 +50,8 @@ const professionalFeatures = [
     </div>
 
     <div class="col-span-1 flex flex-col h-full justify-between space-y-6">
-      {professionalFeatures.map((feature) => (
-        <div class="flex items-center gap-5">
+      {professionalFeatures.map((feature, i) => (
+        <div class="flex items-center gap-5 feature-card" data-reveal="right" style={`transition-delay:${i * 100}ms`}>
           <div class="w-14 h-14 flex items-center justify-center bg-slate-50 text-secondary-500 rounded-full text-2xl shrink-0 shadow-ds-sm">
             <i class={`fas ${feature.icon}`} />
           </div>
