@@ -13,21 +13,34 @@ const { totalSteps, color = "primary" } = Astro.props;
   data-current="0"
   data-total={totalSteps}
 >
-  <div class="flex justify-center items-center gap-1 sm:gap-2 md:gap-3 mb-6 md:mb-8">
-    {Array.from({ length: totalSteps }).map((_, i) => (
-      <>
+  <div class="mb-6 md:mb-8">
+    <div class="grid grid-cols-3 gap-3 justify-items-center items-center sm:hidden">
+      {Array.from({ length: totalSteps }).map((_, i) => (
         <button
-          class="step-dot flex items-center justify-center size-8 md:size-10 rounded-full border-2 font-source font-bold text-sm md:text-base transition-all cursor-pointer shrink-0"
+          class="step-dot flex items-center justify-center size-9 rounded-full border-2 font-source font-bold text-sm transition-all cursor-pointer"
           data-index={i}
           data-state={i === 0 ? "active" : "inactive"}
         >
           {i + 1}
         </button>
-        {i < totalSteps - 1 && (
-          <div class="step-line h-0.5 flex-1 max-w-6 sm:max-w-10 md:max-w-14 rounded-full transition-colors shrink-0" data-state="inactive" />
-        )}
-      </>
-    ))}
+      ))}
+    </div>
+    <div class="hidden sm:flex justify-center items-center gap-1 sm:gap-2 md:gap-3">
+      {Array.from({ length: totalSteps }).map((_, i) => (
+        <>
+          <button
+            class="step-dot flex items-center justify-center size-8 md:size-10 rounded-full border-2 font-source font-bold text-sm md:text-base transition-all cursor-pointer shrink-0"
+            data-index={i}
+            data-state={i === 0 ? "active" : "inactive"}
+          >
+            {i + 1}
+          </button>
+          {i < totalSteps - 1 && (
+            <div class="step-line h-0.5 flex-1 max-w-6 sm:max-w-10 md:max-w-14 rounded-full transition-colors shrink-0" data-state="inactive" />
+          )}
+        </>
+      ))}
+    </div>
   </div>
 
   <div class="step-content relative flex items-center gap-2 md:gap-4">
