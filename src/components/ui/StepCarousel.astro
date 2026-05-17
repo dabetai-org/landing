@@ -15,7 +15,6 @@ const { totalSteps, color = "primary" } = Astro.props;
 >
   <div class="mb-6 md:mb-8">
     <div class="sm:hidden flex flex-col items-center gap-2">
-      <span class="step-counter text-sm font-bold text-slate-500"></span>
       <div class="step-progress w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
         <div class="step-progress-fill h-full rounded-full transition-all duration-300" style="width: 0%"></div>
       </div>
@@ -125,7 +124,6 @@ const { totalSteps, color = "primary" } = Astro.props;
       const total = parseInt(container.dataset.total);
       const prevArrow = container.querySelector(".step-arrow-left");
       const nextArrow = container.querySelector(".step-arrow-right");
-      const counter = container.querySelector(".step-counter");
       const progressFill = container.querySelector(".step-progress-fill");
       let current = 0;
 
@@ -142,11 +140,6 @@ const { totalSteps, color = "primary" } = Astro.props;
           line.dataset.state = i < index ? "active" : "inactive";
         });
 
-        if (counter) {
-          var color = container.dataset.color === "secondary" ? "#009688" : "#2196F3";
-          counter.textContent = "Paso " + (index + 1) + " / " + total;
-          counter.style.color = color;
-        }
         if (progressFill) {
           var pct = ((index + 1) / total) * 100;
           progressFill.style.width = pct + "%";
