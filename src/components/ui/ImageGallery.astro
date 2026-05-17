@@ -2,15 +2,16 @@
 interface Props {
   images: { src: string; alt: string }[];
   imgClass?: string;
+  color?: "primary" | "secondary";
   autoPlay?: boolean;
   autoPlayInterval?: number;
 }
 
-const { images, imgClass = "", autoPlay = true, autoPlayInterval = 4000 } = Astro.props;
+const { images, imgClass = "", color = "primary", autoPlay = true, autoPlayInterval = 4000 } = Astro.props;
 const multiple = images.length > 1;
 ---
 
-<div class="image-gallery relative group/ig" data-current="0" data-interval={autoPlayInterval} data-auto-play={String(autoPlay)}>
+<div class="image-gallery relative group/ig" data-color={color} data-current="0" data-interval={autoPlayInterval} data-auto-play={String(autoPlay)}>
   <div class="relative">
     {images.map((img, i) => (
       <img
@@ -60,10 +61,16 @@ const multiple = images.length > 1;
   }
   .gallery-arrow:hover {
     background: #fff;
-    color: #2196F3;
   }
-  .gallery-dot[data-state="active"] {
+  .image-gallery[data-color="primary"] .gallery-arrow:hover { color: #2196F3; }
+  .image-gallery[data-color="secondary"] .gallery-arrow:hover { color: #009688; }
+  .image-gallery[data-color="primary"] .gallery-dot[data-state="active"] {
     background-color: #2196F3;
+    width: 1.25rem;
+    border-radius: 999px;
+  }
+  .image-gallery[data-color="secondary"] .gallery-dot[data-state="active"] {
+    background-color: #009688;
     width: 1.25rem;
     border-radius: 999px;
   }

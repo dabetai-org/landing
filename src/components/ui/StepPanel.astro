@@ -31,7 +31,7 @@ const singleImgBase = "object-contain mx-auto " + singleImgClass;
       {step.title}
     </Typography>
     {step.images.length > 1 ? (
-      <ImageGallery images={step.images} imgClass={imgClass} autoPlay={false} />
+      <ImageGallery images={step.images} imgClass={imgClass} color={accent} autoPlay={false} />
     ) : (
       <img src={step.images[0].src} alt={step.images[0].alt} class={singleImgBase} />
     )}
