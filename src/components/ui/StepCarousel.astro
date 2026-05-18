@@ -23,14 +23,14 @@ const { totalSteps, color = "primary" } = Astro.props;
       {Array.from({ length: totalSteps }).map((_, i) => (
         <>
           <button
-            class="step-dot flex items-center justify-center size-8 md:size-10 rounded-full border-2 font-source font-bold text-sm md:text-base transition-all cursor-pointer shrink-0"
+            class="step-dot flex items-center justify-center size-9 md:size-11 rounded-full border-2 font-source font-bold text-sm md:text-base transition-all duration-300 cursor-pointer shrink-0"
             data-index={i}
             data-state={i === 0 ? "active" : "inactive"}
           >
             {i + 1}
           </button>
           {i < totalSteps - 1 && (
-            <div class="step-line h-0.5 flex-1 max-w-6 sm:max-w-10 md:max-w-14 rounded-full transition-colors shrink-0" data-state="inactive" />
+            <div class="step-line h-1 flex-1 max-w-8 sm:max-w-12 md:max-w-16 rounded-full transition-colors duration-300 shrink-0" data-state="inactive" />
           )}
         </>
       ))}
@@ -39,10 +39,10 @@ const { totalSteps, color = "primary" } = Astro.props;
 
   <div class="step-content relative flex items-center gap-2 md:gap-4">
     <button
-      class="step-arrow step-arrow-left shrink-0 size-9 xs:size-11 opacity-0 pointer-events-none transition-all z-10"
+      class="step-arrow step-arrow-left shrink-0 opacity-0 pointer-events-none transition-all z-10"
       data-dir="prev"
     >
-      <svg class="size-5 xs:size-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
     </button>
 
     <div class="step-panels flex-1 min-w-0">
@@ -50,10 +50,10 @@ const { totalSteps, color = "primary" } = Astro.props;
     </div>
 
     <button
-      class="step-arrow step-arrow-right shrink-0 size-9 xs:size-11 transition-all z-10"
+      class="step-arrow step-arrow-right shrink-0 transition-all z-10"
       data-dir="next"
     >
-      <svg class="size-5 xs:size-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
     </button>
   </div>
 </div>
@@ -64,6 +64,8 @@ const { totalSteps, color = "primary" } = Astro.props;
 
   .stepper[data-color="primary"] .step-dot[data-state="active"] {
     background-color: #2196F3; border-color: #2196F3;
+    box-shadow: 0 0 0 3px rgba(33,150,243,0.25);
+    transform: scale(1.1);
   }
   .stepper[data-color="primary"] .step-dot[data-state="completed"] {
     background-color: #64B5F6; border-color: #64B5F6;
@@ -77,6 +79,8 @@ const { totalSteps, color = "primary" } = Astro.props;
 
   .stepper[data-color="secondary"] .step-dot[data-state="active"] {
     background-color: #009688; border-color: #009688;
+    box-shadow: 0 0 0 3px rgba(0,150,136,0.25);
+    transform: scale(1.1);
   }
   .stepper[data-color="secondary"] .step-dot[data-state="completed"] {
     background-color: #4DB6AC; border-color: #4DB6AC;
@@ -96,21 +100,32 @@ const { totalSteps, color = "primary" } = Astro.props;
   .stepper[data-color="secondary"] .step-progress-fill { background-color: #009688; }
 
   .step-arrow {
-    background: rgba(255,255,255,0.9);
-    color: #334155;
-    border: none;
+    background: transparent;
+    color: #1976D2;
+    border: 1px solid #1976D2;
     border-radius: 999px;
+    width: 44px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
   }
   .step-arrow:hover {
-    background: #fff;
-    color: #2196F3;
+    background: #E3F2FD;
+    color: #1976D2;
+    border-color: #1976D2;
   }
-  .stepper[data-color="secondary"] .step-arrow:hover { color: #009688; }
+  .stepper[data-color="secondary"] .step-arrow {
+    color: #009688;
+    border-color: #009688;
+  }
+  .stepper[data-color="secondary"] .step-arrow:hover {
+    background: #E0F2F1;
+    color: #009688;
+    border-color: #009688;
+  }
 </style>
 
 <script>
