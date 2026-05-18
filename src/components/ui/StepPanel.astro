@@ -22,7 +22,7 @@ interface Props {
 
 const { step, index = 0, hidden = false, accent = "primary", imgClass = "", singleImgClass = "" } = Astro.props;
 const titleColor = accent === "secondary" ? "text-secondary-500" : "text-primary-500";
-const singleImgBase = "object-contain mx-auto " + singleImgClass;
+const singleImgBase = "object-contain mx-auto transition-all duration-500 hover:scale-[1.03] " + singleImgClass;
 ---
 
 <div class="step-panel" class:list={{ hidden }} data-index={index}>
