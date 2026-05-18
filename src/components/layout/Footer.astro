@@ -17,7 +17,7 @@ const { navLinks = [], resources = [], socialLinks = [] } = Astro.props as {
 
 <footer class="w-full bg-primary-500 py-12 select-none">
   <div class="max-w-[1440px] mx-auto px-5 xs:px-6 md:px-20 space-y-12">
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 xs:gap-10 md:gap-14 text-slate-50">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 xs:gap-10 md:gap-14 text-slate-50">
       <div class="space-y-5">
         <a href="/">
           <img src="/assets/images/logo/logo-dark.png" alt="dabetai - Ecosistema de monitoreo y predicción de complicaciones diabéticas con IA" class="h-8 xs:h-9 sm:h-10" />
@@ -31,7 +31,7 @@ const { navLinks = [], resources = [], socialLinks = [] } = Astro.props as {
         <ul class="space-y-2">
           {navLinks.map((link) => (
             <li>
-              <a href={link.href} class="hover:text-secondary-100 transition-colors">
+              <a href={link.href} class="hover:text-primary-100 transition-colors">
                 <Typography variant="body" color="!text-inherit">{link.label}</Typography>
               </a>
             </li>
@@ -44,7 +44,7 @@ const { navLinks = [], resources = [], socialLinks = [] } = Astro.props as {
         <ul class="space-y-2">
           {resources.map((resource) => (
             <li>
-              <a href={resource.href} class="hover:text-secondary-100 transition-colors">
+              <a href={resource.href} class="hover:text-primary-100 transition-colors">
                 <Typography variant="body" color="!text-inherit">{resource.label}</Typography>
               </a>
             </li>
@@ -52,19 +52,38 @@ const { navLinks = [], resources = [], socialLinks = [] } = Astro.props as {
         </ul>
       </div>
 
-      <!-- <div class="flex flex-col space-y-5">
-        <Typography variant="subtitle" color="text-slate-50" tag="h4">Síguenos</Typography>
-        <ul class="space-y-2">
-          {socialLinks.map((social) => (
-            <li>
-              <a href={social.href} class="hover:text-secondary-100 transition-colors flex items-center">
-                <i class={`${social.icon} mr-3`} />
-                <Typography variant="body" color="!text-inherit">{social.label}</Typography>
+      <div class="flex flex-col space-y-5">
+        <Typography variant="subtitle" color="text-slate-50" tag="h4">Equipo</Typography>
+        <ul class="space-y-3">
+          <li class="space-y-1">
+            <Typography variant="caption" color="text-primary-100" class="block !text-xs !font-bold">Christian Serrano</Typography>
+            <div class="flex items-center gap-2">
+              <a href="https://github.com/chrisssp" target="_blank" rel="noopener noreferrer" class="hover:text-primary-100 transition-colors flex items-center gap-1.5">
+                <i class="fab fa-github text-sm" /><Typography variant="caption" color="!text-inherit">chrisssp</Typography>
               </a>
-            </li>
-          ))}
+              <span class="text-slate-50/40">|</span>
+              <a href="https://linkedin.com/in/chrisssp" target="_blank" rel="noopener noreferrer" class="hover:text-primary-100 transition-colors flex items-center gap-1.5">
+                <i class="fab fa-linkedin text-sm" /><Typography variant="caption" color="!text-inherit">chrisssp</Typography>
+              </a>
+            </div>
+            <a href="mailto:christian.serrano.puertos@gmail.com" class="hover:text-primary-100 transition-colors flex items-center gap-1.5">
+              <i class="fas fa-envelope text-sm" /><Typography variant="caption" color="!text-inherit">christian.serrano.puertos@gmail.com</Typography>
+            </a>
+          </li>
+          <li class="space-y-1">
+            <Typography variant="caption" color="text-primary-100" class="block !text-xs !font-bold">Alejandro R.</Typography>
+            <div class="flex items-center gap-2">
+              <a href="https://github.com/aleor25" target="_blank" rel="noopener noreferrer" class="hover:text-primary-100 transition-colors flex items-center gap-1.5">
+                <i class="fab fa-github text-sm" /><Typography variant="caption" color="!text-inherit">aleor25</Typography>
+              </a>
+              <span class="text-slate-50/40">|</span>
+              <a href="https://www.linkedin.com/in/aleor/" target="_blank" rel="noopener noreferrer" class="hover:text-primary-100 transition-colors flex items-center gap-1.5">
+                <i class="fab fa-linkedin text-sm" /><Typography variant="caption" color="!text-inherit">aleor</Typography>
+              </a>
+            </div>
+          </li>
         </ul>
-      </div> -->
+      </div>
     </div>
 
     <hr class="border-t border-slate-50/30" />
