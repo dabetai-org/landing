@@ -25,10 +25,10 @@ const multiple = images.length > 1;
     ))}
     {multiple && (
       <>
-        <Button variant="outline" color={color} circular iconPosition="only" data-dir="prev" class="gallery-arrow gallery-arrow-left absolute left-2 md:left-3 top-1/2 -translate-y-1/2 z-10 opacity-0 group-hover/ig:opacity-100 transition-opacity duration-200">
+        <Button variant="fill" color={color} circular iconPosition="only" data-dir="prev" class="gallery-arrow gallery-arrow-left absolute left-2 md:left-3 top-1/2 -translate-y-1/2 z-10 opacity-0 group-hover/ig:opacity-100 transition-opacity duration-200">
           <svg slot="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
         </Button>
-        <Button variant="outline" color={color} circular iconPosition="only" data-dir="next" class="gallery-arrow gallery-arrow-right absolute right-2 md:right-3 top-1/2 -translate-y-1/2 z-10 opacity-0 group-hover/ig:opacity-100 transition-opacity duration-200">
+        <Button variant="fill" color={color} circular iconPosition="only" data-dir="next" class="gallery-arrow gallery-arrow-right absolute right-2 md:right-3 top-1/2 -translate-y-1/2 z-10 opacity-0 group-hover/ig:opacity-100 transition-opacity duration-200">
           <svg slot="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
         </Button>
       </>
