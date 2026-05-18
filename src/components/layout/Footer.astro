@@ -5,98 +5,164 @@ import Typography from "../ui/Typography.astro";
 interface LinkItem {
   href: string;
   label: string;
-  icon?: string;
 }
 
-const { navLinks = [], resources = [], socialLinks = [] } = Astro.props as {
+interface TeamMember {
+  name: string;
+  github: { user: string; url: string } | null;
+  linkedin: { user: string; url: string } | null;
+  email: string | null;
+}
+
+const {
+  navLinks = [],
+  resources = [],
+  teamMembers = [],
+} = Astro.props as {
   navLinks?: LinkItem[];
   resources?: LinkItem[];
-  socialLinks?: (LinkItem & { icon: string })[];
+  teamMembers?: TeamMember[];
 };
 ---
 
 <footer class="w-full bg-primary-500 py-12 select-none">
   <div class="max-w-[1440px] mx-auto px-5 xs:px-6 md:px-20 space-y-12">
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 xs:gap-10 md:gap-14 text-slate-50">
-      <div class="space-y-5">
-        <a href="/">
-          <img src="/assets/images/logo/logo-dark.png" alt="dabetai - Ecosistema de monitoreo y predicción de complicaciones diabéticas con IA" class="h-8 xs:h-9 sm:h-10" />
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 xs:gap-10 md:gap-14 text-slate-50"
+    >
+      <div class="space-y-5 flex flex-col">
+        <a
+          href="/"
+          class="self-start hover:scale-110 active:scale-95 transition-all duration-300"
+        >
+          <img
+            src="/assets/images/logo/logo-dark.png"
+            alt="dabetai - Ecosistema de monitoreo y predicción de complicaciones diabéticas con IA"
+            class="h-8 xs:h-9 sm:h-10"
+          />
         </a>
-        <Typography variant="body" color="text-slate-50">Ecosistema inteligente de monitoreo y predicción de complicaciones diabéticas mediante inteligencia artificial, wearables y monitores de glucosa continuos.</Typography>
+        <Typography variant="body" color="text-slate-50"
+          >Ecosistema inteligente de monitoreo y predicción de complicaciones
+          diabéticas mediante inteligencia artificial, wearables y monitores de
+          glucosa continuos.</Typography
+        >
         <Badges className="w-60" />
+        <Typography
+          variant="caption"
+          color="text-slate-50"
+          class="opacity-60 !text-inherit mt-auto pt-4"
+          >&copy; 2025 dabetai</Typography
+        >
       </div>
 
       <div class="flex flex-col space-y-5">
-        <Typography variant="subtitle" color="text-slate-50" tag="h4">Navegación</Typography>
+        <Typography variant="subtitle" color="text-slate-50" tag="h4"
+          >Navegación</Typography
+        >
         <ul class="space-y-2">
-          {navLinks.map((link) => (
-            <li>
-              <a href={link.href} class="hover:text-primary-100 transition-colors">
-                <Typography variant="body" color="!text-inherit">{link.label}</Typography>
-              </a>
-            </li>
-          ))}
+          {
+            navLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="hover:text-primary-100 transition-colors"
+                >
+                  <Typography variant="body" color="!text-inherit">
+                    {link.label}
+                  </Typography>
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </div>
 
       <div class="flex flex-col space-y-5">
-        <Typography variant="subtitle" color="text-slate-50" tag="h4">Recursos útiles</Typography>
+        <Typography variant="subtitle" color="text-slate-50" tag="h4"
+          >Recursos útiles</Typography
+        >
         <ul class="space-y-2">
-          {resources.map((resource) => (
-            <li>
-              <a href={resource.href} class="hover:text-primary-100 transition-colors">
-                <Typography variant="body" color="!text-inherit">{resource.label}</Typography>
-              </a>
-            </li>
-          ))}
+          {
+            resources.map((resource) => (
+              <li>
+                <a
+                  href={resource.href}
+                  class="hover:text-primary-100 transition-colors"
+                >
+                  <Typography variant="body" color="!text-inherit">
+                    {resource.label}
+                  </Typography>
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </div>
 
       <div class="flex flex-col space-y-5">
-        <Typography variant="subtitle" color="text-slate-50" tag="h4">Equipo</Typography>
+        <Typography variant="subtitle" color="text-slate-50" tag="h4"
+          >Equipo</Typography
+        >
         <ul class="space-y-3">
-          <li class="space-y-1">
-            <Typography variant="caption" color="text-primary-100" class="block !text-xs !font-bold">Christian Serrano</Typography>
-            <div class="flex items-center gap-2">
-              <a href="https://github.com/chrisssp" target="_blank" rel="noopener noreferrer" class="hover:text-primary-100 transition-colors flex items-center gap-1.5">
-                <i class="fab fa-github text-sm" /><Typography variant="caption" color="!text-inherit">chrisssp</Typography>
-              </a>
-              <span class="text-slate-50/40">|</span>
-              <a href="https://linkedin.com/in/chrisssp" target="_blank" rel="noopener noreferrer" class="hover:text-primary-100 transition-colors flex items-center gap-1.5">
-                <i class="fab fa-linkedin text-sm" /><Typography variant="caption" color="!text-inherit">chrisssp</Typography>
-              </a>
-            </div>
-            <a href="mailto:christian.serrano.puertos@gmail.com" class="hover:text-primary-100 transition-colors flex items-center gap-1.5">
-              <i class="fas fa-envelope text-sm" /><Typography variant="caption" color="!text-inherit">christian.serrano.puertos@gmail.com</Typography>
-            </a>
-          </li>
-          <li class="space-y-1">
-            <Typography variant="caption" color="text-primary-100" class="block !text-xs !font-bold">Alejandro R.</Typography>
-            <div class="flex items-center gap-2">
-              <a href="https://github.com/aleor25" target="_blank" rel="noopener noreferrer" class="hover:text-primary-100 transition-colors flex items-center gap-1.5">
-                <i class="fab fa-github text-sm" /><Typography variant="caption" color="!text-inherit">aleor25</Typography>
-              </a>
-              <span class="text-slate-50/40">|</span>
-              <a href="https://www.linkedin.com/in/aleor/" target="_blank" rel="noopener noreferrer" class="hover:text-primary-100 transition-colors flex items-center gap-1.5">
-                <i class="fab fa-linkedin text-sm" /><Typography variant="caption" color="!text-inherit">aleor</Typography>
-              </a>
-            </div>
-          </li>
+          {
+            teamMembers.map((member) => (
+              <li class="space-y-1">
+                <Typography
+                  variant="caption"
+                  color="text-primary-100"
+                  class="block !text-xs !font-bold"
+                >
+                  {member.name}
+                </Typography>
+                {member.github || member.linkedin ? (
+                  <div class="flex items-center gap-2">
+                    {member.github && (
+                      <a
+                        href={member.github.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="hover:text-primary-100 transition-colors flex items-center gap-1.5"
+                      >
+                        <i class="fab fa-github text-sm" />
+                        <Typography variant="caption" color="!text-inherit">
+                          {member.github.user}
+                        </Typography>
+                      </a>
+                    )}
+                    {member.github && member.linkedin && (
+                      <span class="text-slate-50/40">|</span>
+                    )}
+                    {member.linkedin && (
+                      <a
+                        href={member.linkedin.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="hover:text-primary-100 transition-colors flex items-center gap-1.5"
+                      >
+                        <i class="fab fa-linkedin text-sm" />
+                        <Typography variant="caption" color="!text-inherit">
+                          {member.linkedin.user}
+                        </Typography>
+                      </a>
+                    )}
+                  </div>
+                ) : null}
+                {member.email && (
+                  <a
+                    href={`mailto:${member.email}`}
+                    class="hover:text-primary-100 transition-colors flex items-center gap-1.5"
+                  >
+                    <i class="fas fa-envelope text-sm" />
+                    <Typography variant="caption" color="!text-inherit">
+                      {member.email}
+                    </Typography>
+                  </a>
+                )}
+              </li>
+            ))
+          }
         </ul>
       </div>
-    </div>
-
-    <hr class="border-t border-slate-50/30" />
-
-    <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-slate-50 opacity-80">
-      <Typography variant="caption" color="!text-inherit">&copy; 2025 dabetai. Todos los derechos reservados.</Typography>
-      <!-- <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 mt-4 sm:mt-0">
-        <a href="#" class="hover:text-secondary-100 transition-colors"><Typography variant="caption" color="!text-inherit">Política de privacidad</Typography></a>
-        <span class="hidden sm:inline text-slate-50/50">|</span>
-        <a href="#" class="hover:text-secondary-100 transition-colors"><Typography variant="caption" color="!text-inherit">Términos y condiciones</Typography></a>
-        <span class="hidden sm:inline text-slate-50/50">|</span>
-        <a href="#" class="hover:text-secondary-100 transition-colors"><Typography variant="caption" color="!text-inherit">Configuración de cookies</Typography></a>
-      </div> -->
     </div>
   </div>
 </footer>

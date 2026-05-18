@@ -15,6 +15,27 @@ const resources = [
 	{ label: "Ver ecosistema dabetai", href: "https://chrisssp.vercel.app/es/projects/dabetai" },
 ];
 
+const teamMembers = [
+	{
+		name: "Christian Serrano",
+		github: { user: "chrisssp", url: "https://github.com/chrisssp" },
+		linkedin: { user: "chrisssp", url: "https://linkedin.com/in/chrisssp" },
+		email: "christian.serrano.puertos@gmail.com",
+	},
+	{
+		name: "Alejandro Ortiz",
+		github: { user: "aleor25", url: "https://github.com/aleor25" },
+		linkedin: { user: "aleor", url: "https://www.linkedin.com/in/aleor/" },
+		email: "alex03ortizperez@gmail.com",
+	},
+	{
+		name: "Fermín Cárdenas",
+		github: null,
+		linkedin: null,
+		email: null,
+	},
+];
+
 ---
 
 <!doctype html>
@@ -89,6 +110,7 @@ const resources = [
 		<Footer
 			navLinks={menuLinks}
 			resources={resources}
+			teamMembers={teamMembers}
 		/>
 		<script>
 			(function() {
