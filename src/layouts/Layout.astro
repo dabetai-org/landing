@@ -26,8 +26,10 @@ const socialLinks = [
 <html lang="es">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="dabetai - Ecosistema de monitoreo y predicción de complicaciones diabéticas con inteligencia artificial. App móvil para pacientes con CGM y wearables. Portal web para médicos con supervisión remota." />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content="dabetai: app móvil con IA que predice complicaciones diabéticas conectada a tu CGM y wearables. Portal web para médicos con supervisión remota y alertas en tiempo real." />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="robots" content="index, follow, max-snippet:150, max-image-preview:large" />
+		<link rel="canonical" href="https://dabetai.org/" />
 		<link rel="icon" href="/assets/images/logo/isotipo-head.png" />
 		<link rel="icon" href="/assets/images/logo/isotipo-head-white.png" media="(prefers-color-scheme: dark)" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,23 +37,50 @@ const socialLinks = [
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 		<link rel="stylesheet" href="/styles/global.css" />
-		<title>dabetai — Predice y prevén complicaciones de la diabetes con inteligencia artificial</title>
+		<title>dabetai — Predice complicaciones de la diabetes con IA | App y portal médico</title>
 
-		<meta property="og:title" content="dabetai — Predice y prevén complicaciones de la diabetes con inteligencia artificial" />
-		<meta property="og:description" content="Ecosistema de monitoreo y predicción de complicaciones diabéticas con inteligencia artificial. App móvil para pacientes con CGM y wearables. Portal web para médicos con supervisión remota." />
-		<meta property="og:image" content="/assets/images/og-preview.png" />
+		<meta property="og:title" content="dabetai — Predice complicaciones de la diabetes con IA | App y portal médico" />
+		<meta property="og:description" content="App móvil con IA que predice retinopatía, nefropatía y pie diabético conectada a tu CGM y wearables. Portal web para médicos con supervisión remota." />
+		<meta property="og:image" content="https://dabetai.org/assets/images/og-preview.png" />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
 		<meta property="og:type" content="website" />
 		<meta property="og:locale" content="es_MX" />
 		<meta property="og:site_name" content="dabetai" />
+		<meta property="og:url" content="https://dabetai.org/" />
 
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="dabetai — Predice y prevén complicaciones de la diabetes con inteligencia artificial" />
-		<meta name="twitter:description" content="Ecosistema de monitoreo y predicción de complicaciones diabéticas con inteligencia artificial. App móvil para pacientes con CGM y wearables. Portal web para médicos con supervisión remota." />
-		<meta name="twitter:image" content="/assets/images/og-preview.png" />
+		<meta name="twitter:title" content="dabetai — Predice complicaciones de la diabetes con IA | App y portal médico" />
+		<meta name="twitter:description" content="App móvil con IA que predice retinopatía, nefropatía y pie diabético conectada a tu CGM y wearables. Portal web para médicos con supervisión remota." />
+		<meta name="twitter:image" content="https://dabetai.org/assets/images/og-preview.png" />
 		<meta name="twitter:image:width" content="1200" />
 		<meta name="twitter:image:height" content="630" />
+
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "Organization",
+			"name": "dabetai",
+			"url": "https://dabetai.org",
+			"logo": "https://dabetai.org/assets/images/logo/logo-dark.png",
+			"description": "Ecosistema inteligente de monitoreo y predicción de complicaciones diabéticas mediante inteligencia artificial, wearables y monitores de glucosa continuos.",
+			"sameAs": [
+				"https://github.com/dabetai-org"
+			]
+		}
+		</script>
+
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "WebSite",
+			"name": "dabetai",
+			"url": "https://dabetai.org",
+			"description": "App móvil con IA que predice complicaciones diabéticas. Portal web para médicos con supervisión remota y alertas en tiempo real.",
+			"inLanguage": "es-MX",
+			"applicationCategory": "HealthApplication"
+		}
+		</script>
 	</head>
 	<body>
 		<Header links={menuLinks} />
