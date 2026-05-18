@@ -27,6 +27,7 @@ const {
   type = "button",
   tooltip,
   class: className = "",
+  ...attrs
 } = Astro.props;
 
 const fillConfig: Record<ButtonColor, { bg: string; hoverBg: string; focusBorder: string }> = {
@@ -112,7 +113,7 @@ const extraProps = Tag === "a"
   : { type, disabled };
 ---
 
-<Tag class={`${baseButton.join(" ")} ${className}`} {...extraProps}>
+<Tag class={`${baseButton.join(" ")} ${className}`} {...extraProps} {...attrs}>
   {iconPosition === "only" ? (
     <slot name="icon" />
   ) : iconPosition === "left" ? (

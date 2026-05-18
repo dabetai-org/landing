@@ -1,4 +1,6 @@
 ---
+import Button from "./Button.astro";
+
 interface Props {
   totalSteps: number;
   color?: "primary" | "secondary";
@@ -38,23 +40,25 @@ const { totalSteps, color = "primary" } = Astro.props;
   </div>
 
   <div class="step-content relative flex items-center gap-2 md:gap-4">
-    <button
-      class="step-arrow step-arrow-left shrink-0 opacity-0 pointer-events-none transition-all z-10"
+    <Button
+      variant="outline" color={color} circular iconPosition="only"
       data-dir="prev"
+      class="step-arrow step-arrow-left shrink-0 opacity-0 pointer-events-none transition-all z-10"
     >
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-    </button>
+      <svg slot="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </Button>
 
     <div class="step-panels flex-1 min-w-0">
       <slot />
     </div>
 
-    <button
-      class="step-arrow step-arrow-right shrink-0 transition-all z-10"
+    <Button
+      variant="outline" color={color} circular iconPosition="only"
       data-dir="next"
+      class="step-arrow step-arrow-right shrink-0 transition-all z-10"
     >
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-    </button>
+      <svg slot="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </Button>
   </div>
 </div>
 
@@ -99,33 +103,6 @@ const { totalSteps, color = "primary" } = Astro.props;
   .stepper[data-color="primary"] .step-progress-fill { background-color: #2196F3; }
   .stepper[data-color="secondary"] .step-progress-fill { background-color: #009688; }
 
-  .step-arrow {
-    background: transparent;
-    color: #1976D2;
-    border: 1px solid #1976D2;
-    border-radius: 999px;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
-  }
-  .step-arrow:hover {
-    background: #E3F2FD;
-    color: #1976D2;
-    border-color: #1976D2;
-  }
-  .stepper[data-color="secondary"] .step-arrow {
-    color: #009688;
-    border-color: #009688;
-  }
-  .stepper[data-color="secondary"] .step-arrow:hover {
-    background: #E0F2F1;
-    color: #009688;
-    border-color: #009688;
-  }
 </style>
 
 <script>

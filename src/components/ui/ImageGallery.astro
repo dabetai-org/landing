@@ -1,4 +1,6 @@
 ---
+import Button from "./Button.astro";
+
 interface Props {
   images: { src: string; alt: string }[];
   imgClass?: string;
@@ -23,12 +25,12 @@ const multiple = images.length > 1;
     ))}
     {multiple && (
       <>
-        <button class="gallery-arrow gallery-arrow-left absolute left-2 md:left-3 top-1/2 -translate-y-1/2 z-10 opacity-0 group-hover/ig:opacity-100 transition-opacity duration-200" data-dir="prev">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
-        <button class="gallery-arrow gallery-arrow-right absolute right-2 md:right-3 top-1/2 -translate-y-1/2 z-10 opacity-0 group-hover/ig:opacity-100 transition-opacity duration-200" data-dir="next">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
+        <Button variant="outline" color={color} circular iconPosition="only" data-dir="prev" class="gallery-arrow gallery-arrow-left absolute left-2 md:left-3 top-1/2 -translate-y-1/2 z-10 opacity-0 group-hover/ig:opacity-100 transition-opacity duration-200">
+          <svg slot="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </Button>
+        <Button variant="outline" color={color} circular iconPosition="only" data-dir="next" class="gallery-arrow gallery-arrow-right absolute right-2 md:right-3 top-1/2 -translate-y-1/2 z-10 opacity-0 group-hover/ig:opacity-100 transition-opacity duration-200">
+          <svg slot="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </Button>
       </>
     )}
   </div>
@@ -46,33 +48,6 @@ const multiple = images.length > 1;
 </div>
 
 <style>
-  .gallery-arrow {
-    background: transparent;
-    color: #1976D2;
-    border: 1px solid #1976D2;
-    border-radius: 999px;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
-  }
-  .gallery-arrow:hover {
-    background: #E3F2FD;
-    color: #1976D2;
-    border-color: #1976D2;
-  }
-  .image-gallery[data-color="secondary"] .gallery-arrow {
-    color: #009688;
-    border-color: #009688;
-  }
-  .image-gallery[data-color="secondary"] .gallery-arrow:hover {
-    background: #E0F2F1;
-    color: #009688;
-    border-color: #009688;
-  }
   .image-gallery[data-color="primary"] .gallery-dot[data-state="active"] {
     background-color: #2196F3;
     width: 1.25rem;
