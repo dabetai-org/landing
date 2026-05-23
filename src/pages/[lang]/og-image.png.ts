@@ -54,7 +54,7 @@ export const GET: APIRoute = async ({ params }) => {
 
   const markup = html`
     <div
-      style="display:flex;width:1200px;height:630px;background:linear-gradient(135deg,#1565C0 0%,#1E88E5 100%);position:relative;overflow:hidden;font-family:Inter"
+      style="display:flex;width:1200px;height:630px;background:linear-gradient(135deg,#1976D2 0%,#2196F3 50%,#42A5F5 100%);position:relative;overflow:hidden;font-family:Inter"
     >
       <div
         style="display:flex;position:absolute;right:-200px;top:-200px;width:640px;height:640px;border-radius:50%;background:rgba(255,255,255,0.03)"
@@ -73,10 +73,10 @@ export const GET: APIRoute = async ({ params }) => {
         style="display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:60px;width:100%"
       >
         <div
-          style="display:flex;flex-direction:column;max-width:520px;flex-shrink:0"
+          style="display:flex;flex-direction:column;max-width:540px;flex-shrink:0"
         >
           <span
-            style="font-size:36px;font-weight:700;color:rgba(255,255,255,0.9);line-height:1.3;display:flex;flex-wrap:wrap"
+            style="font-size:44px;font-weight:700;color:rgba(255,255,255,0.9);line-height:1.3;display:flex;flex-wrap:wrap"
           >
             <span>${dict.hero.titleBefore}</span>
             <span
@@ -87,9 +87,15 @@ export const GET: APIRoute = async ({ params }) => {
           </span>
 
           <span
-            style="font-size:18px;font-weight:500;color:rgba(255,255,255,0.8);line-height:1.5;margin-top:24px;display:flex;flex-wrap:wrap"
+            style="font-size:22px;font-weight:500;color:rgba(255,255,255,0.8);line-height:1.5;margin-top:24px;display:flex;flex-wrap:wrap"
           >
             ${dict.hero.description}
+          </span>
+
+          <span
+            style="font-size:16px;font-weight:600;color:rgba(255,255,255,0.5);margin-top:32px;display:flex;letter-spacing:2px;text-transform:uppercase"
+          >
+            ${lang === "es" ? "Próximamente" : "Coming Soon"}
           </span>
         </div>
 
@@ -107,11 +113,7 @@ export const GET: APIRoute = async ({ params }) => {
         </div>
       </div>
 
-      <span
-        style="display:flex;position:absolute;bottom:24px;left:60px;font-size:14px;color:rgba(255,255,255,0.3)"
-      >
-        dabetai.org
-      </span>
+
     </div>
   `;
 
