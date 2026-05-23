@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro";
 
-const siteUrl = "https://dabetai.org";
+const siteUrl = "https://dabetai.netlify.app";
 
 const locales = ["es", "en"];
 
