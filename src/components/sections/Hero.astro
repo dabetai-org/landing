@@ -10,7 +10,7 @@ const { dict } = Astro.props as { dict: Dictionary };
 <Section id="hero" bgColor="bg-primary-500" innerClass="md:flex-row justify-between items-center">
   <div class="max-w-lg space-y-6 md:space-y-8 text-center md:text-left shrink-0" data-reveal>
     <Typography variant="h1" color="text-slate-50">
-      {dict.hero.titleBefore}<span class="text-white text-4xl" style="text-shadow: 0 0 8px rgba(255,255,255,0.15), 0 0 20px rgba(33,150,243,0.15);">{dict.hero.highlightedText}</span>{dict.hero.titleAfter}
+      {dict.hero.titleBefore}<span class="text-white" style="text-shadow: 0 0 8px rgba(255,255,255,0.15), 0 0 20px rgba(33,150,243,0.15);">{dict.hero.highlightedText}</span>{dict.hero.titleAfter}
     </Typography>
 
     <Typography variant="body" color="text-slate-50" class="md:!text-lg md:!leading-[22.6px] !font-medium">
