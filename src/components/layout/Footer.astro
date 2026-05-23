@@ -11,9 +11,11 @@ interface LinkItem {
 const {
   navLinks = [],
   dict,
+  lang,
 } = Astro.props as {
   navLinks?: LinkItem[];
   dict: Dictionary;
+  lang?: string;
 };
 ---
 
@@ -24,7 +26,7 @@ const {
     >
       <div class="space-y-5 flex flex-col">
         <a
-          href="/"
+          href={lang === "en" ? "/en" : "/"}
           class="self-start hover:scale-110 active:scale-95 transition-all duration-300"
         >
           <img

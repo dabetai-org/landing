@@ -14,9 +14,9 @@ const otherLabel = lang === "en" ? "ES" : "EN";
 
 <header id="app-header" class="fixed top-0 left-0 w-full z-50 transition-[background-color,transform] duration-300 bg-primary-500">
   <div class="max-w-[1440px] mx-auto px-5 xs:px-6 md:px-20 flex items-center justify-between h-16 md:h-[72px]">
-    <a href="/" class="shrink-0 hover:scale-110 active:scale-95 transition-all duration-300">
-      <img id="header-logo" src="/assets/images/logo/logo-dark.png" alt="dabetai" class="h-6 xs:h-7 sm:h-8" />
-    </a>
+      <a href={lang === "en" ? "/en" : "/"} class="shrink-0 hover:scale-110 active:scale-95 transition-all duration-300">
+        <img id="header-logo" src="/assets/images/logo/logo-dark.png" alt="dabetai" class="h-6 xs:h-7 sm:h-8" />
+      </a>
 
     <nav class="hidden md:flex items-center gap-1">
       {links.map((link) => (
@@ -50,10 +50,10 @@ const otherLabel = lang === "en" ? "ES" : "EN";
       <button
         id="menu-btn"
         type="button"
-        class="flex items-center justify-center p-2 sm:p-3 bg-white/15 rounded-xl text-white shadow-sm hover:bg-white/25 active:scale-95 transition-all cursor-pointer"
+        class="px-3 py-2.5 leading-none rounded-xl text-white hover:bg-white/15 active:scale-95 transition-all cursor-pointer border border-white/20"
         aria-label={dict.openMenu}
       >
-        <i id="menu-icon" class="fa-solid fa-bars text-lg"></i>
+        <i id="menu-icon" class="fa-solid fa-bars text-sm"></i>
       </button>
     </div>
   </div>
@@ -61,17 +61,17 @@ const otherLabel = lang === "en" ? "ES" : "EN";
 
 <div id="mobile-menu" class="fixed inset-0 z-50 flex flex-col w-full h-full overflow-hidden hidden bg-primary-500">
   <div class="flex items-center justify-between px-5 xs:px-6 h-16 shrink-0">
-    <a href="/">
+    <a href={lang === "en" ? "/en" : "/"}>
       <img id="mobile-logo" src="/assets/images/logo/logo-white.png" alt="dabetai" class="h-6 xs:h-7" />
     </a>
-    <button
-      id="menu-close"
-      type="button"
-      class="p-1.5 sm:p-2 bg-white/15 rounded-lg sm:rounded-xl text-white/80 hover:text-white hover:bg-white/25 active:scale-95 transition-all cursor-pointer"
-      aria-label={dict.closeMenu}
-    >
-      <i class="fa-solid fa-xmark text-lg"></i>
-    </button>
+      <button
+        id="menu-close"
+        type="button"
+        class="px-3 py-2.5 leading-none rounded-xl text-white/80 hover:text-white hover:bg-white/15 active:scale-95 transition-all cursor-pointer border border-white/20"
+        aria-label={dict.closeMenu}
+      >
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
   </div>
 
   <div class="flex-1 flex flex-col p-5 sm:p-6 gap-2 overflow-y-auto">
