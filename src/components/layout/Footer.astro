@@ -1,4 +1,5 @@
 ---
+import type { Dictionary } from "../../i18n/types";
 import Badges from "../sections/Badges.astro";
 import Typography from "../ui/Typography.astro";
 
@@ -7,21 +8,12 @@ interface LinkItem {
   label: string;
 }
 
-interface TeamMember {
-  name: string;
-  github: { user: string; url: string } | null;
-  linkedin: { user: string; url: string } | null;
-  email: string | null;
-}
-
 const {
   navLinks = [],
-  resources = [],
-  teamMembers = [],
+  dict,
 } = Astro.props as {
   navLinks?: LinkItem[];
-  resources?: LinkItem[];
-  teamMembers?: TeamMember[];
+  dict: Dictionary;
 };
 ---
 
@@ -37,27 +29,25 @@ const {
         >
           <img
             src="/assets/images/logo/logo-dark.png"
-            alt="dabetai - Ecosistema de monitoreo y predicción de complicaciones diabéticas con IA"
+            alt="dabetai - {dict.footer.description}"
             class="h-8 xs:h-9 sm:h-10"
           />
         </a>
         <Typography variant="body" color="text-slate-50"
-          >Ecosistema inteligente de monitoreo y predicción de complicaciones
-          diabéticas mediante inteligencia artificial, wearables y monitores de
-          glucosa continuos.</Typography
+          >{dict.footer.description}</Typography
         >
-        <Badges className="w-60" />
+        <Badges className="w-60" dict={dict} />
         <Typography
           variant="caption"
           color="text-slate-50"
           class="opacity-60 !text-inherit mt-auto pt-4"
-          >&copy; 2025 dabetai</Typography
+          >&copy; 2025 {dict.footer.copyright}</Typography
         >
       </div>
 
       <div class="flex flex-col space-y-5">
         <Typography variant="subtitle" color="text-slate-50" tag="h4"
-          >Navegación</Typography
+          >{dict.footer.navigation}</Typography
         >
         <ul class="space-y-2">
           {
@@ -79,11 +69,11 @@ const {
 
       <div class="flex flex-col space-y-5">
         <Typography variant="subtitle" color="text-slate-50" tag="h4"
-          >Recursos útiles</Typography
+          >{dict.footer.usefulResources}</Typography
         >
         <ul class="space-y-2">
           {
-            resources.map((resource) => (
+            dict.footer.resourcesLinks.map((resource) => (
               <li>
                 <a
                   href={resource.href}
@@ -101,11 +91,11 @@ const {
 
       <div class="flex flex-col space-y-5">
         <Typography variant="subtitle" color="text-slate-50" tag="h4"
-          >Equipo</Typography
+          >{dict.footer.team}</Typography
         >
         <ul class="space-y-3">
           {
-            teamMembers.map((member) => (
+            dict.footer.teamMembers.map((member) => (
               <li class="space-y-1">
                 <Typography
                   variant="caption"

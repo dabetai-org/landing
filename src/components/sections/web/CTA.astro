@@ -1,24 +1,28 @@
 ---
+import type { Dictionary } from "../../../i18n/types";
 import Section from "../../layout/Section.astro";
 import Typography from "../../ui/Typography.astro";
 import Button from "../../ui/Button.astro";
 import ButtonGroup from "../../ui/ButtonGroup.astro";
+
+const { dict } = Astro.props as { dict: Dictionary };
+const labels = dict.webCTA;
 ---
 
 <Section bgColor="bg-slate-50" innerClass="lg:flex-row justify-between items-center">
   <div class="flex flex-col gap-4 sm:gap-5 text-center lg:text-left" data-reveal>
     <Typography variant="h1" color="text-slate-950">
-      Supervisa a tus pacientes con alertas predictivas de IA
+      {labels.title}
     </Typography>
     <Typography variant="body">
-      Regístrate, vincula a tus pacientes y recibe alertas automáticas ante cualquier riesgo detectado por la IA.
+      {labels.description}
     </Typography>
   </div>
 
   <div data-reveal="right">
   <ButtonGroup direction="row" stackAt="lg" stretch gap={4} class="justify-center lg:justify-end self-start w-full lg:w-auto">
-    <Button title="Iniciar sesión" variant="fill" color="secondary" href="#" disabled tooltip="Próximamente" class="!opacity-80" />
-    <Button title="Registrarse" variant="outline" color="secondary" href="#" disabled tooltip="Próximamente" class="!opacity-80" />
+    <Button title={labels.loginButton} variant="fill" color="secondary" href="#" disabled tooltip={labels.comingSoon} class="!opacity-80" />
+    <Button title={labels.registerButton} variant="outline" color="secondary" href="#" disabled tooltip={labels.comingSoon} class="!opacity-80" />
   </ButtonGroup>
   </div>
 </Section>

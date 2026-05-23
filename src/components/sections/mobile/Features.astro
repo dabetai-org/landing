@@ -1,64 +1,17 @@
 ---
+import type { Dictionary } from "../../../i18n/types";
 import Section from "../../layout/Section.astro";
 import Typography from "../../ui/Typography.astro";
 import ImageGallery from "../../ui/ImageGallery.astro";
 
-const features = [
-  {
-    title: "Monitoreo continuo de glucosa",
-    description: "Conéctate con tu monitor CGM y visualiza tus niveles de glucosa en tiempo real sin necesidad de registros manuales.",
-    icon: "fa-chart-line",
-    align: "right",
-  },
-  {
-    title: "Biomarcadores desde wearables",
-    description: "Sincroniza tus wearables para capturar frecuencia cardíaca, calidad del sueño y actividad física de forma automática.",
-    icon: "fa-heartbeat",
-    align: "right",
-  },
-  {
-    title: "Chat con IA",
-    description: "Resuelve tus dudas con el asistente de IA. Pregunta sobre métricas, predicciones o recomendaciones en lenguaje natural.",
-    icon: "fa-robot",
-    align: "right",
-  },
-  {
-    title: "Alertas predictivas",
-    description: "IA analiza tus datos en tiempo real y te alerta ante patrones de riesgo antes de que se conviertan en complicaciones.",
-    icon: "fa-bell",
-    align: "right",
-  },
-  {
-    title: "Predicción de complicaciones",
-    description: "Modelos de machine learning evaluan tu riesgo de desarrollar retinopatía, nefropatía, neuropatía y pie diabético.",
-    icon: "fa-dna",
-    align: "left",
-  },
-  {
-    title: "Reportes clínicos automatizados",
-    description: "Genera informes detallados con métricas clave, predicciones de riesgo y evolución histórica para compartir con tu médico.",
-    icon: "fa-file-medical-alt",
-    align: "left",
-  },
-  {
-    title: "Conexión con médicos",
-    description: "Comparte tus datos en tiempo real con especialistas a través del portal médico para una supervisión remota continua.",
-    icon: "fa-user-md",
-    align: "left",
-  },
-  {
-    title: "Historial completo",
-    description: "Accede a todo tu historial de salud: glucosa, biomarcadores, comidas, medicación y alertas en un solo panel.",
-    icon: "fa-calendar-alt",
-    align: "left",
-  },
-];
+const { dict } = Astro.props as { dict: Dictionary };
+const features = dict.mobileFeatures.items;
 ---
 
 <Section id="mobile-app-features" bgColor="bg-slate-100">
   <div data-reveal>
   <Typography variant="h1" color="text-slate-950" class="text-center">
-    Automonitoreo para el paciente
+    {dict.mobileFeatures.title}
   </Typography>
   </div>
 

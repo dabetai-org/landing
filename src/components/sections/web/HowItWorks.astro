@@ -1,56 +1,14 @@
 ---
+import type { Dictionary } from "../../../i18n/types";
 import Section from "../../layout/Section.astro";
 import Button from "../../ui/Button.astro";
 import ButtonGroup from "../../ui/ButtonGroup.astro";
 import StepCarousel from "../../ui/StepCarousel.astro";
 import StepPanel from "../../ui/StepPanel.astro";
 
-interface StepImage {
-  src: string;
-  alt: string;
-}
-
-interface Step {
-  title: string;
-  description: string;
-  images: StepImage[];
-  buttons?: boolean;
-}
-
-const steps: Step[] = [
-  {
-    title: "Inicia sesión o regístrate",
-    description: "Ingresa con tu cuenta profesional o crea una nueva. Accede al panel con las métricas de tus pacientes al instante.",
-    images: [
-      { src: "/assets/images/web/login.png", alt: "Pantalla de inicio de sesión del portal médico web de dabetai" },
-    ],
-    buttons: true,
-  },
-  {
-    title: "Panel de control",
-    description: "Visualiza el dashboard con métricas clave, estado actual y alertas activas de todos tus pacientes.",
-    images: [
-      { src: "/assets/images/web/dashboard.png", alt: "Dashboard del portal médico con métricas de glucosa alertas y estado de pacientes" },
-    ],
-  },
-  {
-    title: "Gestión de pacientes",
-    description: "Administra tus pacientes desde un solo panel: agrega, revisa historiales y da seguimiento personalizado.",
-    images: [
-      { src: "/assets/images/web/patients.png", alt: "Panel de gestión de pacientes en el portal médico web de dabetai" },
-      { src: "/assets/images/web/add-patient.png", alt: "Formulario para agregar nuevo paciente al portal médico dabetai" },
-    ],
-  },
-  {
-    title: "Predicciones y chat con IA",
-    description: "Revisa predicciones de riesgo por paciente, recibe notificaciones de anomalías y consulta al asistente de IA integrado.",
-    images: [
-      { src: "/assets/images/web/predictions.png", alt: "Predicciones de riesgo de complicaciones por paciente en el portal médico dabetai" },
-      { src: "/assets/images/web/chat.png", alt: "Asistente de chat con IA integrado en el portal web para médicos dabetai" },
-      { src: "/assets/images/web/notifications.png", alt: "Notificaciones y alertas de anomalías para médicos en tiempo real dabetai" },
-    ],
-  },
-];
+const { dict } = Astro.props as { dict: Dictionary };
+const steps = dict.webHowItWorks.steps;
+const labels = dict.webHowItWorks;
 ---
 
 <Section bgColor="bg-secondary-50">
@@ -60,8 +18,8 @@ const steps: Step[] = [
       <StepPanel step={step} index={i} hidden={i !== 0} accent="secondary" imgClass="w-full max-w-5xl mx-auto" singleImgClass="w-full max-w-5xl rounded-lg shadow-ds-md">
         {step.buttons && (
           <ButtonGroup direction="row" align="center" stretch>
-            <Button title="Iniciar sesión" variant="fill" color="secondary" href="#" disabled tooltip="Próximamente" class="!opacity-80" />
-            <Button title="Registrarse" variant="outline" color="secondary" href="#" disabled tooltip="Próximamente" class="!opacity-80" />
+            <Button title={labels.loginButton} variant="fill" color="secondary" href="#" disabled tooltip={labels.comingSoon} class="!opacity-80" />
+            <Button title={labels.registerButton} variant="outline" color="secondary" href="#" disabled tooltip={labels.comingSoon} class="!opacity-80" />
           </ButtonGroup>
         )}
       </StepPanel>

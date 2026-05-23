@@ -1,10 +1,15 @@
 ---
+import type { Dictionary } from "../../i18n/types";
+import type { Locale } from "../../i18n/config";
+
 interface LinkItem {
   href: string;
   label: string;
 }
 
-const { links = [] } = Astro.props as { links?: LinkItem[] };
+const { links = [], dict, lang } = Astro.props as { links?: LinkItem[]; dict: Dictionary; lang: Locale };
+const otherLang = lang === "en" ? "es" : "en";
+const otherLabel = lang === "en" ? "ES" : "EN";
 ---
 
 <header id="app-header" class="fixed top-0 left-0 w-full z-50 transition-[background-color,transform] duration-300 bg-primary-500">
@@ -23,16 +28,34 @@ const { links = [] } = Astro.props as { links?: LinkItem[] };
           {link.label}
         </a>
       ))}
+      <a
+        href={lang === "en" ? "/es" : "/en"}
+        id="lang-toggle"
+        data-other-lang={otherLang}
+        class="nav-lang ml-2 px-3 py-2.5 leading-none text-xs font-black uppercase tracking-wider transition-all duration-200 rounded-xl text-white/80 hover:text-white hover:bg-white/10 active:scale-95 border border-white/20"
+      >
+        {otherLabel}
+      </a>
     </nav>
 
-    <button
-      id="menu-btn"
-      type="button"
-      class="md:hidden flex items-center justify-center p-2 sm:p-3 bg-white/15 rounded-xl text-white shadow-sm hover:bg-white/25 active:scale-95 transition-all cursor-pointer"
-      aria-label="Abrir menú"
-    >
-      <i id="menu-icon" class="fa-solid fa-bars text-lg"></i>
-    </button>
+    <div class="flex items-center gap-2 md:hidden">
+      <a
+        href={lang === "en" ? "/es" : "/en"}
+        id="lang-toggle-mobile"
+        data-other-lang={otherLang}
+        class="px-3 py-2.5 leading-none text-xs font-black uppercase tracking-wider transition-all duration-200 rounded-xl text-white/80 hover:text-white hover:bg-white/15 active:scale-95 border border-white/20"
+      >
+        {otherLabel}
+      </a>
+      <button
+        id="menu-btn"
+        type="button"
+        class="flex items-center justify-center p-2 sm:p-3 bg-white/15 rounded-xl text-white shadow-sm hover:bg-white/25 active:scale-95 transition-all cursor-pointer"
+        aria-label={dict.openMenu}
+      >
+        <i id="menu-icon" class="fa-solid fa-bars text-lg"></i>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -45,7 +68,7 @@ const { links = [] } = Astro.props as { links?: LinkItem[] };
       id="menu-close"
       type="button"
       class="p-1.5 sm:p-2 bg-white/15 rounded-lg sm:rounded-xl text-white/80 hover:text-white hover:bg-white/25 active:scale-95 transition-all cursor-pointer"
-      aria-label="Cerrar menú"
+      aria-label={dict.closeMenu}
     >
       <i class="fa-solid fa-xmark text-lg"></i>
     </button>
@@ -63,6 +86,14 @@ const { links = [] } = Astro.props as { links?: LinkItem[] };
           <span class="text-xs sm:text-sm font-black opacity-50">0{idx + 1}</span>
         </a>
       ))}
+      <a
+        href={lang === "en" ? "/es" : "/en"}
+        data-other-lang={otherLang}
+        class="mobile-nav-link flex items-center justify-between p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/20 bg-white/10 text-white/80 hover:text-white hover:bg-white/20 transition-all duration-200 mt-4"
+      >
+        <span class="text-base sm:text-lg font-bold uppercase tracking-wider">{otherLabel}</span>
+        <i class="fa-solid fa-language text-sm opacity-50"></i>
+      </a>
     </nav>
   </div>
 </div>
@@ -162,6 +193,17 @@ const { links = [] } = Astro.props as { links?: LinkItem[] };
 
     mobileMenu.querySelectorAll("a").forEach(function (link) {
       link.addEventListener("click", closeMenu);
+    });
+
+    // Language toggle with hash preservation
+    var langToggles = document.querySelectorAll("[data-other-lang]");
+    langToggles.forEach(function (toggle) {
+      toggle.addEventListener("click", function (e) {
+        e.preventDefault();
+        var otherLang = toggle.getAttribute("data-other-lang");
+        var hash = window.location.hash;
+        window.location.href = "/" + otherLang + hash;
+      });
     });
 
     window.addEventListener(

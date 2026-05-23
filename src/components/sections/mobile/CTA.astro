@@ -1,19 +1,22 @@
 ---
+import type { Dictionary } from "../../../i18n/types";
 import Badges from "../Badges.astro";
 import Section from "../../layout/Section.astro";
 import Typography from "../../ui/Typography.astro";
+
+const { dict } = Astro.props as { dict: Dictionary };
 ---
 
 <Section bgColor="bg-slate-50" innerClass="lg:flex-row justify-between items-center">
   <div class="flex flex-col gap-4 sm:gap-5 text-center lg:text-left" data-reveal>
     <Typography variant="h1" color="text-slate-950">
-      Anticípate a las complicaciones con el poder de la IA
+      {dict.mobileCTA.title}
     </Typography>
     <Typography variant="body">
-      Próximamente disponible. Conecta tu CGM y wearables, y deja que la IA cuide de tu salud.
+      {dict.mobileCTA.description}
     </Typography>
   </div>
   <div data-reveal="right">
-  <Badges className="flex flex-col sm:flex-row lg:flex-col justify-center lg:justify-end items-center w-full sm:w-auto" />
+  <Badges className="flex flex-col sm:flex-row lg:flex-col justify-center lg:justify-end items-center w-full sm:w-auto" dict={dict} />
   </div>
 </Section>

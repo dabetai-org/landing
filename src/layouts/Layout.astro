@@ -1,51 +1,60 @@
 ---
+import type { Dictionary } from "../i18n/types";
+import type { Locale } from "../i18n/config";
 import Header from "@components/layout/Header.astro";
 import Footer from "@components/layout/Footer.astro";
 
+interface Props {
+  dict: Dictionary;
+  lang: Locale;
+}
+
+const { dict, lang } = Astro.props as Props;
+
 const menuLinks = [
-	{ label: "Inicio", href: "#hero" },
-	{ label: "Aplicación móvil", href: "#mobile-app-features" },
-	{ label: "Aplicación web", href: "#web-app-features" },
-	{ label: "FAQ", href: "#faq" },
+  { label: dict.nav.inicio, href: "#hero" },
+  { label: dict.nav.appMovil, href: "#mobile-app-features" },
+  { label: dict.nav.appWeb, href: "#web-app-features" },
+  { label: dict.nav.faq, href: "#faq" },
 ];
 
-const resources = [
-	{ label: "Repositorio en GitHub", href: "https://github.com/dabetai-org" },
-	{ label: "Paper de investigación", href: "https://chrisssp.vercel.app/assets/docs/papers/Prevenci%C3%B3n-de-Riesgos-de-la-Diabetes-Mediante-una-Plataforma-Inteligente-de-Monitorizaci%C3%B3n-y-Predicci%C3%B3n-de-Complicaciones-con-Inteligencia-Artificial.pdf" },
-	{ label: "Ver ecosistema dabetai", href: "https://chrisssp.vercel.app/es/projects/dabetai" },
-];
+const siteUrl = "https://dabetai.org";
+const currentUrl = lang === "en" ? `${siteUrl}/en` : siteUrl;
+const ogLocale = lang === "en" ? "en_US" : "es_MX";
+const schemaLang = lang === "en" ? "en-US" : "es-MX";
 
-const teamMembers = [
-	{
-		name: "Christian Serrano",
-		github: { user: "chrisssp", url: "https://github.com/chrisssp" },
-		linkedin: { user: "chrisssp", url: "https://linkedin.com/in/chrisssp" },
-		email: "christian.serrano.puertos@gmail.com",
-	},
-	{
-		name: "Alejandro Ortiz",
-		github: { user: "aleor25", url: "https://github.com/aleor25" },
-		linkedin: { user: "aleor", url: "https://www.linkedin.com/in/aleor/" },
-		email: "alex03ortizperez@gmail.com",
-	},
-	{
-		name: "Fermín Cárdenas",
-		github: null,
-		linkedin: null,
-		email: null,
-	},
-];
+const siteDescription =
+  lang === "en"
+    ? "dabetai: mobile app with AI that predicts diabetic complications connected to your CGM and wearables. Web portal for doctors with remote monitoring and real-time alerts."
+    : "dabetai: app móvil con IA que predice complicaciones diabéticas conectada a tu CGM y wearables. Portal web para médicos con supervisión remota y alertas en tiempo real.";
 
+const ogTitle =
+  lang === "en"
+    ? "dabetai — Predict diabetes complications with AI | App & medical portal"
+    : "dabetai — Predice complicaciones de la diabetes con IA | App y portal médico";
+
+const ogDescription =
+  lang === "en"
+    ? "Mobile app with AI that predicts retinopathy, nephropathy, and diabetic foot connected to your CGM and wearables. Web portal for doctors with remote monitoring."
+    : "App móvil con IA que predice retinopatía, nefropatía y pie diabético conectada a tu CGM y wearables. Portal web para médicos con supervisión remota.";
+
+const wsDescription =
+  lang === "en"
+    ? "Mobile app with AI that predicts diabetic complications. Web portal for doctors with remote monitoring and real-time alerts."
+    : "App móvil con IA que predice complicaciones diabéticas. Portal web para médicos con supervisión remota y alertas en tiempo real.";
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="dabetai: app móvil con IA que predice complicaciones diabéticas conectada a tu CGM y wearables. Portal web para médicos con supervisión remota y alertas en tiempo real." />
+		<meta name="description" content={siteDescription} />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="robots" content="index, follow, max-snippet:150, max-image-preview:large" />
-		<link rel="canonical" href="https://dabetai.org/" />
+		<link rel="canonical" href={currentUrl} />
+		<link rel="alternate" hreflang="es" href={siteUrl} />
+		<link rel="alternate" hreflang="en" href={`${siteUrl}/en`} />
+		<link rel="alternate" hreflang="x-default" href={siteUrl} />
 		<link rel="icon" href="/assets/images/logo/isotipo-head.png" />
 		<link rel="icon" href="/assets/images/logo/isotipo-head-white.png" media="(prefers-color-scheme: dark)" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -53,64 +62,56 @@ const teamMembers = [
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 		<link rel="stylesheet" href="/styles/global.css" />
-		<title>dabetai — Predice complicaciones de la diabetes con IA | App y portal médico</title>
+		<title>{ogTitle}</title>
 
-		<meta property="og:title" content="dabetai — Predice complicaciones de la diabetes con IA | App y portal médico" />
-		<meta property="og:description" content="App móvil con IA que predice retinopatía, nefropatía y pie diabético conectada a tu CGM y wearables. Portal web para médicos con supervisión remota." />
+		<meta property="og:title" content={ogTitle} />
+		<meta property="og:description" content={ogDescription} />
 		<meta property="og:image" content="https://dabetai.org/assets/images/og-preview.png" />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
 		<meta property="og:type" content="website" />
-		<meta property="og:locale" content="es_MX" />
+		<meta property="og:locale" content={ogLocale} />
 		<meta property="og:site_name" content="dabetai" />
-		<meta property="og:url" content="https://dabetai.org/" />
+		<meta property="og:url" content={currentUrl} />
 
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="dabetai — Predice complicaciones de la diabetes con IA | App y portal médico" />
-		<meta name="twitter:description" content="App móvil con IA que predice retinopatía, nefropatía y pie diabético conectada a tu CGM y wearables. Portal web para médicos con supervisión remota." />
+		<meta name="twitter:title" content={ogTitle} />
+		<meta name="twitter:description" content={ogDescription} />
 		<meta name="twitter:image" content="https://dabetai.org/assets/images/og-preview.png" />
 		<meta name="twitter:image:width" content="1200" />
 		<meta name="twitter:image:height" content="630" />
 
-		<script type="application/ld+json">
-		{
+		<script type="application/ld+json" set:html={JSON.stringify({
 			"@context": "https://schema.org",
 			"@type": "Organization",
 			"name": "dabetai",
 			"url": "https://dabetai.org",
 			"logo": "https://dabetai.org/assets/images/logo/logo-dark.png",
-			"description": "Ecosistema inteligente de monitoreo y predicción de complicaciones diabéticas mediante inteligencia artificial, wearables y monitores de glucosa continuos.",
-			"sameAs": [
-				"https://github.com/dabetai-org"
-			]
-		}
-		</script>
-
-		<script type="application/ld+json">
-		{
+			"description": dict.footer.description,
+			"sameAs": ["https://github.com/dabetai-org"]
+		})} />
+		<script type="application/ld+json" set:html={JSON.stringify({
 			"@context": "https://schema.org",
 			"@type": "WebSite",
 			"name": "dabetai",
 			"url": "https://dabetai.org",
-			"description": "App móvil con IA que predice complicaciones diabéticas. Portal web para médicos con supervisión remota y alertas en tiempo real.",
-			"inLanguage": "es-MX",
+			"description": wsDescription,
+			"inLanguage": schemaLang,
 			"applicationCategory": "HealthApplication"
-		}
-		</script>
+		})} />
 	</head>
 	<body>
-		<Header links={menuLinks} />
+		<Header links={menuLinks} dict={dict} lang={lang} />
 		<main class="pt-16 md:pt-[72px] overflow-x-clip">
 			<slot />
 		</main>
-		<button id="back-to-top" aria-label="Volver al inicio" class="fixed bottom-6 right-6 z-50 w-10 h-10 flex items-center justify-center rounded-full bg-primary-500 text-white shadow-ds-md opacity-0 translate-y-4 pointer-events-none transition-all duration-300 hover:bg-primary-700 focus:outline-none">
+		<button id="back-to-top" aria-label={dict.backToTop} class="fixed bottom-6 right-6 z-50 w-10 h-10 flex items-center justify-center rounded-full bg-primary-500 text-white shadow-ds-md opacity-0 translate-y-4 pointer-events-none transition-all duration-300 hover:bg-primary-700 focus:outline-none">
 			<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
 		</button>
 
 		<Footer
+			dict={dict}
 			navLinks={menuLinks}
-			resources={resources}
-			teamMembers={teamMembers}
 		/>
 		<script>
 			(function() {

@@ -1,0 +1,38 @@
+---
+import type { Locale } from "../../i18n/config";
+import { getDictionary } from "../../i18n/config";
+import type { Dictionary } from "../../i18n/types";
+
+import FAQ from "@components/sections/FAQ.astro";
+import Hero from "@components/sections/Hero.astro";
+import HowMobileAppWorks from "@components/sections/mobile/HowItWorks.astro";
+import HowWebAppWorks from "@components/sections/web/HowItWorks.astro";
+import MobileAppCTA from "@components/sections/mobile/CTA.astro";
+import MobileAppFeatures from "@components/sections/mobile/Features.astro";
+import WebAppCTA from "@components/sections/web/CTA.astro";
+import WebAppFeatures from "@components/sections/web/Features.astro";
+
+import Layout from "@layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  return [
+    { params: { lang: "es" } },
+    { params: { lang: "en" } },
+  ];
+}
+
+const { lang } = Astro.params as { lang: string };
+const locale = lang as Locale;
+const dict: Dictionary = await getDictionary(locale);
+---
+
+<Layout dict={dict} lang={locale}>
+	<Hero dict={dict} />
+	<MobileAppFeatures dict={dict} />
+	<HowMobileAppWorks dict={dict} />
+	<MobileAppCTA dict={dict} />
+	<WebAppFeatures dict={dict} />
+	<HowWebAppWorks dict={dict} />
+	<WebAppCTA dict={dict} />
+	<FAQ dict={dict} />
+</Layout>

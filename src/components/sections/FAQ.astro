@@ -1,35 +1,16 @@
 ---
+import type { Dictionary } from "../../i18n/types";
 import Section from "../layout/Section.astro";
 import Typography from "../ui/Typography.astro";
 
-const faqs = [
-  {
-    question: "¿Cómo funciona dabetai?",
-    answer: "dabetai combina una app para pacientes con un portal web para médicos. Se sincroniza con tu glucómetro (CGM) y wearables, y la IA analiza todo para predecir complicaciones como retinopatía o pie diabético antes de que ocurran.",
-  },
-  {
-    question: "¿Qué dispositivos son compatibles?",
-    answer: "La aplicación es compatible con monitores de glucosa continuos (CGM) y wearables que registren frecuencia cardíaca, calidad del sueño y actividad física. Funciona en dispositivos Android e iOS.",
-  },
-  {
-    question: "¿Puedo compartir mis datos con mi médico?",
-    answer: "Sí. Comparte tus métricas con tu médico a través del portal web. Él podrá ver tu evolución, recibir alertas y darte seguimiento remoto.",
-  },
-  {
-    question: "¿Cómo protegen mi información médica?",
-    answer: "Implementamos cifrado de extremo a extremo y seguimos estándares de seguridad para datos clínicos. Tu información se almacena de forma segura y solo tú y los profesionales que autorices pueden acceder a ella.",
-  },
-  {
-    question: "¿Es gratuita la aplicación?",
-    answer: "La app ofrece funciones básicas gratuitas. Las funcionalidades avanzadas, como predicciones detalladas y reportes clínicos, están en el plan premium.",
-  },
-];
+const { dict } = Astro.props as { dict: Dictionary };
+const faqs = dict.faq.items;
 ---
 
 <Section id="faq" bgColor="bg-slate-100" innerClass="max-w-[800px]">
   <div data-reveal>
   <Typography variant="h1" color="text-slate-950" class="text-center">
-    Preguntas frecuentes
+    {dict.faq.title}
   </Typography>
   </div>
 
@@ -46,51 +27,15 @@ const faqs = [
   </div>
 </Section>
 
-<script type="application/ld+json">
-{
+<script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "¿Cómo funciona dabetai?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "dabetai combina una app para pacientes con un portal web para médicos. Se sincroniza con tu glucómetro (CGM) y wearables, y la IA analiza todo para predecir complicaciones como retinopatía o pie diabético antes de que ocurran."
-      }
+  "mainEntity": faqs.map((faq) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer,
     },
-    {
-      "@type": "Question",
-      "name": "¿Qué dispositivos son compatibles?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "La aplicación es compatible con monitores de glucosa continuos (CGM) y wearables que registren frecuencia cardíaca, calidad del sueño y actividad física. Funciona en dispositivos Android e iOS."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Puedo compartir mis datos con mi médico?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Sí. Comparte tus métricas con tu médico a través del portal web. Él podrá ver tu evolución, recibir alertas y darte seguimiento remoto."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Cómo protegen mi información médica?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Implementamos cifrado de extremo a extremo y seguimos estándares de seguridad para datos clínicos. Tu información se almacena de forma segura y solo tú y los profesionales que autorices pueden acceder a ella."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "¿Es gratuita la aplicación?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "La app ofrece funciones básicas gratuitas. Las funcionalidades avanzadas, como predicciones detalladas y reportes clínicos, están en el plan premium."
-      }
-    }
-  ]
-}
-</script>
+  })),
+})} />

@@ -1,23 +1,15 @@
 ---
-import FAQ from "@components/sections/FAQ.astro";
-import Hero from "@components/sections/Hero.astro";
-import HowMobileAppWorks from "@components/sections/mobile/HowItWorks.astro";
-import HowWebAppWorks from "@components/sections/web/HowItWorks.astro";
-import MobileAppCTA from "@components/sections/mobile/CTA.astro";
-import MobileAppFeatures from "@components/sections/mobile/Features.astro";
-import WebAppCTA from "@components/sections/web/CTA.astro";
-import WebAppFeatures from "@components/sections/web/Features.astro";
-
-import Layout from "@layouts/Layout.astro";
+// Redirect to default locale
 ---
-
-<Layout>
-	<Hero />
-	<MobileAppFeatures />
-	<HowMobileAppWorks />
-	<MobileAppCTA />
-	<WebAppFeatures />
-	<HowWebAppWorks />
-	<WebAppCTA />
-	<FAQ />
-</Layout>
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0;url=/es">
+  <title>dabetai</title>
+  <script>window.location.replace("/es");</script>
+</head>
+<body>
+  <a href="/es">dabetai</a>
+</body>
+</html>

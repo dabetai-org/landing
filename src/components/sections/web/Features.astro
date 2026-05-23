@@ -1,36 +1,17 @@
 ---
+import type { Dictionary } from "../../../i18n/types";
 import Section from "../../layout/Section.astro";
 import Typography from "../../ui/Typography.astro";
 import ImageGallery from "../../ui/ImageGallery.astro";
 
-const professionalFeatures = [
-  {
-    title: "Supervisión remota de pacientes",
-    description: "Conéctate con las cuentas de tus pacientes y accede a sus métricas de glucosa, biomarcadores y alertas en tiempo real.",
-    icon: "fa-user-md",
-  },
-  {
-    title: "Alertas de riesgo por IA",
-    description: "Recibe notificaciones cuando los modelos detecten riesgo de retinopatía, nefropatía u otras complicaciones.",
-    icon: "fa-brain",
-  },
-  {
-    title: "Reportes clínicos automatizados",
-    description: "Genera informes detallados del estado de salud de cada paciente con datos objetivos, predicciones y evolución temporal.",
-    icon: "fa-notes-medical",
-  },
-  {
-    title: "Intervención a distancia y chat IA",
-    description: "Comunícate con tus pacientes, ajusta tratamientos y usa el chat con IA para consultar métricas y resolver dudas al instante.",
-    icon: "fa-chart-line",
-  },
-];
+const { dict } = Astro.props as { dict: Dictionary };
+const features = dict.webFeatures.items;
 ---
 
 <Section id="web-app-features" bgColor="bg-slate-100">
   <div data-reveal>
   <Typography variant="h1" color="text-slate-950" class="text-center">
-    Seguimiento para profesionales de la salud
+    {dict.webFeatures.title}
   </Typography>
   </div>
 
@@ -50,7 +31,7 @@ const professionalFeatures = [
     </div>
 
     <div class="col-span-1 flex flex-col h-full justify-between space-y-6">
-      {professionalFeatures.map((feature, i) => (
+      {features.map((feature, i) => (
         <div class="flex items-center gap-5 feature-card" data-reveal="right" style={`transition-delay:${i * 100}ms`}>
           <div class="w-14 h-14 flex items-center justify-center bg-slate-50 text-secondary-500 rounded-full text-2xl shrink-0 shadow-ds-sm">
             <i class={`fas ${feature.icon}`} />

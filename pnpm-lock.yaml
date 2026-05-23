@@ -23,9 +23,6 @@ importers:
       astro:
         specifier: ^5.2.5
         version: 5.18.1(jiti@1.21.7)(rollup@4.60.4)(typescript@5.6.3)(yaml@2.9.0)
-      landing-page-pi:
-        specifier: 'file:'
-        version: file:(jiti@1.21.7)(prettier@3.8.3)(rollup@4.60.4)(yaml@2.9.0)
       tailwindcss:
         specifier: 3.4.15
         version: 3.4.15
@@ -1368,10 +1365,6 @@ packages:
   kleur@4.1.5:
     resolution: {integrity: sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==}
     engines: {node: '>=6'}
-
-  'landing-page-pi@file:':
-    resolution: {directory: '', type: directory}
-    engines: {pnpm: '>=8.0.0'}
 
   lilconfig@2.1.0:
     resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}
@@ -3541,52 +3534,6 @@ snapshots:
   kleur@3.0.3: {}
 
   kleur@4.1.5: {}
-
-  landing-page-pi@file:(jiti@1.21.7)(prettier@3.8.3)(rollup@4.60.4)(yaml@2.9.0):
-    dependencies:
-      '@astrojs/check': 0.9.4(prettier@3.8.3)(typescript@5.6.3)
-      '@astrojs/tailwind': 5.1.2(astro@5.18.1(jiti@1.21.7)(rollup@4.60.4)(typescript@5.6.3)(yaml@2.9.0))(tailwindcss@3.4.15)
-      '@fortawesome/fontawesome-free': 6.7.2
-      '@tailwindcss/typography': 0.5.19(tailwindcss@3.4.15)
-      astro: 5.18.1(jiti@1.21.7)(rollup@4.60.4)(typescript@5.6.3)(yaml@2.9.0)
-      tailwindcss: 3.4.15
-      typescript: 5.6.3
-    transitivePeerDependencies:
-      - '@azure/app-configuration'
-      - '@azure/cosmos'
-      - '@azure/data-tables'
-      - '@azure/identity'
-      - '@azure/keyvault-secrets'
-      - '@azure/storage-blob'
-      - '@capacitor/preferences'
-      - '@deno/kv'
-      - '@netlify/blobs'
-      - '@planetscale/database'
-      - '@types/node'
-      - '@upstash/redis'
-      - '@vercel/blob'
-      - '@vercel/functions'
-      - '@vercel/kv'
-      - aws4fetch
-      - db0
-      - idb-keyval
-      - ioredis
-      - jiti
-      - less
-      - lightningcss
-      - prettier
-      - prettier-plugin-astro
-      - rollup
-      - sass
-      - sass-embedded
-      - stylus
-      - sugarss
-      - supports-color
-      - terser
-      - ts-node
-      - tsx
-      - uploadthing
-      - yaml
 
   lilconfig@2.1.0: {}
 
