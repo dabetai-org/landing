@@ -104,11 +104,11 @@ export const GET: APIRoute = async ({ params }) => {
         >
           <img
             src="${webImg}"
-            style="display:flex;width:340px;border-radius:12px"
+            style="display:flex;width:380px;border-radius:12px"
           />
           <img
             src="${mobileImg}"
-            style="display:flex;position:absolute;right:10px;bottom:0px;width:160px;border-radius:12px"
+            style="display:flex;position:absolute;right:5px;bottom:-5px;width:190px;border-radius:12px"
           />
         </div>
       </div>
