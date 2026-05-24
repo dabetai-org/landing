@@ -9,8 +9,8 @@ const { dict } = Astro.props as { dict: Dictionary };
 const labels = dict.webCTA;
 ---
 
-<Section bgColor="bg-slate-50" innerClass="lg:flex-row justify-between items-center">
-  <div class="flex flex-col gap-4 sm:gap-5 text-center lg:text-left" data-reveal>
+<Section bgColor="bg-slate-50" innerClass="md:flex-row justify-between items-center">
+  <div class="flex flex-col gap-4 sm:gap-5 text-center md:text-left" data-reveal>
     <Typography variant="h1" color="text-slate-950">
       {labels.title}
     </Typography>
@@ -20,7 +20,7 @@ const labels = dict.webCTA;
   </div>
 
   <div data-reveal="right">
-  <ButtonGroup direction="row" stackAt="lg" stretch gap={4} class="justify-center lg:justify-end self-start w-full lg:w-auto">
+  <ButtonGroup direction="row" stackAt="md" stretch gap={4} class="justify-center md:justify-end self-start w-full md:w-auto">
     <Button title={labels.loginButton} variant="fill" color="secondary" href="#" disabled tooltip={labels.comingSoon} class="!opacity-80" />
     <Button title={labels.registerButton} variant="outline" color="secondary" href="#" disabled tooltip={labels.comingSoon} class="!opacity-80" />
   </ButtonGroup>

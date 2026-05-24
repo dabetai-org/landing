@@ -15,36 +15,10 @@ const features = dict.mobileFeatures.items;
   </Typography>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 items-center gap-6">
-    <div class="hidden md:flex flex-col space-y-6 md:space-y-10">
-      {features.filter((f) => f.align === "right").map((feature, i) => (
-        <div class="flex items-center gap-5 md:justify-end feature-card" data-reveal="left" style={`transition-delay:${i * 80}ms`}>
-          <div class="text-end space-y-3">
-            <Typography variant="subtitle" color="text-primary-500">{feature.title}</Typography>
-            <Typography variant="body">{feature.description}</Typography>
-          </div>
-          <div class="w-14 h-14 flex items-center justify-center bg-slate-50 text-primary-500 rounded-full text-2xl shrink-0 shadow-ds-sm">
-            <i class={`fas ${feature.icon}`} />
-          </div>
-        </div>
-      ))}
-    </div>
-
-    <div class="flex justify-center order-last md:order-none" data-reveal>
-      <ImageGallery
-        images={[
-          { src: "/assets/images/mobile/dashboard.png", alt: "Dashboard de la app dabetai con glucosa en tiempo real y métricas de salud" },
-          { src: "/assets/images/mobile/predictions.png", alt: "Predicción de riesgo de complicaciones diabéticas con IA en la app móvil" },
-          { src: "/assets/images/mobile/historial.png", alt: "Historial completo de glucosa, biomarcadores y alertas en la app dabetai" },
-          { src: "/assets/images/mobile/chat.png", alt: "Chat con asistente de IA para resolver dudas sobre diabetes en la app" },
-          { src: "/assets/images/mobile/doctor-connected.png", alt: "Conexión exitosa con médico a través del portal web de dabetai" },
-        ]}
-        imgClass="w-72"
-      />
-    </div>
-
-    <div class="md:hidden flex flex-col space-y-6 md:space-y-10">
-      {features.filter((f) => f.align === "right").map((feature, i) => (
+  <!-- Tablet/mobile: features grid + gallery below -->
+  <div class="lg:hidden">
+    <div class="grid grid-cols-1 tb:grid-cols-2 gap-6">
+      {features.map((feature, i) => (
         <div class="flex items-center gap-5 feature-card" data-reveal style={`transition-delay:${i * 80}ms`}>
           <div class="w-14 h-14 flex items-center justify-center bg-slate-50 text-primary-500 rounded-full text-2xl shrink-0 shadow-ds-sm">
             <i class={`fas ${feature.icon}`} />
@@ -56,8 +30,48 @@ const features = dict.mobileFeatures.items;
         </div>
       ))}
     </div>
+    <div class="flex justify-center" data-reveal>
+      <ImageGallery
+        images={[
+          { src: "/assets/images/mobile/dashboard.png", alt: "Dashboard de la app dabetai con glucosa en tiempo real y métricas de salud" },
+          { src: "/assets/images/mobile/predictions.png", alt: "Predicción de riesgo de complicaciones diabéticas con IA en la app móvil" },
+          { src: "/assets/images/mobile/historial.png", alt: "Historial completo de glucosa, biomarcadores y alertas en la app dabetai" },
+          { src: "/assets/images/mobile/chat.png", alt: "Chat con asistente de IA para resolver dudas sobre diabetes en la app" },
+          { src: "/assets/images/mobile/doctor-connected.png", alt: "Conexión exitosa con médico a través del portal web de dabetai" },
+        ]}
+        imgClass="w-72"
+      />
+    </div>
+  </div>
 
-    <div class="flex flex-col space-y-6 md:space-y-10">
+  <!-- Desktop (1024px+): original 3-column layout -->
+  <div class="hidden lg:grid lg:grid-cols-3 items-start gap-10">
+    <div class="flex flex-col space-y-10">
+      {features.filter((f) => f.align === "right").map((feature, i) => (
+        <div class="flex flex-row-reverse items-center gap-5 text-end feature-card" data-reveal="left" style={`transition-delay:${i * 80}ms`}>
+          <div class="w-14 h-14 flex items-center justify-center bg-slate-50 text-primary-500 rounded-full text-2xl shrink-0 shadow-ds-sm">
+            <i class={`fas ${feature.icon}`} />
+          </div>
+          <div class="text-end space-y-3">
+            <Typography variant="subtitle" color="text-primary-500">{feature.title}</Typography>
+            <Typography variant="body">{feature.description}</Typography>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div class="flex justify-center" data-reveal>
+      <ImageGallery
+        images={[
+          { src: "/assets/images/mobile/dashboard.png", alt: "Dashboard de la app dabetai con glucosa en tiempo real y métricas de salud" },
+          { src: "/assets/images/mobile/predictions.png", alt: "Predicción de riesgo de complicaciones diabéticas con IA en la app móvil" },
+          { src: "/assets/images/mobile/historial.png", alt: "Historial completo de glucosa, biomarcadores y alertas en la app dabetai" },
+          { src: "/assets/images/mobile/chat.png", alt: "Chat con asistente de IA para resolver dudas sobre diabetes en la app" },
+          { src: "/assets/images/mobile/doctor-connected.png", alt: "Conexión exitosa con médico a través del portal web de dabetai" },
+        ]}
+        imgClass="w-72"
+      />
+    </div>
+    <div class="flex flex-col space-y-10">
       {features.filter((f) => f.align === "left").map((feature, i) => (
         <div class="flex items-center gap-5 feature-card" data-reveal="right" style={`transition-delay:${i * 80}ms`}>
           <div class="w-14 h-14 flex items-center justify-center bg-slate-50 text-primary-500 rounded-full text-2xl shrink-0 shadow-ds-sm">

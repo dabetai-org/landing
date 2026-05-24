@@ -8,13 +8,13 @@ const { dict } = Astro.props as { dict: Dictionary };
 ---
 
 <Section id="hero" bgColor="bg-primary-500">
-  <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-center">
+  <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-12 lg:gap-16 items-center">
     <div class="max-w-lg mx-auto md:mx-0 space-y-8 md:space-y-10 text-center md:text-left" data-reveal>
       <Typography variant="display" color="text-slate-50">
         {dict.hero.titleBefore}<span class="text-white" style="text-shadow: 0 0 8px rgba(255,255,255,0.15), 0 0 20px rgba(33,150,243,0.15);">{dict.hero.highlightedText}</span>{dict.hero.titleAfter}
       </Typography>
 
-      <Typography variant="body" color="text-slate-50" class="!text-base md:!text-xl md:!leading-[26px] !font-medium">
+      <Typography variant="body" color="text-slate-50" class="!text-base sm:!text-lg md:!text-xl lg:!text-2xl md:!leading-[26px] lg:!leading-[30px] !font-medium">
         {dict.hero.description}
       </Typography>
 

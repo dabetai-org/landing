@@ -7,8 +7,8 @@ import Typography from "../../ui/Typography.astro";
 const { dict } = Astro.props as { dict: Dictionary };
 ---
 
-<Section bgColor="bg-slate-50" innerClass="lg:flex-row justify-between items-center">
-  <div class="flex flex-col gap-4 sm:gap-5 text-center lg:text-left" data-reveal>
+<Section bgColor="bg-slate-50" innerClass="md:flex-row justify-between items-center">
+  <div class="flex flex-col gap-4 sm:gap-5 text-center md:text-left" data-reveal>
     <Typography variant="h1" color="text-slate-950">
       {dict.mobileCTA.title}
     </Typography>
@@ -17,6 +17,6 @@ const { dict } = Astro.props as { dict: Dictionary };
     </Typography>
   </div>
   <div data-reveal="right">
-  <Badges className="flex flex-col sm:flex-row lg:flex-col justify-center lg:justify-end items-center w-full sm:w-auto" dict={dict} />
+  <Badges className="flex flex-col sm:flex-row md:flex-col justify-center md:justify-end items-center w-full sm:w-auto" dict={dict} />
   </div>
 </Section>

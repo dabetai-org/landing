@@ -15,8 +15,22 @@ const features = dict.webFeatures.items;
   </Typography>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 items-center gap-6">
-    <div class="col-span-2 flex justify-center order-last md:order-none" data-reveal="left">
+  <!-- Tablet/mobile: features grid + gallery below -->
+  <div class="lg:hidden">
+    <div class="grid grid-cols-1 tb:grid-cols-2 gap-6">
+      {features.map((feature, i) => (
+        <div class="flex items-center gap-5 feature-card" data-reveal="right" style={`transition-delay:${i * 100}ms`}>
+          <div class="w-14 h-14 flex items-center justify-center bg-slate-50 text-secondary-500 rounded-full text-2xl shrink-0 shadow-ds-sm">
+            <i class={`fas ${feature.icon}`} />
+          </div>
+          <div class="space-y-3">
+            <Typography variant="subtitle" color="text-secondary-500">{feature.title}</Typography>
+            <Typography variant="body">{feature.description}</Typography>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div class="flex justify-center" data-reveal="left">
       <ImageGallery
         images={[
           { src: "/assets/images/web/features/dashboard.png", alt: "Panel de control web de dabetai con métricas de pacientes glucosa y alertas" },
@@ -29,8 +43,24 @@ const features = dict.webFeatures.items;
         color="secondary"
       />
     </div>
+  </div>
 
-    <div class="col-span-1 flex flex-col h-full justify-between space-y-6">
+  <!-- Desktop (1024px+): original layout - gallery left, features right -->
+  <div class="hidden lg:grid lg:grid-cols-3 items-center gap-6">
+    <div class="col-span-2 flex justify-center" data-reveal="left">
+      <ImageGallery
+        images={[
+          { src: "/assets/images/web/features/dashboard.png", alt: "Panel de control web de dabetai con métricas de pacientes glucosa y alertas" },
+          { src: "/assets/images/web/features/patients.png", alt: "Gestión de pacientes en el portal médico web de dabetai" },
+          { src: "/assets/images/web/features/predictions.png", alt: "Predicciones de riesgo de complicaciones diabéticas en el portal web" },
+          { src: "/assets/images/web/features/aichat.png", alt: "Chat con asistente de IA integrado en el portal médico de dabetai" },
+          { src: "/assets/images/web/features/notifications.png", alt: "Notificaciones y alertas de riesgo para médicos en el portal web" },
+        ]}
+        imgClass="w-4/5"
+        color="secondary"
+      />
+    </div>
+    <div class="col-span-1 flex flex-col space-y-6">
       {features.map((feature, i) => (
         <div class="flex items-center gap-5 feature-card" data-reveal="right" style={`transition-delay:${i * 100}ms`}>
           <div class="w-14 h-14 flex items-center justify-center bg-slate-50 text-secondary-500 rounded-full text-2xl shrink-0 shadow-ds-sm">
