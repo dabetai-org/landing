@@ -1,0 +1,103 @@
+---
+import type { Dictionary } from "../../i18n/types";
+import type { Locale } from "../../i18n/config";
+import Section from "../layout/Section.astro";
+import StepCarousel from "../ui/StepCarousel.astro";
+import SimpleCard from "../ui/SimpleCard.astro";
+import Typography from "../ui/Typography.astro";
+import Button from "../ui/Button.astro";
+
+const { dict, lang } = Astro.props as { dict: Dictionary; lang: Locale };
+const { complications, steps, stat, statDetail } = dict.ai;
+
+const paperLabel = lang === "es" ? "Leer investigación" : "Read research";
+const paperHref = "https://chrisssp.vercel.app/assets/docs/papers/Prevenci%C3%B3n-de-Riesgos-de-la-Diabetes-Mediante-una-Plataforma-Inteligente-de-Monitorizaci%C3%B3n-y-Predicci%C3%B3n-de-Complicaciones-con-Inteligencia-Artificial.pdf";
+
+const stepTitles =
+  lang === "es"
+    ? ["Nuestra métrica principal", "Complicaciones que prevenimos", "Cómo funciona"]
+    : ["Our Main Metric", "Complications We Prevent", "How It Works"];
+---
+
+<Section id="ai-prediction" bgColor="bg-white">
+  <div data-reveal>
+    <Typography variant="h1" color="text-slate-950" class="text-center">
+      {dict.ai.title}
+    </Typography>
+  </div>
+
+  <div class="mt-8 lg:mt-10" data-reveal>
+    <StepCarousel totalSteps={3} color="primary">
+      <div class="step-panel text-center space-y-6 sm:max-w-xl mx-auto" data-index="0">
+        <Typography variant="subtitle" color="text-primary-500">
+          {stepTitles[0]}
+        </Typography>
+        <div class="w-20 h-20 mx-auto flex items-center justify-center bg-slate-50 border border-slate-300 rounded-2xl text-primary-500 text-4xl">
+          <i class="fas fa-brain" />
+        </div>
+        <Typography variant="h1" color="text-primary-500" class="!text-5xl sm:!text-6xl lg:!text-7xl !font-black !leading-tight">
+          {stat}
+        </Typography>
+        <Typography variant="body" color="text-slate-600" class="max-w-lg mx-auto">
+          {statDetail}
+        </Typography>
+        <div class="flex justify-center pt-2">
+          <Button 
+            title={paperLabel} 
+            href={paperHref}
+            color="primary"
+            variant="fill"
+            iconPosition="right"
+          >
+            <slot name="icon">
+              <i class="fas fa-file-pdf" />
+            </slot>
+          </Button>
+        </div>
+      </div>
+
+      <div class="step-panel hidden" data-index="1">
+        <div class="text-center space-y-6 sm:max-w-xl mx-auto">
+          <Typography variant="subtitle" color="text-primary-500">
+            {stepTitles[1]}
+          </Typography>
+          <div class="divide-y divide-primary-500/25 max-w-sm mx-auto">
+            {complications.map((c, i) => (
+              <SimpleCard
+                title={c.name}
+                description={c.description}
+                icon={c.icon}
+                color="primary"
+                iconPosition={i % 2 === 0 ? "left" : "right"}
+                class={`py-6 ${i % 2 === 0 ? "" : "ml-auto"}`}
+              />
+            ))}
+          </div>
+          <Typography variant="body" color="text-slate-600">
+            {dict.ai.subtitle}
+          </Typography>
+        </div>
+      </div>
+
+      <div class="step-panel hidden" data-index="2">
+        <div class="text-center space-y-6 sm:max-w-lg mx-auto">
+          <Typography variant="subtitle" color="text-primary-500">
+            {stepTitles[2]}
+          </Typography>
+          <div class="divide-y divide-primary-500/25 max-w-sm mx-auto">
+            {steps.map((step, i) => (
+              <SimpleCard
+                title={step.title}
+                description={step.description}
+                icon={step.icon}
+                color="primary"
+                iconPosition={i === 1 ? "right" : "left"}
+                class="py-6"
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </StepCarousel>
+  </div>
+</Section>

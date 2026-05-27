@@ -1,6 +1,7 @@
 export interface NavDictionary {
   inicio: string;
   appMovil: string;
+  appAI: string;
   appWeb: string;
   faq: string;
 }
@@ -68,6 +69,16 @@ export interface BadgeDictionary {
   comingSoon: string;
 }
 
+export interface AIDictionary {
+  title: string;
+  subtitle: string;
+  riskLabel: string;
+  complications: Array<{ name: string; risk: string; icon: string; description?: string }>;
+  steps: Array<{ title: string; description: string; icon: string }>;
+  stat: string;
+  statDetail: string;
+}
+
 export interface ImageAltDictionary {
   webDashboard: string;
   mobileDashboard: string;
@@ -113,6 +124,7 @@ export interface Dictionary {
   footer: FooterDictionary;
   badges: BadgeDictionary;
   alt: ImageAltDictionary;
+  ai: AIDictionary;
   backToTop: string;
   openMenu: string;
   closeMenu: string;

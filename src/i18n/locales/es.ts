@@ -11,6 +11,7 @@ export const es: Dictionary = {
   nav: {
     inicio: "Inicio",
     appMovil: "Aplicación móvil",
+    appAI: "IA predictiva",
     appWeb: "Aplicación web",
     faq: "Preguntas frecuentes",
   },
@@ -372,6 +373,63 @@ export const es: Dictionary = {
       "Panel de control web de dabetai con métricas de pacientes y alertas de IA",
     mobileDashboard:
       "Aplicación móvil dabetai mostrando dashboard de glucosa y predicciones",
+  },
+  ai: {
+    title: "Inteligencia artificial predictiva",
+    subtitle:
+      "Nuestro modelo analiza 13 biomarcadores en tiempo real para predecir complicaciones antes de que ocurran.",
+    riskLabel: "Riesgo",
+    complications: [
+      {
+        name: "Retinopatía",
+        risk: "31 %",
+        icon: "fa-eye",
+        description:
+          "Daño en los vasos de la retina que puede causar ceguera irreversible",
+      },
+      {
+        name: "Nefropatía",
+        risk: "31 %",
+        icon: "fa-droplet",
+        description: "Daño renal progresivo que puede derivar en diálisis",
+      },
+      {
+        name: "Neuropatía",
+        risk: "20 %",
+        icon: "fa-bolt",
+        description:
+          "Daño nervioso periférico que causa dolor y pérdida de sensibilidad",
+      },
+      {
+        name: "Pie diabético",
+        risk: "17 %",
+        icon: "fa-shoe-prints",
+        description: "Úlceras e infecciones que pueden requerir amputación",
+      },
+    ],
+    steps: [
+      {
+        title: "Tus datos",
+        description:
+          "Conecta tu CGM y wearables. El modelo captura frecuencia cardíaca, sueño, glucosa y actividad física.",
+        icon: "fa-database",
+      },
+      {
+        title: "Análisis predictivo",
+        description:
+          "Procesa 13 biomarcadores con el modelo AdaBoost entrenado con 440 pacientes para detectar patrones de riesgo.",
+        icon: "fa-brain",
+      },
+      {
+        title: "Alerta temprana",
+        description:
+          "Si detecta riesgo de complicación, genera una alerta inmediata al paciente y a su médico para intervenir a tiempo.",
+        icon: "fa-bell",
+      },
+    ],
+    stat: "92.9 % de sensibilidad",
+    statDetail:
+      "Nuestra métrica principal es el recall: detectar a los pacientes que realmente están en riesgo. En pruebas clínicas, el modelo identifica 9 de cada 10 casos de retinopatía a tiempo.",
   },
   backToTop: "Volver al inicio",
   openMenu: "Abrir menú",

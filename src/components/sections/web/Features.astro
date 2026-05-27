@@ -3,6 +3,7 @@ import type { Dictionary } from "../../../i18n/types";
 import Section from "../../layout/Section.astro";
 import Typography from "../../ui/Typography.astro";
 import ImageGallery from "../../ui/ImageGallery.astro";
+import SimpleCard from "../../ui/SimpleCard.astro";
 
 const { dict } = Astro.props as { dict: Dictionary };
 const features = dict.webFeatures.items;
@@ -19,18 +20,18 @@ const features = dict.webFeatures.items;
   <div class="lg:hidden">
     <div class="grid grid-cols-1 tb:grid-cols-2 gap-6">
       {features.map((feature, i) => (
-        <div class="flex items-center gap-5 feature-card" data-reveal="right" style={`transition-delay:${i * 100}ms`}>
-          <div class="w-14 h-14 flex items-center justify-center bg-slate-50 text-secondary-500 rounded-full text-2xl shrink-0 shadow-ds-sm">
-            <i class={`fas ${feature.icon}`} />
-          </div>
-          <div class="space-y-3">
-            <Typography variant="subtitle" color="text-secondary-500">{feature.title}</Typography>
-            <Typography variant="body">{feature.description}</Typography>
-          </div>
-        </div>
+        <SimpleCard
+          title={feature.title}
+          description={feature.description}
+          icon={feature.icon}
+          color="secondary"
+          class="feature-card"
+          data-reveal="right"
+          style={`transition-delay:${i * 100}ms`}
+        />
       ))}
     </div>
-    <div class="flex justify-center" data-reveal="left">
+    <div class="flex justify-center mt-8 tb:mt-10" data-reveal="left">
       <ImageGallery
         images={[
           { src: "/assets/images/web/features/dashboard.png", alt: "Panel de control web de dabetai con métricas de pacientes glucosa y alertas" },
@@ -62,15 +63,15 @@ const features = dict.webFeatures.items;
     </div>
     <div class="col-span-1 flex flex-col space-y-6">
       {features.map((feature, i) => (
-        <div class="flex items-center gap-5 feature-card" data-reveal="right" style={`transition-delay:${i * 100}ms`}>
-          <div class="w-14 h-14 flex items-center justify-center bg-slate-50 text-secondary-500 rounded-full text-2xl shrink-0 shadow-ds-sm">
-            <i class={`fas ${feature.icon}`} />
-          </div>
-          <div class="space-y-3">
-            <Typography variant="subtitle" color="text-secondary-500">{feature.title}</Typography>
-            <Typography variant="body">{feature.description}</Typography>
-          </div>
-        </div>
+        <SimpleCard
+          title={feature.title}
+          description={feature.description}
+          icon={feature.icon}
+          color="secondary"
+          class="feature-card"
+          data-reveal="right"
+          style={`transition-delay:${i * 100}ms`}
+        />
       ))}
     </div>
   </div>

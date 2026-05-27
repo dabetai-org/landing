@@ -3,6 +3,7 @@ import type { Dictionary } from "../../../i18n/types";
 import Section from "../../layout/Section.astro";
 import Typography from "../../ui/Typography.astro";
 import ImageGallery from "../../ui/ImageGallery.astro";
+import SimpleCard from "../../ui/SimpleCard.astro";
 
 const { dict } = Astro.props as { dict: Dictionary };
 const features = dict.mobileFeatures.items;
@@ -19,18 +20,18 @@ const features = dict.mobileFeatures.items;
   <div class="lg:hidden">
     <div class="grid grid-cols-1 tb:grid-cols-2 gap-6">
       {features.map((feature, i) => (
-        <div class="flex items-center gap-5 feature-card" data-reveal style={`transition-delay:${i * 80}ms`}>
-          <div class="w-14 h-14 flex items-center justify-center bg-slate-50 text-primary-500 rounded-full text-2xl shrink-0 shadow-ds-sm">
-            <i class={`fas ${feature.icon}`} />
-          </div>
-          <div class="text-start space-y-3">
-            <Typography variant="subtitle" color="text-primary-500">{feature.title}</Typography>
-            <Typography variant="body">{feature.description}</Typography>
-          </div>
-        </div>
+        <SimpleCard
+          title={feature.title}
+          description={feature.description}
+          icon={feature.icon}
+          color="primary"
+          class="feature-card"
+          data-reveal
+          style={`transition-delay:${i * 80}ms`}
+        />
       ))}
     </div>
-    <div class="flex justify-center" data-reveal>
+    <div class="flex justify-center mt-8 tb:mt-10" data-reveal>
       <ImageGallery
         images={[
           { src: "/assets/images/mobile/dashboard.png", alt: "Dashboard de la app dabetai con glucosa en tiempo real y métricas de salud" },
@@ -48,15 +49,16 @@ const features = dict.mobileFeatures.items;
   <div class="hidden lg:grid lg:grid-cols-3 items-start gap-10">
     <div class="flex flex-col space-y-10">
       {features.filter((f) => f.align === "right").map((feature, i) => (
-        <div class="flex flex-row-reverse items-center gap-5 text-end feature-card" data-reveal="left" style={`transition-delay:${i * 80}ms`}>
-          <div class="w-14 h-14 flex items-center justify-center bg-slate-50 text-primary-500 rounded-full text-2xl shrink-0 shadow-ds-sm">
-            <i class={`fas ${feature.icon}`} />
-          </div>
-          <div class="text-end space-y-3">
-            <Typography variant="subtitle" color="text-primary-500">{feature.title}</Typography>
-            <Typography variant="body">{feature.description}</Typography>
-          </div>
-        </div>
+        <SimpleCard
+          title={feature.title}
+          description={feature.description}
+          icon={feature.icon}
+          color="primary"
+          iconPosition="right"
+          class="feature-card"
+          data-reveal="left"
+          style={`transition-delay:${i * 80}ms`}
+        />
       ))}
     </div>
     <div class="flex justify-center" data-reveal>
@@ -73,15 +75,15 @@ const features = dict.mobileFeatures.items;
     </div>
     <div class="flex flex-col space-y-10">
       {features.filter((f) => f.align === "left").map((feature, i) => (
-        <div class="flex items-center gap-5 feature-card" data-reveal="right" style={`transition-delay:${i * 80}ms`}>
-          <div class="w-14 h-14 flex items-center justify-center bg-slate-50 text-primary-500 rounded-full text-2xl shrink-0 shadow-ds-sm">
-            <i class={`fas ${feature.icon}`} />
-          </div>
-          <div class="text-start space-y-3">
-            <Typography variant="subtitle" color="text-primary-500">{feature.title}</Typography>
-            <Typography variant="body">{feature.description}</Typography>
-          </div>
-        </div>
+        <SimpleCard
+          title={feature.title}
+          description={feature.description}
+          icon={feature.icon}
+          color="primary"
+          class="feature-card"
+          data-reveal="right"
+          style={`transition-delay:${i * 80}ms`}
+        />
       ))}
     </div>
   </div>

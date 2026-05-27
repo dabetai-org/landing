@@ -8,6 +8,7 @@ import Hero from "@components/sections/Hero.astro";
 import HowMobileAppWorks from "@components/sections/mobile/HowItWorks.astro";
 import HowWebAppWorks from "@components/sections/web/HowItWorks.astro";
 import MobileAppCTA from "@components/sections/mobile/CTA.astro";
+import AIPredictionBento from "@components/sections/AIPredictionBento.astro";
 import MobileAppFeatures from "@components/sections/mobile/Features.astro";
 import WebAppCTA from "@components/sections/web/CTA.astro";
 import WebAppFeatures from "@components/sections/web/Features.astro";
@@ -31,6 +32,7 @@ const dict: Dictionary = await getDictionary(locale);
 	<MobileAppFeatures dict={dict} />
 	<HowMobileAppWorks dict={dict} />
 	<MobileAppCTA dict={dict} />
+	<AIPredictionBento dict={dict} lang={locale} />
 	<WebAppFeatures dict={dict} />
 	<HowWebAppWorks dict={dict} />
 	<WebAppCTA dict={dict} />

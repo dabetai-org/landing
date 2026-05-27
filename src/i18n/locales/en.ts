@@ -4,6 +4,7 @@ export const en: Dictionary = {
   nav: {
     inicio: "Home",
     appMovil: "Mobile App",
+    appAI: "AI Prediction",
     appWeb: "Web App",
     faq: "FAQ",
   },
@@ -365,6 +366,63 @@ export const en: Dictionary = {
       "dabetai web control panel with patient metrics and AI alerts",
     mobileDashboard:
       "dabetai mobile app showing glucose dashboard and predictions",
+  },
+  ai: {
+    title: "Artificial Intelligence Prediction",
+    subtitle:
+      "Our model analyzes 13 biomarkers in real time to predict complications before they occur.",
+    riskLabel: "Risk",
+    complications: [
+      {
+        name: "Retinopathy",
+        risk: "31 %",
+        icon: "fa-eye",
+        description:
+          "Damage to retinal blood vessels that can cause irreversible blindness",
+      },
+      {
+        name: "Nephropathy",
+        risk: "31 %",
+        icon: "fa-droplet",
+        description: "Progressive kidney damage that may lead to dialysis",
+      },
+      {
+        name: "Neuropathy",
+        risk: "20 %",
+        icon: "fa-bolt",
+        description:
+          "Peripheral nerve damage causing pain and loss of sensation",
+      },
+      {
+        name: "Diabetic foot",
+        risk: "17 %",
+        icon: "fa-shoe-prints",
+        description: "Ulcers and infections that may require amputation",
+      },
+    ],
+    steps: [
+      {
+        title: "Your data",
+        description:
+          "Connect your CGM and wearables. The model captures heart rate, sleep, glucose, and physical activity.",
+        icon: "fa-database",
+      },
+      {
+        title: "Predictive analysis",
+        description:
+          "Processes 13 biomarkers with the AdaBoost model trained on 440 patients to detect risk patterns.",
+        icon: "fa-brain",
+      },
+      {
+        title: "Early alert",
+        description:
+          "If a complication risk is detected, it generates an immediate alert to the patient and their doctor for timely intervention.",
+        icon: "fa-bell",
+      },
+    ],
+    stat: "92.9 % sensitivity",
+    statDetail:
+      "Our primary metric is recall: detecting patients truly at risk. In clinical testing, the model identifies 9 out of 10 retinopathy cases in time.",
   },
   backToTop: "Back to top",
   openMenu: "Open menu",
