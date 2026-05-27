@@ -12,7 +12,7 @@ export const es: Dictionary = {
     inicio: "Inicio",
     appMovil: "Aplicación móvil",
     appWeb: "Aplicación web",
-    faq: "FAQ",
+    faq: "Preguntas frecuentes",
   },
   hero: {
     titleBefore: "Predice y prevén complicaciones de la diabetes con ",
