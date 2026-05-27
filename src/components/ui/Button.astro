@@ -2,11 +2,13 @@
 export type ButtonVariant = "fill" | "outline";
 export type ButtonColor = "primary" | "secondary" | "danger";
 export type IconPosition = "none" | "left" | "right" | "only";
+export type ColorShade = "500" | "700";
 
 export interface Props {
   title?: string;
   variant?: ButtonVariant;
   color?: ButtonColor;
+  colorShade?: ColorShade;
   iconPosition?: IconPosition;
   circular?: boolean;
   disabled?: boolean;
@@ -20,6 +22,7 @@ const {
   title,
   variant = "fill",
   color = "primary",
+  colorShade = "500",
   iconPosition = "none",
   circular = false,
   disabled = false,
@@ -35,6 +38,14 @@ const fillConfig: Record<ButtonColor, { bg: string; hoverBg: string; focusBorder
   secondary: { bg: "bg-secondary-500", hoverBg: "hover:bg-secondary-700", focusBorder: "focus:ring-secondary-700" },
   danger: { bg: "bg-danger-500", hoverBg: "hover:bg-danger-800", focusBorder: "focus:ring-danger-800" },
 };
+
+const fillConfigDark: Record<ButtonColor, { bg: string; hoverBg: string; focusBorder: string }> = {
+  primary: { bg: "bg-primary-700", hoverBg: "hover:bg-primary-900", focusBorder: "focus:ring-primary-900" },
+  secondary: { bg: "bg-secondary-700", hoverBg: "hover:bg-secondary-900", focusBorder: "focus:ring-secondary-900" },
+  danger: { bg: "bg-danger-800", hoverBg: "hover:bg-danger-900", focusBorder: "focus:ring-danger-900" },
+};
+
+const activeFillConfig = colorShade === "700" ? fillConfigDark : fillConfig;
 
 const outlineConfig: Record<ButtonColor, { border: string; text: string; hoverBorder: string; hoverText: string; focusBorder: string }> = {
   primary: {
@@ -93,7 +104,7 @@ if (variant === "outline") {
     );
   }
 } else {
-  const fc = fillConfig[color];
+  const fc = activeFillConfig[color];
   if (disabled) {
     baseButton.push("bg-slate-500 text-slate-50");
   } else {

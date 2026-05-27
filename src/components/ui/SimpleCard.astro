@@ -6,6 +6,7 @@ export interface Props {
   description: string;
   icon: string;
   color?: "primary" | "secondary";
+  colorShade?: "500" | "700";
   iconPosition?: "left" | "right";
   "data-reveal"?: string;
   style?: string;
@@ -17,13 +18,14 @@ const {
   description,
   icon,
   color = "primary",
+  colorShade = "500",
   iconPosition = "left",
   "data-reveal": dataReveal,
   style,
   class: className = "",
 } = Astro.props;
 
-const textColor = `text-${color}-500`;
+const textColor = `text-${color}-${colorShade}`;
 const rowDir = iconPosition === "right" ? "flex-row-reverse" : "flex-row";
 const textAlign = iconPosition === "right" ? "text-end" : "text-start";
 ---

@@ -67,18 +67,18 @@ const { totalSteps, color = "primary" } = Astro.props;
   .step-dot[data-state="completed"] { color: white; }
 
   .stepper[data-color="primary"] .step-dot[data-state="active"] {
-    background-color: #2196F3; border-color: #2196F3;
-    box-shadow: 0 0 0 3px rgba(33,150,243,0.25);
+    background-color: #1976D2; border-color: #1976D2;
+    box-shadow: 0 0 0 3px rgba(25,118,210,0.25);
     transform: scale(1.1);
   }
   .stepper[data-color="primary"] .step-dot[data-state="completed"] {
-    background-color: #64B5F6; border-color: #64B5F6;
+    background-color: #42A5F5; border-color: #42A5F5;
   }
   .stepper[data-color="primary"] .step-dot[data-state="inactive"] {
     background-color: transparent; border-color: #94A3B8; color: #94A3B8;
   }
   .stepper[data-color="primary"] .step-dot[data-state="inactive"]:hover {
-    background-color: #E3F2FD; border-color: #2196F3; color: #2196F3;
+    background-color: #E3F2FD; border-color: #1976D2; color: #1976D2;
   }
 
   .stepper[data-color="secondary"] .step-dot[data-state="active"] {
@@ -96,11 +96,11 @@ const { totalSteps, color = "primary" } = Astro.props;
     background-color: #E0F2F1; border-color: #009688; color: #009688;
   }
 
-  .stepper[data-color="primary"] .step-line[data-state="active"] { background-color: #2196F3; }
+  .stepper[data-color="primary"] .step-line[data-state="active"] { background-color: #1976D2; }
   .stepper[data-color="secondary"] .step-line[data-state="active"] { background-color: #009688; }
   .step-line[data-state="inactive"] { background-color: #CBD5E1; }
 
-  .stepper[data-color="primary"] .step-progress-fill { background-color: #2196F3; }
+  .stepper[data-color="primary"] .step-progress-fill { background-color: #1976D2; }
   .stepper[data-color="secondary"] .step-progress-fill { background-color: #009688; }
 
 </style>
