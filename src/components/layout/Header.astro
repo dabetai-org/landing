@@ -10,9 +10,10 @@ interface LinkItem {
 const { links = [], dict, lang } = Astro.props as { links?: LinkItem[]; dict: Dictionary; lang: Locale };
 const otherLang = lang === "en" ? "es" : "en";
 const otherLabel = lang === "en" ? "ES" : "EN";
+const otherFullLabel = lang === "en" ? "Español" : "English";
 ---
 
-<header id="app-header" class="fixed top-0 left-0 w-full z-50 transition-[background-color,transform] duration-300 bg-primary-500">
+<header id="app-header" class="fixed top-0 left-0 w-full z-50 transition-[background-color,transform] duration-300 bg-primary-500 border-b border-white/20">
   <div class="max-w-[1440px] mx-auto px-5 xs:px-6 md:px-20 flex items-center justify-between h-16 md:h-[72px]">
       <a href={lang === "en" ? "/en" : "/"} class="shrink-0 hover:scale-110 active:scale-95 transition-all duration-300">
         <img id="header-logo" src="/assets/images/logo/logo-dark.png" alt="dabetai" class="h-6 xs:h-7 sm:h-8" />
@@ -32,8 +33,9 @@ const otherLabel = lang === "en" ? "ES" : "EN";
         href={lang === "en" ? "/es" : "/en"}
         id="lang-toggle"
         data-other-lang={otherLang}
-        class="nav-lang ml-2 px-3 py-2.5 leading-none text-xs font-black uppercase tracking-wider transition-all duration-200 rounded-xl text-white/80 hover:text-white hover:bg-white/10 active:scale-95 border border-white/20"
+        class="nav-lang ml-2 px-3 py-2.5 leading-none text-xs font-black uppercase tracking-wider transition-all duration-200 rounded-xl text-white/80 hover:text-white hover:bg-white/10 active:scale-95 border border-white/20 flex items-center gap-1.5"
       >
+        <i class="fa-solid fa-globe text-sm"></i>
         {otherLabel}
       </a>
     </nav>
@@ -43,8 +45,9 @@ const otherLabel = lang === "en" ? "ES" : "EN";
         href={lang === "en" ? "/es" : "/en"}
         id="lang-toggle-mobile"
         data-other-lang={otherLang}
-        class="px-3 py-2.5 leading-none text-xs font-black uppercase tracking-wider transition-all duration-200 rounded-xl text-white/80 hover:text-white hover:bg-white/15 active:scale-95 border border-white/20"
+        class="px-3 py-2.5 leading-none text-xs font-black uppercase tracking-wider transition-all duration-200 rounded-xl text-white/80 hover:text-white hover:bg-white/15 active:scale-95 border border-white/20 flex items-center gap-1.5"
       >
+        <i class="fa-solid fa-globe text-sm"></i>
         {otherLabel}
       </a>
       <button
@@ -60,7 +63,7 @@ const otherLabel = lang === "en" ? "ES" : "EN";
 </header>
 
 <div id="mobile-menu" class="fixed inset-0 z-50 flex flex-col w-full h-full overflow-hidden hidden bg-primary-500">
-  <div class="flex items-center justify-between px-5 xs:px-6 h-16 shrink-0">
+  <div class="flex items-center justify-between px-5 xs:px-6 h-16 shrink-0 border-b border-white/20">
     <a href={lang === "en" ? "/en" : "/"}>
       <img id="mobile-logo" src="/assets/images/logo/logo-white.png" alt="dabetai" class="h-6 xs:h-7" />
     </a>
@@ -91,10 +94,41 @@ const otherLabel = lang === "en" ? "ES" : "EN";
         data-other-lang={otherLang}
         class="mobile-nav-link flex items-center justify-between p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/20 bg-white/10 text-white/80 hover:text-white hover:bg-white/20 transition-all duration-200 mt-4"
       >
-        <span class="text-base sm:text-lg font-bold uppercase tracking-wider">{otherLabel}</span>
-        <i class="fa-solid fa-language text-sm opacity-50"></i>
+        <span class="text-base sm:text-lg font-bold">{otherFullLabel}</span>
+        <i class="fa-solid fa-globe text-sm opacity-50"></i>
       </a>
     </nav>
+
+    <div class="mt-auto py-6 flex flex-col gap-4 items-center border-t border-white/20">
+      <div class="flex gap-5 items-center">
+        <a
+          href="https://github.com/dabetai-org"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="GitHub"
+          class="text-white/60 hover:text-white transition-all hover:scale-110 active:scale-90"
+        >
+          <i class="fab fa-github text-lg"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/chrisssp/"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="LinkedIn"
+          class="text-white/60 hover:text-white transition-all hover:scale-110 active:scale-90"
+        >
+          <i class="fab fa-linkedin text-lg"></i>
+        </a>
+        <a
+          href="mailto:christian.serrano.puertos@gmail.com"
+          title="Email"
+          class="text-white/60 hover:text-white transition-all hover:scale-110 active:scale-90"
+        >
+          <i class="fas fa-envelope text-lg"></i>
+        </a>
+      </div>
+      <span class="text-white/40 text-xs font-medium">&copy; 2025 {dict.footer.copyright}</span>
+    </div>
   </div>
 </div>
 
@@ -161,7 +195,9 @@ const otherLabel = lang === "en" ? "ES" : "EN";
       var active = getActiveSection();
       header.style.backgroundColor = HEADER_COLORS[active];
       headerLogo.src = LOGO_SRC[active];
-      mobileMenu.style.backgroundColor = HEADER_COLORS[active];
+      if (mobileMenuOpen) {
+        mobileMenu.style.backgroundColor = HEADER_COLORS[active];
+      }
       mobileLogo.src = LOGO_SRC[active];
       for (var i = 0; i < allNavLinks.length; i++) {
         var link = allNavLinks[i];
@@ -179,6 +215,7 @@ const otherLabel = lang === "en" ? "ES" : "EN";
       document.documentElement.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
       header.style.transform = "translateY(0)";
+      updateHeader();
     }
 
     function closeMenu() {
@@ -195,7 +232,6 @@ const otherLabel = lang === "en" ? "ES" : "EN";
       link.addEventListener("click", closeMenu);
     });
 
-    // Language toggle with hash preservation
     var langToggles = document.querySelectorAll("[data-other-lang]");
     langToggles.forEach(function (toggle) {
       toggle.addEventListener("click", function (e) {
